@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('tickets_link');
             $table->timestamp('date_time');
             $table->foreignId('events_venue_id')->constrained();
-            $table->timestamp('tag');
+            $table->string('tag');
             $table->timestamps();
         });
     }
