@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Playlist;
 use App\Models\Sponsor;
 
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $events = Event::whereDate('date_time', '>=', date('Y-m-d'))->take(8)->get();
         $sponsors = Sponsor::all();
         $coming_event = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->first();
-        return view('home', compact("events", "coming_event", "sponsors"));
+        $playlist = Playlist::orderBy('created_at', 'desc')->take(6)->get();
+        return view('home', compact("events", "coming_event", "sponsors", "playlist"));
     }
 }
