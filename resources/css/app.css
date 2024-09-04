@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.apexcharts-datalabel-value {
+    font-size: 18px !important;
+}
+
+@layer base {
+}
+
+@layer components {
+    .scrollbar-w-2::-webkit-scrollbar {
+        width: 0.25rem;
+        height: 0.25rem;
+    }
+    .scrollbar-w-0::-webkit-scrollbar {
+        width: 0rem;
+        height: 0rem;
+    }
+    html::-webkit-scrollbar {
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+    html::-webkit-scrollbar {
+        width: 0rem;
+        height: 0rem;
+    }
+    .scrollbar-track-blue-lighter::-webkit-scrollbar-track,
+    html::-webkit-scrollbar-track {
+        --bg-opacity: 1;
+        @apply bg-secondary;
+    }
+
+    .scrollbar-thumb-blue::-webkit-scrollbar-thumb
+        html::-webkit-scrollbar-thumb {
+        --bg-opacity: 1;
+        @apply bg-secondary;
+    }
+    .scrollbar-thumb-h-blue::-webkit-scrollbar-thumb {
+        --bg-opacity: 1;
+        @apply bg-secondary;
+    }
+
+    .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+        border-radius: 0.25rem;
+    }
+    .active {
+        @apply border-accent  border-l-4 2xl:border-l-8 text-accent;
+    }
+    .not-active {
+        @apply border-transparent  border-l-4 2xl:border-l-8 text-textSecondary;
+    }
+}
+
+:root {
+    --primary: 255, 255, 255;
+    --secondary: 247, 247, 247;
+    --tertiary: 245, 130, 31;
+    --text-secondary: 37, 37, 38;
+    --text-primary: 0 0 0;
+    --accent: 13, 116, 190;
+}
+.dark {
+    --primary: 23, 33, 49;
+    --secondary: 34, 52, 76;
+    --tertiary: 196, 221, 255;
+    --text-secondary: 211, 211, 211;
+    --text-primary: 255, 255, 255;
+    --accent: 13, 116, 190;
+}
+
+.z-1000 {
+    z-index: 1000;
+}
