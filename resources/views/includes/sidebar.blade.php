@@ -30,7 +30,7 @@
                 <span>Dashboard</span>
               </a>
               <a
-              href="/admin/users"
+              href="{{ route('admin.users_list') }}"
               class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active"
             >
               <span>
@@ -42,7 +42,7 @@
               <span>Users</span>
             </a>
             <a
-              href="/admin/events"
+              href="{{ route('admin.events_list') }}"
               class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active"
             >
               <span>
@@ -53,7 +53,7 @@
               <span>Events</span>
             </a>
             <a
-              href="/admin/team"
+              href="{{ route('admin.team_list') }}"
               class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active"
             >
               <span>
@@ -64,7 +64,7 @@
               <span>Team Mambers</span>
             </a>
             <a
-              href="/admin/team"
+              href="{{ route('admin.professionals_list') }}"
               class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active"
             >
               <span>

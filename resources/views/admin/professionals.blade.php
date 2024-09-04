@@ -3,11 +3,15 @@
 @section('content')
 <main class="flex flex-col h-screen space-y-6 ">
     <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
-        <h2 class="font-extrabold text-2xl text-accent">Users Management</h2>
+        <h2 class="font-extrabold text-2xl text-accent">Events Management</h2>
+        <button class="py-1 px-5 flex items-center space-x-2 bg-accent shadow rounded text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" 
+            stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" 
+            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span>New Event</span></button>
       </div>
       <div class="flex flex-col px-4 space-y-4 overflow-auto">
       <div class="text-start bg-secondary px-5 py-4 border-2 border-accent/20  w-full rounded-md shadow ">
-        <h2 class="text-xl font-bold text-accent">Filter Users</h2>
+        <h2 class="text-xl font-bold text-accent">Filter Events</h2>
         <div class="flex justify-between items-center">
           <div class="flex py-3 gap-5">
             <div class="flex flex-col space-y-2">
@@ -83,7 +87,7 @@
           <a
             class="text-start flex justify-start space-x-0.5"
           >
-            <span>Name</span>
+            <span>Event Title</span>
             <div class="flex flex-col">
               <span class="text-gray-400 ">
                 <svg
@@ -118,7 +122,7 @@
           <a
             class="flex  w-full justify-end"
           >
-            ID Number
+            Event Date
             <div class="flex flex-col">
               <span class="text-gray-400 ">
                 <svg
@@ -154,7 +158,7 @@
           <a
             class="flex  w-full justify-end"
           >
-            <span>Email</span>
+            <span>Event Venue</span>
             <div class="flex flex-col">
               <span class="text-gray-400 ">
                 <svg
@@ -189,7 +193,7 @@
           <a
             class="flex w-full justify-end "
           >
-            Phone
+            Event Tag
             <div class="flex flex-col">
               <span class="text-gray-400 ">
                 <svg
@@ -224,7 +228,7 @@
           <a
             class="flex  w-full justify-end"
           >
-            Registred Date
+            Event Link
             <div class="flex flex-col">
               <span class="text-gray-400 ">
                 <svg
@@ -259,7 +263,7 @@
           <a
             class="flex  w-full justify-end"
           >
-            Status
+            Created At
             <div class="flex flex-col">
               <span class="text-gray-400 ">
                 <svg
@@ -295,48 +299,7 @@
         </div>
       </div>
       <div class="px-5 py-4 border-2 border-accent/20  bg-primary w-full rounded-md shadow space-y-4">
-        {{-- loop through users --}}
-        @foreach ($users as $user)
-        <div
-        class="grid grid-cols-7 items-center text-end"
-      >
-        <Link
-          class="text-start font-bold capitalize whitespace-nowrap"
-        >
-          {{user->firstname}} {{user->lastname}}
-        </Link>
-        <span>{{user->id_number}}</span>
-        <span>{{user->email}}</span>
-        <span>{{user->phone}}</span>
-        <span>
-          {}
-        </span>
-        <div class="flex justify-end items-center w-full">
-            {{-- active or inactive --}}
-            @if ($user->status == 1)
-              <div class="flex text-green-500 items-center space-x-3 rounded-md">
-                <span>Active</span>
-                <div class="h-2 w-2 bg-green-500 aspect-square rounded-full"></div>
-              </div>
-            @else
-              <div class="flex text-red-400 items-center space-x-3 rounded-md">
-                <span>Inactive</span>
-                <div class="h-2 w-2 bg-red-400 aspect-square rounded-full"></div>
-              </div>
-            @endif
-            
-          
-        </div>
-        <div class="flex justify-end">
-          <a
-          href="{{ route('admin.users.show', $user->id) }}"
-            class="bg-accent text-white px-3 py-1 rounded-md"
-          >
-            View
-          </a>
-        </div>
-      </div>  
-      @endforeach
+       
     </div>
       </div>
 </main>
