@@ -20,4 +20,9 @@ Route::group([
     Route::get('/events', [AdminController::class, 'events_list'])->name('admin.events_list');
     Route::get('/team', [AdminController::class, 'team_list'])->name('admin.team_list');
     Route::get('/professionals', [AdminController::class, 'professionals_list'])->name('admin.professionals_list');
+    Route::get('/playlist', [AdminController::class, 'playlist'])->name('admin.playlist');
+    Route::get('/sponsors', [AdminController::class, 'sponsors'])->name('admin.sponsors');
+    Route::get('/news', [AdminController::class, 'news_list'])->name('admin.news');
+    Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
 });

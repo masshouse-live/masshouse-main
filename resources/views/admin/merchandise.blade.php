@@ -3,17 +3,17 @@
 @section('content')
     <main class="flex flex-col h-screen space-y-6 ">
         <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
-            <h2 class="font-extrabold text-2xl text-accent">Playlist & Media Management</h2>
+            <h2 class="font-extrabold text-2xl text-accent">Merchandise Management</h2>
             <button class="py-1 px-5 flex items-center space-x-2 bg-accent shadow rounded text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
-                </svg><span>New Media</span></button>
+                </svg><span>New Merchandise</span></button>
         </div>
         <div class="flex flex-col px-4 space-y-4 overflow-auto">
             <div class="text-start bg-secondary px-5 py-4 border-2 border-accent/20  w-full rounded-md shadow ">
-                <h2 class="text-xl font-bold text-accent">Filter Playlist & Media</h2>
+                <h2 class="text-xl font-bold text-accent">Filter Merchandise</h2>
                 <div class="flex justify-between items-center">
                     <div class="flex py-3 gap-5">
                         <div class="flex flex-col space-y-2">

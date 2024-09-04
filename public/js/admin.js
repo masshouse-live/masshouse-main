@@ -29,5 +29,9 @@ $(document).ready(function () {
     initMenu();
 });
 (() => {
+    console.log(document.querySelector("#sortable"));
+    if (document.querySelector("#sortable")) {
+        $("#sortable").sortable();
+    }
     init();
 })();

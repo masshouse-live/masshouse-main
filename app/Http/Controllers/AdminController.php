@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Professional;
+use App\Models\Playlist;
+use App\Models\Sponsor;
+use App\Models\News;
+use App\Models\Merchandise;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +21,6 @@ class AdminController extends Controller
 
     public function users_list(Request $request)
     {
-        $page = $request->page ?? 1;
         $search = $request->search ?? '';
         $active = $request->active ?? ''; // 1 or 0
         $order_by = $request->order_by ?? 'id desc';
@@ -42,7 +45,6 @@ class AdminController extends Controller
     public function events_list(Request $request)
     {
 
-        $page = $request->page ?? 1;
         $search = $request->search ?? '';
         $from_date = $request->from_date ?? '';
         $to_date = $request->to_date ?? '';
@@ -60,7 +62,6 @@ class AdminController extends Controller
     public function team_list(Request $request)
     {
 
-        $page = $request->page ?? 1;
         $search = $request->search ?? '';
 
         $team = User::where('name', 'like', '%' . $search . '%')
@@ -73,7 +74,6 @@ class AdminController extends Controller
     public function professionals_list(Request $request)
     {
 
-        $page = $request->page ?? 1;
         $search = $request->search ?? '';
         $role = $request->search ?? '';
 
@@ -89,5 +89,56 @@ class AdminController extends Controller
             ->paginate(10);
 
         return view('admin.professionals', compact('professionals'));
+    }
+
+    public function playlist()
+    {
+        $search = $request->search ?? '';
+        $from_date = $request->from_date ?? '';
+        $to_date = $request->to_date ?? '';
+        $playlist = Playlist::where('title', 'like', '%' . $search . '%')
+            ->whereBetween('created_at', [$from_date, $to_date])
+            ->paginate(10);
+
+
+        return view('admin.playlist', compact('playlist'));
+    }
+
+    public function sponsors(Request $request)
+    {
+        $sponsors = Sponsor::all();
+        return view('admin.sponsors', compact('sponsors'));
+    }
+
+    public function news_list(Request $request)
+    {
+
+        $search = $request->search ?? '';
+        $from_date = $request->from_date ?? '';
+        $to_date = $request->to_date ?? '';
+        // search title, short description, description
+        $news = News::where('title', 'like', '%' . $search . '%')
+            ->orWhere('short_description', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->whereBetween('created_at', [$from_date, $to_date])
+            ->paginate(10);
+
+        return view('admin.news', compact('news'));
+    }
+
+    public function merchandise(Request $request)
+    {
+        $search = $request->search ?? '';
+        $category = $request->category ?? '';
+        $gender = $request->gender ?? '';
+        $size = $request->sizes ?? '';
+        $color = $request->colors ?? '';
+        $merchandise = Merchandise::where('name', 'like', '%' . $search . '%')
+            ->where('category', 'like', '%' . $category . '%')
+            ->where('gender', 'like', '%' . $gender . '%')
+            ->where('sizes', 'like', '%' . $size . '%')
+            ->where('colors', 'like', '%' . $color . '%')
+            ->paginate(10);
+        return view('admin.merchandise', compact('merchandise'));
     }
 }
