@@ -338,6 +338,7 @@
       </div>  
       @endforeach
     </div>
+    {{$users}}
       </div>
 </main>
 @endsection

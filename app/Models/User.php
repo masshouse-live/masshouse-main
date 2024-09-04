@@ -20,6 +20,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "username",
+        "profile_photo_path",
+        "role",
+        "is_active",
+        "is_verified",
+        "is_admin",
+        "phone",
+        "id_number",
+        "address",
     ];
 
     /**

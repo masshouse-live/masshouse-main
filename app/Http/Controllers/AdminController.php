@@ -28,7 +28,7 @@ class AdminController extends Controller
             ->where('is_active', $active)
             ->orderBy($order_by)
             ->whereBetween('created_at', [$from_date, $to_date])
-            ->paginate(10, ['*'], 'page', $page);
+            ->paginate(10);
 
         return view('admin.users', compact('users'));
     }
@@ -52,7 +52,7 @@ class AdminController extends Controller
             ->where('subtitle', 'like', '%' . $search . '%')
             ->whereBetween('date_time', [$from_date, $to_date])
             ->orderBy($order_by)
-            ->paginate(10, ['*'], 'page', $page);
+            ->paginate(10);
 
         return view('admin.events', compact('events'));
     }
@@ -65,7 +65,7 @@ class AdminController extends Controller
 
         $team = User::where('name', 'like', '%' . $search . '%')
             ->orderBy('rank', 'desc')
-            ->paginate(10, ['*'], 'page', $page);
+            ->paginate(10);
 
         return view('admin.team', compact('team'));
     }
@@ -86,7 +86,7 @@ class AdminController extends Controller
             ->where('role', 'like', '%' . $role . '%')
             ->whereBetween('created_at', [$from_date, $to_date])
             ->orderBy($order_by)
-            ->paginate(10, ['*'], 'page', $page);
+            ->paginate(10);
 
         return view('admin.professionals', compact('professionals'));
     }
