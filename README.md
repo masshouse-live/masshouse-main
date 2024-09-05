@@ -71,3 +71,5 @@ php artisan config:cache
 ```
 
 <!-- dns1.namecheaphosting.com and dns2.namecheaphosting.com. I -->
+
+[https://www.codexworld.com/drag-drop-images-reorder-using-jquery-ajax-php-mysql/](https://www.codexworld.com/drag-drop-images-reorder-using-jquery-ajax-php-mysql/)

@@ -1,7 +1,8 @@
 @extends('includes.dialog')
 
 @section('form')
-    @parent<div class="h-full w-full mx-auto bg-primary max-w-screen-md border-2  border-accent/20 rounded shadow">
+    @parent<div
+        class="h-full w-full mx-auto bg-primary max-w-screen-md border-2 overflow-auto border-accent/20 rounded shadow">
         <form action="/" method="POST">
             <div class="flex justify-center items-center py-4">
                 <h2 class="text-2xl font-bold">Add Event</h2>

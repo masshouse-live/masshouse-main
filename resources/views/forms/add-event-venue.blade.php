@@ -1,12 +1,65 @@
 @extends('includes.dialog')
 
 @section('form')
-    @parent<div class="h-full w-full mx-auto bg-primary max-w-screen-md border-2  border-accent/20 rounded shadow">
-        <form action="/" method="POST">
+    @parent<div
+        class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
+        <form action="/" method="POST" class="space-y-3 w-full ">
             <div class="flex justify-center items-center py-4">
                 <h2 class="text-2xl font-bold">Add Venue</h2>
             </div>
-
+            <div class="flex flex-col space-y-2 px-4">
+                <label class="font-bold" for="location">
+                    Location / City
+                </label>
+                <input type="text" name="location" id="location" value=""
+                    class="border-2 border-accent/20  bg-primary rounded " placeholder="Location / City" />
+            </div>
+            <div class="flex flex-col space-y-2 px-4">
+                <label class="font-bold" for="address">
+                    Address
+                </label>
+                <input type="text" name="address" id="address" value=""
+                    class="border-2 border-accent/20  bg-primary rounded " placeholder="Address" />
+            </div>
+            <div class="flex flex-col space-y-2 px-4">
+                <label class="font-bold" for="cover_photo">
+                    Cover Image
+                </label>
+                <input type="file" name="cover_photo" id="cover_photo" value="" class=" bg-primary rounded "
+                    placeholder="Address" />
+            </div>
+            <div class="w-full flex flex-col space-y-2 py-5">
+                <h6 class="font-bold px-4">Location Images</h6>
+                <p class="px-4">Please make sure the image you select fits well in the rectangles.</p>
+                <div class="space-x-2 px-4 w-full grid grid-cols-9 mt-5">
+                    <div class="col-span-4 gap-2 flex flex-col">
+                        <label class="drag-drop aspect-[4/1.8] w-full bg-secondary py-2 border">
+                            <input type="file" name="image" id="image1" value="" class="hidden" />
+                            <div class="overlay"></div>
+                        </label>
+                        <label class="drag-drop aspect-[4/2.5] w-full bg-secondary py-2 border">
+                            <input type="file" name="image" id="image2" value="" class="hidden" />
+                            <div class="overlay"></div>
+                        </label>
+                    </div>
+                    <div class="col-span-5 gap-2 flex flex-col">
+                        <div class="grid grid-cols-7 gap-2">
+                            <label class="drag-drop h-60 bg-secondary py-2 border col-span-4">
+                                <input type="file" name="image" id="image3" value="" class="hidden" />
+                                <div class="overlay"></div>
+                            </label>
+                            <label class="drag-drop h-full w-full bg-secondary py-2 border col-span-3">
+                                <input type="file" name="image" id="image4" value="" class="hidden" />
+                                <div class="overlay"></div>
+                            </label>
+                        </div>
+                        <label class="drag-drop aspect-[4/1.71] w-full bg-secondary py-2 border">
+                            <input type="file" name="image" id="image5" value="" class="hidden" />
+                            <div class="overlay"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 @stop
