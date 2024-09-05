@@ -10,6 +10,7 @@ use App\Models\Sponsor;
 use App\Models\News;
 use App\Models\Merchandise;
 use App\Models\SiteSttings;
+use App\Models\Contact;
 
 use Illuminate\Http\Request;
 
@@ -143,10 +144,16 @@ class AdminController extends Controller
         return view('admin.merchandise', compact('merchandise'));
     }
 
-    public function contact(Request $request)
+    public function messages(Request $request)
     {
+        $search = $request->search ?? '';
+        $category  = $request->category ?? '';
 
-        return view('admin.contact');
+        $contacts =  Contact::where('name', 'like', '%' . $search . '%')
+            ->where('category', 'like', '%' . $category . '%')
+            ->paginate(10);
+
+        return view('admin.contact', compact('contacts'));
     }
 
     public function settings()
