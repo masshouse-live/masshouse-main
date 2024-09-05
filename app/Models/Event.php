@@ -12,6 +12,7 @@ class Event extends Model
     protected $fillable = [
         "title",
         "subtitle",
+        "banner",
         "tickets_link",
         "date_time",
         "tag",

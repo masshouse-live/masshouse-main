@@ -11,7 +11,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // group admin
 Route::group([
     'prefix' => 'admin',
-    // 'middleware' => 'auth'
+    'middleware' => 'auth'
 ], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/users', [AdminController::class, 'users_list'])->name('admin.users_list');
