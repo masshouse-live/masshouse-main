@@ -1,6 +1,6 @@
 <div class="flex flex-col min-h-screen bg-secondary  text-textSecondary 2xl:col-span-1 col-span-2">
     <div class="flex flex-col h-screen overflow-auto" id="menu">
-        <a href="/" class="flex pt-6 pb-4 px-4">
+        <a href="{{ route('admin.index') }}" class="flex pt-6 pb-4 px-4">
             <img alt="Access Logo" src="{{ asset('images/logo.png') }}" class="w-full h-auto" />
         </a>
         <div class="flex flex-col flex-grow">
@@ -127,7 +127,7 @@
                     <div>
                         <li class="list-none">
                             <a href="#"
-                                class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent not-active">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -146,29 +146,41 @@
                             </a>
 
                             <ul class="pl-8">
-                                <li><a href="#"
-                                        class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                <li><a href="{{ route('admin.privacy-policy') }}"
+                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Privacy Policy</span>
                                     </a></li>
-                                <li><a href="#"
-                                        class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                <li><a href="{{ route('admin.terms-and-conditions') }}"
+                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Terms & Conditions</span>
                                     </a></li>
-                                <li><a href="#"
-                                        class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                <li><a href="{{ route('admin.delivery-policy') }}"
+                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Delivery Policy</span>
                                     </a></li>
-                                <li><a href="#"
-                                        class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                <li><a href="{{ route('admin.return-policy') }}"
+                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Return Policy</span>
                                     </a></li>
                             </ul>
                         </li>
                     </div>
+                    <button o
+                        class="border-transparent border-l-8 hover:text-accent flex 2xl:px-3 py-2 space-x-2
+                        items-center">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" view-box="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                            </svg>
+                        </span>
+                        <span>Logout</span>
+                    </button>
                 </div>
             </div>
         </div>

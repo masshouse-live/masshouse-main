@@ -9,6 +9,7 @@ use App\Models\Playlist;
 use App\Models\Sponsor;
 use App\Models\News;
 use App\Models\Merchandise;
+use App\Models\SiteSttings;
 
 use Illuminate\Http\Request;
 
@@ -140,5 +141,28 @@ class AdminController extends Controller
             ->where('colors', 'like', '%' . $color . '%')
             ->paginate(10);
         return view('admin.merchandise', compact('merchandise'));
+    }
+
+    public function settings()
+    {
+        $settings = SiteSttings::find(1);
+        return view('admin.settings');
+    }
+
+    public function privacy_policy()
+    {
+        return view('admin.privacy-policy');
+    }
+    public function terms_and_conditions()
+    {
+        return view('admin.terms-and-conditions');
+    }
+    public function delivery_policy()
+    {
+        return view('admin.delivery-policy');
+    }
+    public function return_policy()
+    {
+        return view('admin.return-policy');
     }
 }
