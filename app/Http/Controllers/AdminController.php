@@ -143,6 +143,12 @@ class AdminController extends Controller
         return view('admin.merchandise', compact('merchandise'));
     }
 
+    public function contact(Request $request)
+    {
+
+        return view('admin.contact');
+    }
+
     public function settings()
     {
         $settings = SiteSttings::find(1);

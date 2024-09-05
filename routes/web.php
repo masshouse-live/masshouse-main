@@ -25,6 +25,7 @@ Route::group([
     Route::get('/news', [AdminController::class, 'news_list'])->name('admin.news');
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    Route::get('/contact', [AdminController::class, 'contact'])->name('admin.contact');
 
     Route::get('/privacy-policy', [AdminController::class, 'privacy_policy'])->name('admin.privacy-policy');
     Route::get('/terms-and-conditions', [AdminController::class, 'terms_and_conditions'])->name('admin.terms-and-conditions');

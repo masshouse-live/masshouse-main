@@ -13,6 +13,9 @@ const init = () => {
             link.classList.remove("active");
         }
     });
+
+    // add event listener to .open-dialog buttons
+    // add event listener to .close-dialog buttons
 };
 const initMenu = () => {
     $("#menu ul").hide();
@@ -23,6 +26,19 @@ const initMenu = () => {
         }
     });
 };
+
+const openDialog = (id) => {
+    const siblingDiv = $(`#${id}`).siblings();
+    siblingDiv.addClass("flex");
+    siblingDiv.removeClass("hidden");
+};
+
+const closeDialog = () => {
+    // close any open dialogs
+    $(".modal").addClass("hidden");
+    $(".modal").removeClass("flex");
+};
+
 $(document).ready(function () {
     console.log(document.querySelector("#sortable"));
     if (document.querySelector("#sortable")) {
