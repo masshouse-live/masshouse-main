@@ -28,9 +28,11 @@ const initMenu = () => {
 };
 
 const openDialog = (id) => {
-    const siblingDiv = $(`#${id}`).siblings();
-    siblingDiv.addClass("flex");
-    siblingDiv.removeClass("hidden");
+    // get next and add "flex" class
+    const this_el = document.getElementById(id);
+
+    $(this_el).addClass("flex");
+    $(this_el).removeClass("hidden");
 };
 
 const closeDialog = () => {

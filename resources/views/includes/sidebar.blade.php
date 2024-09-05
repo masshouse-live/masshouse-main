@@ -6,6 +6,7 @@
         <div class="flex flex-col flex-grow">
             <div class="flex-grow flex flex-col py-5 justify-between items-start">
                 <div class="flex flex-col space-y-2 font-semibold w-full ">
+
                     <div class="w-full border-t px-2"></div>
                     <a href="{{ route('admin.index') }}"
                         class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link active">

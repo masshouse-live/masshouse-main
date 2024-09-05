@@ -4,7 +4,7 @@
     <main class="flex flex-col h-screen space-y-6 ">
         <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
             <h2 class="font-extrabold text-2xl text-accent">Merchandise Management</h2>
-            @include('forms.add-product')
+            @include('forms.add-product', ['id' => 'add-product'])
         </div>
         <div class="flex flex-col px-4 space-y-4 overflow-auto">
             <div class="text-start bg-secondary px-5 py-4 border-2 border-accent/20  w-full rounded-md shadow ">

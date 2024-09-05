@@ -1,5 +1,6 @@
-<div>
-    <div
+<div class="flex space-x-2">
+    @yield('buttons')
+    <div id={{ $id }}
         class="modal hidden z-50 fixed h-screen inset-0 bg-primary/50 backdrop-blur-sm justify-center items-center -top-0 pb-0">
         <div class="rounded shadow p-4 w-full h-full flex flex-col overflow-auto ">
             <div class="flex justify-between items-center ">
@@ -14,5 +15,4 @@
             @yield('form')
         </div>
     </div>
-    @yield('buttons')
 </div>

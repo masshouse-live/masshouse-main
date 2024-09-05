@@ -4,7 +4,7 @@
     <main class="flex flex-col h-screen space-y-6 ">
         <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
             <h2 class="font-extrabold text-2xl text-accent">Team Management</h2>
-            @include('forms.add-team')
+            @include('forms.add-team', ['id' => 'add-member'])
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 px-4 gap-4 overflow-auto">
             <div class="aspect-[5/6] relative border col-span-1 items-center flex flex-col justify-between">
@@ -20,7 +20,6 @@
                         <img class="w-full h-full object-cover"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
                             alt="" />
-
                     </div>
                 </div>
                 <div class="flex flex-col justify-start items-center  w-full ">
