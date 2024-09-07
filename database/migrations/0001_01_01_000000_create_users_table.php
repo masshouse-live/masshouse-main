@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('username')->unique();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('role')->default('user');
             $table->boolean('is_active')->default(1);

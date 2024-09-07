@@ -24,15 +24,16 @@ class AdminController extends Controller
     public function users_list(Request $request)
     {
         $search = $request->search ?? '';
-        $active = $request->active ?? ''; // 1 or 0
+        $active = $request->active ?? ''; // 1 or 0 return all users if active is not set
         $order_by = $request->order_by ?? 'id desc';
         $from_date = $request->from_date ?? '';
         $to_date = $request->to_date ?? '';
 
         $users = User::where('name', 'like', '%' . $search . '%')
-            ->where('is_active', $active)
-            ->orderBy($order_by)
-            ->whereBetween('created_at', [$from_date, $to_date])
+            // return all users if active is not set
+            // ->where('is_active', $active)
+            // ->orderBy($order_by)
+            // ->whereBetween('created_at', [$from_date, $to_date])
             ->paginate(10);
 
         return view('admin.users', compact('users'));

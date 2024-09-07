@@ -183,18 +183,19 @@
                 {{-- loop through users --}}
                 @foreach ($users as $user)
                     <div class="grid grid-cols-7 items-center text-end">
-                        <Link class="text-start font-bold capitalize whitespace-nowrap">
-                        {{ user->firstname }} {{ user->lastname }}
-                        </Link>
-                        <span>{{ user->id_number }}</span>
-                        <span>{{ user->email }}</span>
-                        <span>{{ user->phone }}</span>
+                        <a href="{{ route('admin.users.show', $user->id) }}"
+                            class="text-start font-bold capitalize whitespace-nowrap ">
+                            {{ $user->name }}
+                        </a>
+                        <span>{{ $user->id_number }}</span>
+                        <span>{{ $user->email }}</span>
+                        <span>{{ $user->phone }}</span>
                         <span>
-                            {}
+                            {{ $user->created_at->diffForHumans() }}
                         </span>
                         <div class="flex justify-end items-center w-full">
                             {{-- active or inactive --}}
-                            @if ($user->status == 1)
+                            @if ($user->is_active == 1)
                                 <div class="flex text-green-500 items-center space-x-3 rounded-md">
                                     <span>Active</span>
                                     <div class="h-2 w-2 bg-green-500 aspect-square rounded-full"></div>
@@ -205,8 +206,6 @@
                                     <div class="h-2 w-2 bg-red-400 aspect-square rounded-full"></div>
                                 </div>
                             @endif
-
-
                         </div>
                         <div class="flex justify-end">
                             <a href="{{ route('admin.users.show', $user->id) }}"
