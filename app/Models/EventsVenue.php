@@ -19,4 +19,9 @@ class EventsVenue extends Model
     {
         return $this->hasMany(Event::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(EventVenueImage::class);
+    }
 }

@@ -3,7 +3,8 @@
 @section('form')
     @parent<div
         class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
-        <form action="/" method="POST" class="space-y-3 w-full ">
+        <form action="{{ route('admin.create_event') }}" method="POST" enctype="multipart/form-data" class="space-y-3 w-full ">
+            @csrf
             <div class="flex justify-center items-center py-4">
                 <h2 class="text-2xl font-bold">Add Event</h2>
             </div>
@@ -20,6 +21,13 @@
                 </label>
                 <input type="text" name="subtitle" id="subtitle" value=""
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Event Sub Title" />
+            </div>
+            <div class="flex flex-col space-y-2 px-4">
+                <label class="font-bold" for="tickets_link">
+                    Tickets Link
+                </label>
+                <input type="text" name="tickets_link" id="tickets_link" value=""
+                    class="border-2 border-accent/20  bg-primary rounded " placeholder="Tickets Link" />
             </div>
             <div class="grid grid-cols-3">
                 <div class="col-span-2 flex flex-col space-y-2 px-4">
@@ -61,11 +69,16 @@
                 <label class="font-bold" for="venue">
                     Event Venue
                 </label>
-                <select type="text" name="location" id="venue" value=""
+                <select type="text" name="event_venue" id="venue" value=""
                     class="border-2 border-accent/20  bg-primary rounded ">
                     <option value="" disabled selected>
                         Select Venue
                     </option>
+                    @foreach ($event_venues as $venue)
+                        <option value="{{ $venue->id }}">
+                            {{ $venue->name }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div class="flex flex-col space-y-2 px-4">

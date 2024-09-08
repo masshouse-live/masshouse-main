@@ -3,7 +3,9 @@
 @section('form')
     @parent<div
         class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
-        <form action="/" method="POST" class="space-y-3 w-full ">
+        <form action="{{ route('admin.create_event_venue') }}" method="POST" enctype="multipart/form-data"
+            class="space-y-3 w-full ">
+            @csrf
             <div class="flex justify-center items-center py-4">
                 <h2 class="text-2xl font-bold">Add Events Venue</h2>
             </div>
@@ -36,13 +38,13 @@
                         <label
                             class="drag-drop aspect-[4/1.8] w-full bg-secondary py-2 border-2 text-center justify-center items-center flex border-dashed">
                             <h6 class="font-bold">Select or Drop Image</h6>
-                            <input type="file" name="image" id="image1" value="" class="hidden" />
+                            <input type="file" name="image1" id="image1" value="" class="hidden" />
                             <div class="overlay"></div>
                         </label>
                         <label
                             class="drag-drop aspect-[4/2.5] w-full bg-secondary py-2 border-2 text-center justify-center items-center flex border-dashed">
                             <h6 class="font-bold">Select or Drop Image</h6>
-                            <input type="file" name="image" id="image2" value="" class="hidden" />
+                            <input type="file" name="image2" id="image2" value="" class="hidden" />
                             <div class="overlay"></div>
                         </label>
                     </div>
@@ -52,14 +54,14 @@
                                 class="drag-drop h-60 bg-secondary py-2 col-span-4 border-2 text-center justify-center items-center flex border-dashed">
                                 <h6 class="font-bold">Select or Drop Image</h6>
 
-                                <input type="file" name="image" id="image3" value="" class="hidden" />
+                                <input type="file" name="image3" id="image3" value="" class="hidden" />
                                 <div class="overlay"></div>
                             </label>
                             <label
                                 class="drag-drop h-full w-full bg-secondary py-2 border-2 text-center justify-center items-center flex border-dashed col-span-3">
                                 <h6 class="font-bold">Select or Drop Image</h6>
 
-                                <input type="file" name="image" id="image4" value="" class="hidden" />
+                                <input type="file" name="image4" id="image4" value="" class="hidden" />
                                 <div class="overlay"></div>
                             </label>
                         </div>
@@ -67,7 +69,7 @@
                             class="drag-drop aspect-[4/1.71] w-full bg-secondary py-2 border-2 text-center justify-center items-center flex border-dashed">
                             <h6 class="font-bold">Select or Drop Image</h6>
 
-                            <input type="file" name="image" id="image5" value="" class="hidden" />
+                            <input type="file" name="image5" id="image5" value="" class="hidden" />
                             <div class="overlay"></div>
                         </label>
                     </div>

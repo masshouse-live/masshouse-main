@@ -35,10 +35,11 @@ const openDialog = (id) => {
     $(this_el).removeClass("hidden");
 };
 
-const closeDialog = () => {
-    // close any open dialogs
-    $(".modal").addClass("hidden");
-    $(".modal").removeClass("flex");
+const closeDialog = (id) => {
+    const this_el = document.getElementById(id);
+
+    $(this_el).addClass("hidden");
+    $(this_el).removeClass("flex");
 };
 
 $(document).ready(function () {
