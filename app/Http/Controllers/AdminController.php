@@ -257,12 +257,41 @@ class AdminController extends Controller
         $to_date = $request->to_date ?? '';
 
         $professionals = Professional::where('name', 'like', '%' . $search . '%')
-            ->where('role', 'like', '%' . $role . '%')
-            ->whereBetween('created_at', [$from_date, $to_date])
-            ->orderBy($order_by)
+            // ->where('role', 'like', '%' . $role . '%')
+            // ->whereBetween('created_at', [$from_date, $to_date])
+            // ->orderBy($order_by)
             ->paginate(10);
 
         return view('admin.professionals', compact('professionals'));
+    }
+
+    public function add_professional(Request $request)
+    {
+
+
+        $request->validate([
+            'name' => 'required',
+            'role' => 'required',
+            'image' => 'required',
+            'description' => 'required',
+        ]);
+
+
+        $image = $this->upload_image($request->file('image'), 'upload/professionals', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+
+
+        $professional = new Professional();
+
+
+        $professional->name = $request->name;
+        $professional->role = $request->role;
+        $professional->image = $image;
+        $professional->description = $request->description;
+
+
+        $professional->save();
+
+        return redirect('/admin/professionals');
     }
 
     public function playlist()

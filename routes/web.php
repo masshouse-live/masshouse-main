@@ -25,6 +25,7 @@ Route::group([
     Route::get('/team', [AdminController::class, 'team_list'])->name('admin.team_list');
     Route::post('/add-member', [AdminController::class, 'add_member'])->name('admin.add_member');
     Route::get('/professionals', [AdminController::class, 'professionals_list'])->name('admin.professionals_list');
+    Route::post('/add-professional', [AdminController::class, 'add_professional'])->name('admin.add_professional');
     Route::get('/playlist', [AdminController::class, 'playlist'])->name('admin.playlist');
     Route::get('/sponsors', [AdminController::class, 'sponsors'])->name('admin.sponsors');
     Route::get('/news', [AdminController::class, 'news_list'])->name('admin.news');
