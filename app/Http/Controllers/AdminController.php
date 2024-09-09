@@ -562,8 +562,24 @@ class AdminController extends Controller
 
     public function settings()
     {
-        $settings = SiteSttings::find(1);
-        return view('admin.settings');
+        $settings =  SiteSttings::select('name', 'logo', 'contact_email', 'contact_phone', 'contact_address', 'menu_path')->where('id', 1)->get();
+        // get only the first record
+        // if length is 0, return null
+        $settings = $settings->first();
+        return view('admin.settings', compact('settings'));
+    }
+
+    public function update_settings(Request $request)
+    {
+        $settings =  SiteSttings::where('id', 1)->update([
+            'name' => $request->name,
+            'logo' => $request->logo,
+            'contact_email' => $request->contact_email,
+            'contact_phone' => $request->contact_phone,
+            'contact_address' => $request->contact_address,
+            'menu_path' => $request->menu_path,
+        ]);
+        return redirect('/admin/settings');
     }
 
     public function privacy_policy()
