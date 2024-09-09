@@ -48,6 +48,28 @@
                     </div>
                 </div>
             </div>
+            <div class="bg-primary py-4 w-full rounded-md  grid grid-cols-5 items-center">
+                @foreach ($news as $news_)
+                    <div class="flex flex-col space-y-1 border aspect-square p-1 overflow-hidden">
+                        <img src="{{ asset($news_->image) }}" alt="{{ $news_->title }}"
+                            class="w-full object-cover aspect-video" />
+                        <div class="flex flex-col space-y-2 px-2">
+                            <h3 class="text-xl font-bold line-clamp-2">{{ $news_->title }}</h3>
+                            <div class="flex justify-between items-center ">
+                                <span class="text-accent font-semibold">{{ $news_->category }}</span>
+                                <p class="text-textSecondary font-semibold justify-end text-end flex ">
+                                    Created: {{ $news_->created_at->diffForHumans() }}
+                                </p>
+                            </div>
+                            <p class="text-textSecondary font-semibold line-clamp-1">
+                                {{ $news_->short_description }}
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            {{ $news->links('pagination::tailwind') }}
         </div>
     </main>
 @endsection

@@ -48,6 +48,7 @@
                     </div>
                 </div>
             </div>
+            {{ $playlist->links('pagination::tailwind') }}
         </div>
     </main>
 @endsection

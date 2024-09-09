@@ -10,10 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
-<body class="w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto font-nunito">
+<body class="w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
     <main class="w-full grid 2xl:grid-cols-8 grid-cols-12">
         @include('includes.sidebar')
 

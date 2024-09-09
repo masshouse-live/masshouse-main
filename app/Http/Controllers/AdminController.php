@@ -14,8 +14,9 @@ use App\Models\Contact;
 use App\Models\EventsVenue;
 use App\Models\TeamMember;
 use Datetime;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -307,10 +308,128 @@ class AdminController extends Controller
         return view('admin.playlist', compact('playlist'));
     }
 
+    public function add_media(Request $request)
+    {
+
+
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            "spotify_link" => "required",
+            "youtube_link" => "required",
+            "souncloud_link" => "required",
+            "applemusic_link" => "required",
+        ]);
+
+
+        $image = $this->upload_image($request->file('image'), 'upload/playlist', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+
+
+        $playlist = new Playlist();
+
+
+        $playlist->title = $request->title;
+        $playlist->image = $image;
+        $playlist->spotify_link = $request->spotify_link;
+        $playlist->youtube_link = $request->youtube_link;
+        $playlist->souncloud_link = $request->souncloud_link;
+        $playlist->applemusic_link = $request->applemusic_link;
+
+
+        $playlist->save();
+
+        return redirect('/admin/playlist');
+    }
+
     public function sponsors(Request $request)
     {
-        $sponsors = Sponsor::all();
+        // order by rank
+        $sponsors = Sponsor::orderBy('rank', 'asc')->paginate(10);
         return view('admin.sponsors', compact('sponsors'));
+    }
+
+    public function update_sponsor_rank(Request $request)
+    {
+        // Validate the request inputs
+        $request->validate([
+            'sponsor_id' => 'required|integer|exists:sponsors,id',
+            'rank' => 'required|integer|min:1',  // new rank that the sponsor should have
+            'from_index' => 'required|integer|min:1', // previous rank of the sponsor
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            // Get the sponsor to be updated
+            $sponsor = Sponsor::findOrFail($request->sponsor_id);
+
+            $currentRank = $request->from_index;  // rank from the request (old rank)
+            $newRank = $request->rank;  // desired new rank
+
+            // If the rank is being changed
+            if ($currentRank !== $newRank) {
+                if ($newRank > $currentRank) {
+                    // Moving down the ranks, increment rank of sponsors between currentRank and newRank
+                    Sponsor::whereBetween('rank', [$currentRank + 1, $newRank])
+                        ->decrement('rank');  // Push down other sponsors
+                } else {
+                    // Moving up the ranks, decrement rank of sponsors between newRank and currentRank
+                    Sponsor::whereBetween('rank', [$newRank, $currentRank - 1])
+                        ->increment('rank');  // Push up other sponsors
+                }
+
+                // Update the rank of the sponsor to the new rank
+                $sponsor->rank = $newRank;
+                $sponsor->save();
+            }
+
+            // Ensure ranks are consecutive (optional if needed)
+            $sponsors = Sponsor::orderBy('rank')->get();
+            $rank = 1;
+            foreach ($sponsors as $s) {
+                if ($s->rank != $rank) {
+                    $s->update(['rank' => $rank]);
+                }
+                $rank++;
+            }
+
+            DB::commit();
+            return response()->json(['status' => 'success']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+
+
+    public function add_sponsor(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'logo' => 'required',
+            'url' => 'required',
+        ]);
+
+
+        $image = $this->upload_image($request->file('logo'), 'upload/sponsors', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
+
+
+        $sponsor = new Sponsor();
+
+
+        $sponsor->name = $request->name;
+        $sponsor->logo = $image;
+        $sponsor->url = $request->url;
+        // rank is length of sponsors
+        $sponsor->rank = Sponsor::all()->count() + 1;
+
+
+        $sponsor->save();
+
+
+        return redirect('/admin/sponsors');
     }
 
     public function news_list(Request $request)
@@ -329,6 +448,36 @@ class AdminController extends Controller
         return view('admin.news', compact('news'));
     }
 
+    public function add_news(Request $request)
+    {
+
+
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+
+
+        $image = $this->upload_image($request->file('image'), 'upload/news', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        // remove html tags and get the first 50 words
+        $short_description  = strip_tags($request->description);
+        $short_description = substr($short_description, 0, 50);
+        $news = new News();
+        $news->title = $request->title;
+        $news->category = $request->category;
+        $news->short_description = $short_description;
+        $news->description = $request->description;
+        // created_by is the id of the logged in user
+        $news->created_by = Auth::user()->name;
+        $news->views = 0;
+        $news->image = $image;
+
+        $news->save();
+        return redirect('/admin/news');
+    }
+
     public function merchandise(Request $request)
     {
         $search = $request->search ?? '';
@@ -343,6 +492,60 @@ class AdminController extends Controller
             ->where('colors', 'like', '%' . $color . '%')
             ->paginate(10);
         return view('admin.merchandise', compact('merchandise'));
+    }
+
+    public function add_product(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'gender' => 'required',
+            'sizes' => 'required',
+            'colors' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'required',
+            'stock' => 'required',
+            'category' => 'required',
+        ]);
+
+
+        $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+
+
+        $merchandise = new Merchandise();
+
+
+        $merchandise->name = $request->name;
+        $merchandise->gender = $request->gender;
+        $merchandise->sizes = $request->sizes;
+        $merchandise->colors = $request->colors;
+        $merchandise->description = $request->description;
+        $merchandise->price = $request->price;
+        $merchandise->image = $image;
+        $merchandise->stock = $request->stock ?? 0;
+        $merchandise->category = $request->category ?? "merchandise";
+
+
+        $merchandise->save();
+
+        // CREATE images could be in image[1-5]
+        for ($i = 1; $i <= 5; $i++) {
+            if ($request->hasFile('image' . $i)) {  // Check if the file exists
+                $image = $this->upload_image(
+                    $request->file('image' . $i),
+                    'upload/merchandise',
+                    str_replace(' ', '', $request->file('image' . $i)->getClientOriginalName())
+                );
+
+                $merchandise->images()->create([
+                    'image' => $image,
+                    "merchandise_id" => $merchandise->id
+                ]);
+            }
+        }
+
+        return redirect('/admin/merchandise');
     }
 
     public function messages(Request $request)

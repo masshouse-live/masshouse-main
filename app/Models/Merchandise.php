@@ -21,4 +21,10 @@ class Merchandise extends Model
         "sizes",
         "gender",
     ];
+
+    // product images
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }
