@@ -571,14 +571,42 @@ class AdminController extends Controller
 
     public function update_settings(Request $request)
     {
-        $settings =  SiteSttings::where('id', 1)->update([
-            'name' => $request->name,
-            'logo' => $request->logo,
-            'contact_email' => $request->contact_email,
-            'contact_phone' => $request->contact_phone,
-            'contact_address' => $request->contact_address,
-            'menu_path' => $request->menu_path,
+        $request->validate([
+            'name' => 'required',
+            'logo' => 'required',
+            'contact_email' => 'required',
+            'contact_phone' => 'required',
+            'contact_address' => 'required',
+            'menu_path' => 'required',
         ]);
+
+
+        $image = $this->upload_image($request->file('logo'), 'upload/settings', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
+        // upload menu
+        $menu_path = $this->upload_image($request->file('menu_path'), 'upload/menu', str_replace(' ', '', $request->file('menu_path')->getClientOriginalName()));
+        // if not exist create
+        $serrings = SiteSttings::where('id', 1)->first();
+        if (!$serrings) {
+            $serrings = new SiteSttings();
+
+            $serrings->name = $request->name;
+            $serrings->logo = $image;
+            $serrings->contact_email = $request->contact_email;
+            $serrings->contact_phone = $request->contact_phone;
+            $serrings->contact_address = $request->contact_address;
+            $serrings->menu_path = $menu_path;
+            $serrings->save();
+        } else {
+            $settings =  SiteSttings::where('id', 1)->update([
+                'name' => $request->name,
+                'logo' => $image,
+                'contact_email' => $request->contact_email,
+                'contact_phone' => $request->contact_phone,
+                'contact_address' => $request->contact_address,
+                'menu_path' => $menu_path,
+            ]);
+        }
+
         return redirect('/admin/settings');
     }
 

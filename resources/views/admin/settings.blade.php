@@ -53,8 +53,8 @@
                     <label class="font-bold" for="menu_path">
                         Menu pdf
                     </label>
-                    <input type="file" name="menu_path" id="menu_path" class="bg-primary rounded "
-                        placeholder="Menu pdf" />
+                    <input type="file" name="menu_path" id="menu_path" class="bg-primary rounded " placeholder="Menu pdf"
+                        accept="application/pdf" />
                     <span class="text-xs text-accent">{{ $settings->menu_path ?? '' }}</span>
                 </div>
 
