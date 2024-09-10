@@ -30,5 +30,6 @@
             @endforeach
 
         </div>
+        {{ $team->links() }}
     </main>
 @endsection

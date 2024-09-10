@@ -187,7 +187,7 @@
                 @endforeach
             </div>
 
-            {{ $events->links() }}
+            {{ $events->links('pagination::tailwind') }}
         </div>
     </main>
 @endsection

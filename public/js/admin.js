@@ -43,14 +43,51 @@ const closeDialog = (id) => {
 };
 
 $(document).ready(function () {
-    console.log(document.querySelector("#sortable"));
+    // Set up CSRF token for jQuery AJAX requests
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
     if (document.querySelector("#sortable")) {
-        $("#sortable").sortable();
+        $("#sortable").sortable({
+            cursor: "move",
+            update: function (event, ui) {
+                // get index as child of "#sortable"
+                var index_ = ui.item.index();
+                // data-id attribute of ui.item
+                const data_id = ui.item.data("id");
+                // from index
+                const prev_index = ui.item.data("from");
+
+                // make fetch request to update order
+                fetch("/admin/update-sponsor-rank/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ), // Add CSRF token to headers
+                    },
+                    body: JSON.stringify({
+                        rank: index_ + 1,
+                        sponsor_id: data_id,
+                        from_index: prev_index,
+                    }),
+                }).then((response) => {
+                    console.log(response);
+                });
+            },
+        });
     }
+
     initMenu();
     init();
 });
-$(document).ready(function () {
+
+const listednDrag = () => {
+    console.log("here");
     // Function to handle setting the background image
     function setBackgroundImage(element, imageSrc) {
         $(element).css("background-image", "url(" + imageSrc + ")");
@@ -97,8 +134,14 @@ $(document).ready(function () {
         }
     });
 
-    // Handler for file input change
+    // Handler for file input change on .drag-drop
     $("input[type='file']").on("change", function (e) {
+        console.log(e.target.files[0]);
+        // is child of .drag-drop
+        e.preventDefault();
+        if (!$(e.target).parent().hasClass("drag-drop")) {
+            return;
+        }
         var file = e.target.files[0];
         if (file) {
             var reader = new FileReader();
@@ -117,4 +160,23 @@ $(document).ready(function () {
         e.preventDefault();
         hideOverlay(this);
     });
+};
+$(document).ready(function () {
+    listednDrag();
 });
+
+const addExtraImage = () => {
+    // existing images
+    const index = $("#extra_images").children().length;
+    // add max 5 images
+    if (index >= 6) {
+        alert("Maximum 5 images allowed");
+        return;
+    }
+    html = `<label class="drag-drop h-60 bg-secondary py-2 border-2 text-center justify-center items-center flex border-dashed col-span-1"> <h6 class="font-bold">Select or Drop Image</h6>
+ <input type="file" name="image${index}" id="image${index}" class="hidden" />  <div class="overlay"></div></label>`;
+
+    // add html before add_extra_image div inside extra_images div
+    $("#add_extra_image").before(html);
+    listednDrag();
+};

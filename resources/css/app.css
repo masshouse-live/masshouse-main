@@ -6,6 +6,40 @@
     font-size: 18px !important;
 }
 
+@font-face {
+    font-family: "Helios";
+    src: url("fonts/Helios\ Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Arian LT";
+    src: url("fonts/Arian\ LT\ Bold.ttf") format("opentype"),
+        url("fonts/Arian\ LT\ Light.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "Gadugi";
+    src: url("fonts/gadugi.ttf") format("opentype"),
+        url("fonts/gadugib.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "Myriad Pro";
+    src: url("fonts/Myriad\ Pro\ Regular.ttf") format("opentype");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Arian LT", sans-serif;
+    /* font-family: 'Helios', sans-serif; */
+    /* font-family: 'Gadugi', sans-serif; */
+    /* font-family: 'Myriad Pro', sans-serif; */
+    /* overflow-x: hidden; */
+    /* overflow-y: hidden; */
+}
+
 @layer components {
     .drag-drop {
         position: relative;

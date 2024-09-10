@@ -5,7 +5,7 @@
         </a>
         <div class="flex flex-col flex-grow">
             <div class="flex-grow flex flex-col py-5 justify-between items-start">
-                <div class="flex flex-col space-y-2 font-semibold w-full ">
+                <div class="flex flex-col space-y-2  w-full ">
 
                     <div class="w-full border-t px-2"></div>
                     <a href="{{ route('admin.index') }}"

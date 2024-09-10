@@ -2,11 +2,40 @@
 
 @section('form')
     <div class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
-        <form action="/" method="POST">
+        <form action="{{ route('admin.add_sponsor') }}" method="POST" enctype="multipart/form-data">
             <div class="flex justify-center items-center py-4">
                 <h2 class="text-2xl font-bold">Add Sponsor</h2>
             </div>
+            @csrf
 
+            <div class="flex flex-col space-y-2 px-4 py-2">
+                <label class="font-bold" for="name">
+                    Name
+                </label>
+                <input type="text" name="name" id="name" value=""
+                    class="border-2 border-accent/20  bg-primary rounded ">
+            </div>
+
+            <div class="flex flex-col space-y-2 px-4 py-2">
+                <label class="font-bold" for="url">
+                    WEB URL
+                </label>
+                <input type="text" name="url" id="url" value=""
+                    class="border-2 border-accent/20  bg-primary rounded ">
+            </div>
+
+            <div class="flex flex-col space-y-2 px-4 py-2">
+                <label class="font-bold" for="logo">
+                    Logo
+                </label>
+                <input type="file" name="logo" id="logo" value="" class=" bg-primary rounded ">
+            </div>
+
+            <div class="px-4 py-4">
+                <button type="submit" class="py-1 px-5 flex items-center space-x-2 bg-accent shadow rounded text-white">
+                    <span>Add Sponsor </span>
+                </button>
+            </div>
         </form>
     </div>
 @endsection
