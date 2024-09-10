@@ -14,9 +14,9 @@ class AboutController extends Controller
     public function about()
     {
         $events = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->take(8)->get();
-        $sponsors = Sponsor::all()->orderBy('rank', 'desc')->take(6);
-        $team_members = TeamMember::all()->orderBy('rank', 'desc')->get();
+        $sponsors = Sponsor::all()->take(6);
+        $team_members = TeamMember::all();
         $professionals = Professional::all();
-        return view('about', compact("events", "coming_event", "sponsors", "team_members", "professionals"));
+        return view('about', compact("events", "sponsors", "team_members", "professionals"));
     }
 }
