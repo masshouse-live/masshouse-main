@@ -6,8 +6,7 @@
             <h2 class="font-extrabold text-2xl text-accent">Site Settings</h2>
         </div>
 
-        <div
-            class="flex flex-col px-4 space-y-4 overflow-auto max-w-screen-md mx-auto w-full bg-primary py-10 rounded-xl border-2 border-accent/20">
+        <div class="flex flex-col px-4 space-y-4 overflow-auto max-w-screen-md mx-auto w-full bg-primary py-10 rounded-xl">
             <form action="{{ route('admin.update_settings') }}" method="POST" enctype="multipart/form-data"
                 class="space-y-3 w-full ">
                 @csrf

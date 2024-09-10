@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Playlist;
+use App\Models\SiteSttings;
 use App\Models\Sponsor;
 
 use Illuminate\Http\Request;
@@ -32,5 +33,12 @@ class HomeController extends Controller
         $coming_event = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->first();
         $playlist = Playlist::orderBy('created_at', 'desc')->take(6)->get();
         return view('home', compact("events", "coming_event", "sponsors", "playlist"));
+    }
+
+    public function menu()
+    {
+        $settings =  SiteSttings::select('menu_path')->where('id', 1)->first();
+        $menu = $settings->menu_path;
+        return view('menu', compact('menu'));
     }
 }

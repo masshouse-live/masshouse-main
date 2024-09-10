@@ -10,6 +10,7 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
+Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
 
 // group admin
 Route::group([

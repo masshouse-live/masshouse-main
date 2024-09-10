@@ -571,31 +571,36 @@ class AdminController extends Controller
 
     public function update_settings(Request $request)
     {
+        // upload upload_max_filesize in .ini
+
+
         $request->validate([
             'name' => 'required',
-            'logo' => 'required',
             'contact_email' => 'required',
             'contact_phone' => 'required',
             'contact_address' => 'required',
-            'menu_path' => 'required',
         ]);
 
+        $settings = SiteSttings::where('id', 1)->first();
+        // if settings and logo exist $image is settings->logo
+        $image = $settings->logo;
+        if ($request->hasFile('logo')) {
+            $image = $this->upload_image($request->file('logo'), 'upload/settings', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
+        }
+        $menu_path = $settings->menu_path;
+        if ($request->hasFile('menu_path')) {
+            $menu_path = $this->upload_image($request->file('menu_path'), 'upload/menu', str_replace(' ', '', $request->file('menu_path')->getClientOriginalName()));
+        }
+        if (!$settings) {
+            $settings = new SiteSttings();
 
-        $image = $this->upload_image($request->file('logo'), 'upload/settings', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
-        // upload menu
-        $menu_path = $this->upload_image($request->file('menu_path'), 'upload/menu', str_replace(' ', '', $request->file('menu_path')->getClientOriginalName()));
-        // if not exist create
-        $serrings = SiteSttings::where('id', 1)->first();
-        if (!$serrings) {
-            $serrings = new SiteSttings();
-
-            $serrings->name = $request->name;
-            $serrings->logo = $image;
-            $serrings->contact_email = $request->contact_email;
-            $serrings->contact_phone = $request->contact_phone;
-            $serrings->contact_address = $request->contact_address;
-            $serrings->menu_path = $menu_path;
-            $serrings->save();
+            $settings->name = $request->name;
+            $settings->logo = $image;
+            $settings->contact_email = $request->contact_email;
+            $settings->contact_phone = $request->contact_phone;
+            $settings->contact_address = $request->contact_address;
+            $settings->menu_path = $menu_path;
+            $settings->save();
         } else {
             $settings =  SiteSttings::where('id', 1)->update([
                 'name' => $request->name,

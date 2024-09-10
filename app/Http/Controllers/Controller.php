@@ -16,7 +16,10 @@ class Controller extends BaseController
         $timestamp = new Datetime();
         $new_timestamp = $timestamp->format('Y-m-d_H-i-s');
         $image_main_temp = $new_timestamp . 'image' . $filename;
-        $image = str_replace(' ', '', $image_main_temp);
+        $image_main_temp = str_replace(' ', '', $image_main_temp);
+        $image = str_replace('&', '', $image_main_temp);
+
+
         $file->move($path, $image);
 
         $public_url = $path . '/' . $image;
