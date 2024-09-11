@@ -617,18 +617,90 @@ class AdminController extends Controller
 
     public function privacy_policy()
     {
-        return view('admin.privacy-policy');
+        $settings =  SiteSttings::select('privacy_policy')->where('id', 1)->get()->first();
+        $privacy_policy = $settings->privacy_policy;
+        return view('admin.privacy-policy', compact('privacy_policy'));
     }
+
+    public function update_privacy_policy(Request $request)
+    {
+        $request->validate([
+            'privacy_policy' => 'required',
+        ]);
+
+        $settings = SiteSttings::where('id', 1)->first();
+
+        $settings->privacy_policy = $request->privacy_policy;
+
+        $settings->save();
+
+        return redirect('/admin/privacy-policy');
+    }
+
     public function terms_and_conditions()
     {
-        return view('admin.terms-and-conditions');
+        $settings =  SiteSttings::select('terms_and_conditions')->where('id', 1)->get()->first();
+        $terms_and_conditions = $settings->terms_and_conditions;
+
+        return view('admin.terms-and-conditions', compact('terms_and_conditions'));
     }
+
+    public function update_terms_and_conditions(Request $request)
+    {
+        $request->validate([
+            'terms_and_conditions' => 'required',
+        ]);
+
+        $settings = SiteSttings::where('id', 1)->first();
+
+        $settings->terms_and_conditions = $request->terms_and_conditions;
+
+        $settings->save();
+
+        return redirect('/admin/terms-and-conditions');
+    }
+
     public function delivery_policy()
     {
-        return view('admin.delivery-policy');
+        $settings =  SiteSttings::select('delivery_policy')->where('id', 1)->get()->first();
+        $delivery_policy = $settings->delivery_policy;
+        return view('admin.delivery-policy', compact('delivery_policy'));
     }
+
+    public function update_delivery_policy(Request $request)
+    {
+        $request->validate([
+            'delivery_policy' => 'required',
+        ]);
+
+        $settings = SiteSttings::where('id', 1)->first();
+
+        $settings->delivery_policy = $request->delivery_policy;
+
+        $settings->save();
+
+        return redirect('/admin/delivery-policy');
+    }
+
     public function return_policy()
     {
-        return view('admin.return-policy');
+        $settings =  SiteSttings::select('return_policy')->where('id', 1)->get()->first();
+        $return_policy = $settings->return_policy;
+        return view('admin.return-policy', compact('return_policy'));
+    }
+
+    public function update_return_policy(Request $request)
+    {
+        $request->validate([
+            'return_policy' => 'required',
+        ]);
+
+        $settings = SiteSttings::where('id', 1)->first();
+
+        $settings->return_policy = $request->return_policy;
+
+        $settings->save();
+
+        return redirect('/admin/return-policy');
     }
 }

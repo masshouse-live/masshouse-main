@@ -43,7 +43,11 @@ Route::group([
     Route::get('/contact', [AdminController::class, 'messages'])->name('admin.contact');
 
     Route::get('/privacy-policy', [AdminController::class, 'privacy_policy'])->name('admin.privacy-policy');
+    Route::post('/update-privacy-policy', [AdminController::class, 'update_privacy_policy'])->name('admin.update-privacy-policy');
     Route::get('/terms-and-conditions', [AdminController::class, 'terms_and_conditions'])->name('admin.terms-and-conditions');
+    Route::post('/update-terms-and-conditions', [AdminController::class, 'update_terms_and_conditions'])->name('admin.update-terms-and-conditions');
     Route::get('/delivery-policy', [AdminController::class, 'delivery_policy'])->name('admin.delivery-policy');
+    Route::post('/update-delivery-policy', [AdminController::class, 'update_delivery_policy'])->name('admin.update-delivery-policy');
     Route::get('/return-policy', [AdminController::class, 'return_policy'])->name('admin.return-policy');
+    Route::post('/update-return-policy', [AdminController::class, 'update_return_policy'])->name('admin.update-return-policy');
 });

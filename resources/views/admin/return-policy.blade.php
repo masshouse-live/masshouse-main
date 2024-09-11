@@ -5,6 +5,15 @@
         <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
             <h2 class="font-extrabold text-2xl text-accent">Return Policy</h2>
         </div>
-        <h2>
+        <div class="flex flex-col px-4 space-y-4 overflow-auto">
+            <div class="flex mx-auto max-w-screen-lg w-full">
+                @include('forms.policy', [
+                    'name' => 'return_policy',
+                    'route' => 'admin.update-return-policy',
+                    'button_text' => 'Update Return Policy',
+                    'content' => $return_policy,
+                ])
+            </div>
+        </div>
     </main>
 @endsection
