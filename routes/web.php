@@ -37,6 +37,7 @@ Route::group([
     Route::get('/news', [AdminController::class, 'news_list'])->name('admin.news');
     Route::post('/add-news', [AdminController::class, 'add_news'])->name('admin.add_news');
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
+    Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');
     Route::post('/add-product', [AdminController::class, 'add_product'])->name('admin.add_product');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/update-settings', [AdminController::class, 'update_settings'])->name('admin.update_settings');

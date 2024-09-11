@@ -12,6 +12,7 @@ use App\Models\Merchandise;
 use App\Models\SiteSttings;
 use App\Models\Contact;
 use App\Models\EventsVenue;
+use App\Models\Order;
 use App\Models\TeamMember;
 use Datetime;
 use Illuminate\Support\Facades\DB;
@@ -492,6 +493,12 @@ class AdminController extends Controller
             ->where('colors', 'like', '%' . $color . '%')
             ->paginate(10);
         return view('admin.merchandise', compact('merchandise'));
+    }
+
+    public function merch_orders(Request $request)
+    {
+        $merch_orders = Order::all()->paginate(10);
+        return view('admin.merch-orders', compact("merch_orders"));
     }
 
     public function add_product(Request $request)
