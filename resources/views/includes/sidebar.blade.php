@@ -102,7 +102,7 @@
                     <div>
                         <li class="list-none">
                             <a href="#"
-                                class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent not-active">
+                                class="menu flex pl-1 2xl:px-3 py-2 space-x-1 2xl:space-x-1  items-center hover:text-accent not-active">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">

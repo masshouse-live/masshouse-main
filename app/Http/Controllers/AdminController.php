@@ -590,11 +590,11 @@ class AdminController extends Controller
 
         $settings = SiteSttings::where('id', 1)->first();
         // if settings and logo exist $image is settings->logo
-        $image = $settings->logo;
+        $image = $settings->logo ?? "";
         if ($request->hasFile('logo')) {
             $image = $this->upload_image($request->file('logo'), 'upload/settings', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
         }
-        $menu_path = $settings->menu_path;
+        $menu_path = $settings->menu_path ?? "";
         if ($request->hasFile('menu_path')) {
             $menu_path = $this->upload_image($request->file('menu_path'), 'upload/menu', str_replace(' ', '', $request->file('menu_path')->getClientOriginalName()));
         }
