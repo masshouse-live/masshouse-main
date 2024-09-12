@@ -23,6 +23,7 @@
                     </label>
                     <input type="file" name="logo" id="logo" value="" class="bg-primary rounded "
                         placeholder="Logo" />
+                    <span class="text-xs text-accent">{{ $settings->logo ?? '' }}</span>
                 </div>
                 <div class="flex flex-col space-y-2 px-4">
                     <label class="font-bold" for="contact_email">

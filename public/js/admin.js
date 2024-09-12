@@ -180,3 +180,20 @@ const addExtraImage = () => {
     $("#add_extra_image").before(html);
     listednDrag();
 };
+
+const showDetails = (div_id) => {
+    const div = document.getElementById(div_id);
+    // find div with id add either add or remove class show
+    // remove show for all other divs with class order-details
+    const divs = document.querySelectorAll(".order-details");
+    divs.forEach((d) => {
+        if (d !== div) {
+            d.classList.remove("show");
+        }
+    });
+    if (div.classList.contains("show")) {
+        div.classList.remove("show");
+    } else {
+        div.classList.add("show");
+    }
+};

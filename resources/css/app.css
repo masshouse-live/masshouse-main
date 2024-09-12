@@ -41,6 +41,14 @@
 }
 
 @layer components {
+    .order-details {
+        @apply transition-all duration-300 ease-in-out max-h-0 overflow-hidden;
+        /* max-height: 0; */
+    }
+
+    .order-details.show {
+        @apply delay-200 overflow-auto max-h-96;
+    }
     .drag-drop {
         position: relative;
         overflow: hidden;

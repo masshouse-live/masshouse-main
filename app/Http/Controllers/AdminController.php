@@ -497,7 +497,7 @@ class AdminController extends Controller
 
     public function merch_orders(Request $request)
     {
-        $merch_orders = Order::all()->paginate(10);
+        $merch_orders = Order::orderBy('id', 'desc')->paginate(10);
         return view('admin.merch-orders', compact("merch_orders"));
     }
 
