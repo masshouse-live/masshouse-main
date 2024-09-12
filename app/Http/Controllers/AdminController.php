@@ -294,30 +294,32 @@ class AdminController extends Controller
 
     public function edit_member(Request $request)
     {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'title' => 'required',
+                'id' => 'required',
+            ]);
 
-        $request->validate([
-            'name' => 'required',
-            'title' => 'required',
-            'image' => 'required',
-            'id' => 'required',
-        ]);
+            $member = TeamMember::find($request->id);
 
-        $member = TeamMember::find($request->id);
+            $image = $member->image;
 
-        $image = $member->image;
+            if ($request->hasFile('image')) {
+                $image = $this->upload_image($request->file('image'), 'upload/team', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+            }
 
-        if ($request->hasFile('image')) {
-            $image = $this->upload_image($request->file('image'), 'upload/team', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+
+            $member->name = $request->name;
+            $member->title = $request->title;
+            $member->image = $image;
+            $member->save();
+
+
+            return redirect(route('admin.team_list'));
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors());
         }
-
-
-        $member->name = $request->name;
-        $member->title = $request->title;
-        $member->image = $image;
-        $member->save();
-
-
-        return redirect(route('admin.team_list'));
     }
 
 
