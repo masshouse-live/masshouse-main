@@ -130,7 +130,7 @@ class AdminController extends Controller
             $request->validate([
                 "title" => "required",
                 "subtitle" => "required",
-                "cover_photo" => "required",
+                "banner" => "required",
                 "tickets_link" => "required",
                 "event_venue" => "required",
                 "event_date" => "required",
@@ -140,7 +140,7 @@ class AdminController extends Controller
 
 
             // upload banner
-            $banner = $this->upload_image($request->file('cover_photo'), 'upload/events', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
+            $banner = $this->upload_image($request->file('banner'), 'upload/events', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
 
             $event = new Event();
             $event->title = $request->title;
@@ -152,7 +152,47 @@ class AdminController extends Controller
             $event->tag = $request->tag;
             $event->save();
 
-            return redirect('admin.events_list')->with('success', 'Event created successfully');
+            return redirect(route('admin.events_list'))->with('success', 'Event created successfully');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+
+    public function edit_event(Request $request)
+    {
+        try {
+            $request->validate([
+                "id" => "required",
+                "title" => "required",
+                "subtitle" => "required",
+                "tickets_link" => "required",
+                "event_venue" => "required",
+                "event_date" => "required",
+                "event_time" => "required",
+                "tag" => "required",
+            ]);
+
+            $event = Event::find($request->id);
+
+            $banner = $event->banner;
+
+            if ($request->hasFile('banner')) {
+                $banner = $this->upload_image($request->file('banner'), 'upload/events', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
+            }
+
+
+            $event->title = $request->title;
+            $event->subtitle = $request->subtitle;
+            $event->tickets_link = $request->tickets_link;
+            $event->events_venue_id = $request->event_venue;
+            $event->banner = $banner;
+            $event->date_time = $request->event_date . ' ' . $request->event_time;
+            $event->tag = $request->tag;
+            $event->save();
+
+
+            return redirect(route('admin.events_list'));
         } catch (\Exception $e) {
             dd($e);
         }
@@ -202,7 +242,7 @@ class AdminController extends Controller
             ]);
 
 
-            // return redirect('/admin/events/');
+            return redirect(route('admin.events_list'));
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e->errors());
         }
@@ -245,6 +285,9 @@ class AdminController extends Controller
         // RANK IS LEnGTH OF TEAM
         $team->rank = TeamMember::all()->count() + 1;
         $team->save();
+
+
+        return redirect(route('admin.team_list'));
     }
 
     public function professionals_list(Request $request)
@@ -293,7 +336,7 @@ class AdminController extends Controller
 
         $professional->save();
 
-        return redirect('/admin/professionals');
+        return redirect(route('admin.professionals_list'));
     }
 
     public function playlist()
@@ -339,7 +382,7 @@ class AdminController extends Controller
 
         $playlist->save();
 
-        return redirect('/admin/playlist');
+        return redirect(route('admin.playlist'));
     }
 
     public function sponsors(Request $request)
@@ -430,7 +473,7 @@ class AdminController extends Controller
         $sponsor->save();
 
 
-        return redirect('/admin/sponsors');
+        return redirect(route('admin.sponsors'));
     }
 
     public function news_list(Request $request)
@@ -476,7 +519,7 @@ class AdminController extends Controller
         $news->image = $image;
 
         $news->save();
-        return redirect('/admin/news');
+        return redirect(route('admin.news'));
     }
 
     public function merchandise(Request $request)
@@ -552,7 +595,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect('/admin/merchandise');
+        return redirect(route('admin.merchandise'));
     }
 
     public function messages(Request $request)
@@ -619,7 +662,7 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect('/admin/settings');
+        return redirect(route('admin.settings'));
     }
 
     public function privacy_policy()
@@ -664,7 +707,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect('/admin/terms-and-conditions');
+        return redirect(route('admin.terms-and-conditions'));
     }
 
     public function delivery_policy()
@@ -686,7 +729,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect('/admin/delivery-policy');
+        return redirect(route('admin.delivery-policy'));
     }
 
     public function return_policy()
@@ -708,6 +751,6 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect('/admin/return-policy');
+        return redirect(route('admin.return-policy'));
     }
 }

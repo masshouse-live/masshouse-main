@@ -16,7 +16,6 @@ Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth', "admin"]
-
 ], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/users', [AdminController::class, 'users_list'])->name('admin.users_list');
@@ -24,6 +23,7 @@ Route::group([
 
     Route::get('/events', [AdminController::class, 'events_list'])->name('admin.events_list');
     Route::post('/create-event', [AdminController::class, 'create_event'])->name('admin.create_event');
+    Route::post('/edit-event', [AdminController::class, 'edit_event'])->name('admin.edit_event');
     Route::post('/create-event-venue', [AdminController::class, 'create_event_venue'])->name('admin.create_event_venue');
     Route::get('/team', [AdminController::class, 'team_list'])->name('admin.team_list');
     Route::post('/add-member', [AdminController::class, 'add_member'])->name('admin.add_member');

@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-
 @section('content')
     <main class="flex flex-col h-screen space-y-6 ">
         <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
@@ -178,10 +177,10 @@
                             {{ $event->created_at->diffForHumans() }}
                         </span>
                         <div class="flex justify-end">
-                            <a href="{{ route('admin.users.show', $event->id) }}"
+                            <button onclick="openEditDialog('edit-event', {{ $event }})"
                                 class="bg-accent text-white px-3 py-1 rounded-md">
-                                View
-                            </a>
+                                Edit
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -190,4 +189,5 @@
             {{ $events->links('pagination::tailwind') }}
         </div>
     </main>
+    @include('forms.edit.edit-event', ['id' => 'edit-event'])
 @endsection

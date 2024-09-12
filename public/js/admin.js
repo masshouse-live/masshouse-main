@@ -3,7 +3,6 @@ const init = () => {
     const sidebarLinks = document.querySelectorAll(".sidebar-link");
     sidebarLinks.forEach((link) => {
         const navLink = link.getAttribute("href");
-        console.log(navLink);
         let url = new URL(navLink);
         if (url.pathname === window.location.pathname) {
             link.classList.add("active");
@@ -40,6 +39,49 @@ const closeDialog = (id) => {
 
     $(this_el).addClass("hidden");
     $(this_el).removeClass("flex");
+};
+
+const openEditDialog = (id, data) => {
+    // get next and add "flex" class
+    const this_el = document.getElementById(id);
+    $(this_el).addClass("flex");
+    $(this_el).removeClass("hidden");
+
+    // get first form element
+    const form = this_el.querySelector("form");
+    // add input with name id to this_el and make it hidden
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "id";
+    input.value = data["id"];
+    form.appendChild(input);
+
+    const allInputs = document.querySelectorAll(".edit-input");
+    allInputs.forEach((input) => {
+        // if file input find span with id file_[inputName] and set value]
+        const inputName = input.getAttribute("name");
+
+        if (input.type === "file") {
+            const span = document.getElementById(`file_${inputName}`);
+            span.innerHTML = data[input.name];
+        } else {
+            // if event_date spklit by " " and set date and time seprately
+            if (inputName === "event_date") {
+                const date = data["date_time"].split(" ")[0];
+                input.value = date;
+            } else if (inputName === "event_time") {
+                const time = data["date_time"].split(" ")[1];
+                input.value = time;
+            } else if (inputName === "event_time") {
+                const time = data["date_time"].split(" ")[1];
+                input.value = time;
+            } else if (inputName === "event_venue") {
+                input.value = data["venue"]["id"];
+            } else {
+                input.value = data[inputName];
+            }
+        }
+    });
 };
 
 $(document).ready(function () {
@@ -87,7 +129,6 @@ $(document).ready(function () {
 });
 
 const listednDrag = () => {
-    console.log("here");
     // Function to handle setting the background image
     function setBackgroundImage(element, imageSrc) {
         $(element).css("background-image", "url(" + imageSrc + ")");
