@@ -27,6 +27,7 @@ Route::group([
     Route::post('/create-event-venue', [AdminController::class, 'create_event_venue'])->name('admin.create_event_venue');
     Route::get('/team', [AdminController::class, 'team_list'])->name('admin.team_list');
     Route::post('/add-member', [AdminController::class, 'add_member'])->name('admin.add_member');
+    Route::post('/edit-member', [AdminController::class, 'edit_member'])->name('admin.edit_member');
     Route::get('/professionals', [AdminController::class, 'professionals_list'])->name('admin.professionals_list');
     Route::post('/add-professional', [AdminController::class, 'add_professional'])->name('admin.add_professional');
     Route::post('/edit-professional', [AdminController::class, 'edit_professional'])->name('admin.edit_professional');

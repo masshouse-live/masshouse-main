@@ -290,6 +290,37 @@ class AdminController extends Controller
         return redirect(route('admin.team_list'));
     }
 
+
+
+    public function edit_member(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'image' => 'required',
+            'id' => 'required',
+        ]);
+
+        $member = TeamMember::find($request->id);
+
+        $image = $member->image;
+
+        if ($request->hasFile('image')) {
+            $image = $this->upload_image($request->file('image'), 'upload/team', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        }
+
+
+        $member->name = $request->name;
+        $member->title = $request->title;
+        $member->image = $image;
+        $member->save();
+
+
+        return redirect(route('admin.team_list'));
+    }
+
+
     public function professionals_list(Request $request)
     {
 
