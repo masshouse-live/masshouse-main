@@ -9,7 +9,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 px-4 gap-4 overflow-auto">
             @foreach ($team as $member)
                 <div class="aspect-[5/6] relative border col-span-1 items-center flex flex-col justify-between">
-                    <button
+                    <button onclick="openEditDialog('edit-team', {{ $member }})"
                         class="absolute top-2 right-2 flex items-center space-x-2 bg-accent shadow rounded text-white p-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -33,3 +33,4 @@
         {{ $team->links() }}
     </main>
 @endsection
+@include('forms.edit.edit-team', ['id' => 'edit-team'])
