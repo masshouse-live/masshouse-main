@@ -46,7 +46,6 @@ const openEditDialog = (id, data) => {
     const this_el = document.getElementById(id);
     $(this_el).addClass("flex");
     $(this_el).removeClass("hidden");
-
     // get first form element
     const form = this_el.querySelector("form");
     // add input with name id to this_el and make it hidden
@@ -60,7 +59,7 @@ const openEditDialog = (id, data) => {
     allInputs.forEach((input) => {
         // if file input find span with id file_[inputName] and set value]
         const inputName = input.getAttribute("name");
-
+        console.log(input.type);
         if (input.type === "file") {
             const span = document.getElementById(`file_${inputName}`);
             span.innerHTML = data[input.name];

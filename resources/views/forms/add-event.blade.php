@@ -82,10 +82,10 @@
                 </select>
             </div>
             <div class="flex flex-col space-y-2 px-4">
-                <label class="font-bold" for="cover_photo">
+                <label class="font-bold" for="banner">
                     Cover Image
                 </label>
-                <input type="file" name="cover_photo" id="cover_photo" value="" class=" bg-primary rounded "
+                <input type="file" name="banner" id="banner" value="" class=" bg-primary rounded "
                     placeholder="Address" />
             </div>
             <div class="px-4 py-4">

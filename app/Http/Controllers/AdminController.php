@@ -312,8 +312,6 @@ class AdminController extends Controller
 
     public function add_professional(Request $request)
     {
-
-
         $request->validate([
             'name' => 'required',
             'role' => 'required',
@@ -321,23 +319,47 @@ class AdminController extends Controller
             'description' => 'required',
         ]);
 
-
         $image = $this->upload_image($request->file('image'), 'upload/professionals', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
 
-
         $professional = new Professional();
-
-
         $professional->name = $request->name;
         $professional->role = $request->role;
         $professional->image = $image;
         $professional->description = $request->description;
 
-
         $professional->save();
 
         return redirect(route('admin.professionals_list'));
     }
+
+
+
+    public function edit_professional(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'role' => 'required',
+            'description' => 'required',
+            'id' => 'required',
+        ]);
+
+        $professional = Professional::find($request->id);
+        $image = $professional->image;
+
+        if ($request->hasFile('image')) {
+            $image = $this->upload_image($request->file('image'), 'upload/professionals', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        }
+        $professional->name = $request->name;
+        $professional->role = $request->role;
+        $professional->image = $image;
+        $professional->description = $request->description;
+        $professional->save();
+
+
+        return redirect(route('admin.professionals_list'));
+    }
+
 
     public function playlist()
     {
