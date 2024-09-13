@@ -1,5 +1,3 @@
-<script src="https://cdn.tiny.cloud/1/a0pxndjlpo9rftzvaigzbxykpznjulfybfmkcls187ifrp1n/tinymce/7/tinymce.min.js"
-    referrerpolicy="origin"></script>
 <form action="{{ route($route) }}" method="POST" class="w-full" enctype="multipart/form-data">
     @csrf
     <textarea name="{{ $name }}" id="myeditorinstance" rows="10"
