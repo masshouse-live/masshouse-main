@@ -32,12 +32,15 @@ Route::group([
     Route::post('/add-professional', [AdminController::class, 'add_professional'])->name('admin.add_professional');
     Route::post('/edit-professional', [AdminController::class, 'edit_professional'])->name('admin.edit_professional');
     Route::get('/playlist', [AdminController::class, 'playlist'])->name('admin.playlist');
-    Route::get('/add-media', [AdminController::class, 'add_media'])->name('admin.add_media');
+    Route::post('/add-media', [AdminController::class, 'add_media'])->name('admin.add_media');
+    Route::post('/edit-media', [AdminController::class, 'edit_media'])->name('admin.edit_media');
     Route::get('/sponsors', [AdminController::class, 'sponsors'])->name('admin.sponsors');
     Route::post('/add-sponsors', [AdminController::class, 'add_sponsor'])->name('admin.add_sponsor');
+    Route::post('/edit-sponsors', [AdminController::class, 'edit_sponsor'])->name('admin.edit_sponsor');
     Route::post('/update-sponsor-rank', [AdminController::class, 'update_sponsor_rank'])->name('admin.update_sponsor_rank');
     Route::get('/news', [AdminController::class, 'news_list'])->name('admin.news');
     Route::post('/add-news', [AdminController::class, 'add_news'])->name('admin.add_news');
+    Route::post('/edit-news', [AdminController::class, 'edit_news'])->name('admin.edit_news');
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');
     Route::post('/add-product', [AdminController::class, 'add_product'])->name('admin.add_product');

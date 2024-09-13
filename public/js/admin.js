@@ -76,6 +76,14 @@ const openEditDialog = (id, data) => {
                 input.value = time;
             } else if (inputName === "event_venue") {
                 input.value = data["venue"]["id"];
+            } else if (input.type === "textarea") {
+                // if id is myeditorinstanceedit
+                const id = input.getAttribute("id");
+                if (id === "myeditorinstanceedit") {
+                    tinymce.get(id).setContent(data[inputName]);
+                } else {
+                    input.value = data[inputName];
+                }
             } else {
                 input.value = data[inputName];
             }

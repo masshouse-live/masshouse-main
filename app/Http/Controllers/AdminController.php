@@ -399,9 +399,15 @@ class AdminController extends Controller
         $search = $request->search ?? '';
         $from_date = $request->from_date ?? '';
         $to_date = $request->to_date ?? '';
-        $playlist = Playlist::where('title', 'like', '%' . $search . '%')
-            ->whereBetween('created_at', [$from_date, $to_date])
-            ->paginate(10);
+        $playlist = Playlist::where('title', 'like', '%' . $search . '%');
+
+
+        if (!empty($from_date) && !empty($to_date)) {
+            $playlist->whereBetween('created_at', [$from_date, $to_date]);
+        }
+
+
+        $playlist = $playlist->paginate(10);
 
 
         return view('admin.playlist', compact('playlist'));
@@ -410,10 +416,44 @@ class AdminController extends Controller
     public function add_media(Request $request)
     {
 
+        try {
+            $request->validate([
+                'title' => 'required',
+                'image' => 'required',
+                "spotify_link" => "required",
+                "youtube_link" => "required",
+                "souncloud_link" => "required",
+                "applemusic_link" => "required",
+            ]);
+
+
+            $image = $this->upload_image($request->file('image'), 'upload/playlist', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+
+
+            $playlist = new Playlist();
+
+
+            $playlist->title = $request->title;
+            $playlist->image = $image;
+            $playlist->spotify_link = $request->spotify_link;
+            $playlist->youtube_link = $request->youtube_link;
+            $playlist->souncloud_link = $request->souncloud_link;
+            $playlist->applemusic_link = $request->applemusic_link;
+
+
+            $playlist->save();
+
+            return redirect(route('admin.playlist'));
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors());
+        }
+    }
+
+    public function edit_media(Request $request)
+    {
 
         $request->validate([
             'title' => 'required',
-            'image' => 'required',
             "spotify_link" => "required",
             "youtube_link" => "required",
             "souncloud_link" => "required",
@@ -421,10 +461,13 @@ class AdminController extends Controller
         ]);
 
 
-        $image = $this->upload_image($request->file('image'), 'upload/playlist', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        $playlist = Playlist::find($request->id);
+        $image = $playlist->image;
 
 
-        $playlist = new Playlist();
+        if ($request->hasFile('image')) {
+            $image = $this->upload_image($request->file('image'), 'upload/playlist', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        }
 
 
         $playlist->title = $request->title;
@@ -436,6 +479,7 @@ class AdminController extends Controller
 
 
         $playlist->save();
+
 
         return redirect(route('admin.playlist'));
     }
@@ -500,8 +544,6 @@ class AdminController extends Controller
         }
     }
 
-
-
     public function add_sponsor(Request $request)
     {
 
@@ -511,24 +553,42 @@ class AdminController extends Controller
             'url' => 'required',
         ]);
 
-
         $image = $this->upload_image($request->file('logo'), 'upload/sponsors', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
 
-
         $sponsor = new Sponsor();
-
-
         $sponsor->name = $request->name;
         $sponsor->logo = $image;
         $sponsor->url = $request->url;
-        // rank is length of sponsors
         $sponsor->rank = Sponsor::all()->count() + 1;
-
-
         $sponsor->save();
-
-
         return redirect(route('admin.sponsors'));
+    }
+
+    public function edit_sponsor(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'url' => 'required',
+                'id' => 'required',
+            ]);
+
+            $sponsor = Sponsor::find($request->id);
+            $image = $sponsor->logo;
+
+            if ($request->hasFile('logo')) {
+                $image = $this->upload_image($request->file('logo'), 'upload/sponsors', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
+            }
+            $sponsor->name = $request->name;
+            $sponsor->logo = $image;
+            $sponsor->url = $request->url;
+            $sponsor->save();
+
+
+            return redirect(route('admin.sponsors'));
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors());
+        }
     }
 
     public function news_list(Request $request)
@@ -572,6 +632,44 @@ class AdminController extends Controller
         $news->created_by = Auth::user()->name;
         $news->views = 0;
         $news->image = $image;
+
+        $news->save();
+        return redirect(route('admin.news'));
+    }
+
+    public function edit_news(Request $request)
+    {
+
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'id' => 'required',
+        ]);
+
+
+        $news = News::find($request->id);
+
+
+        $image = $news->image;
+
+
+        if ($request->hasFile('image')) {
+            $image = $this->upload_image($request->file('image'), 'upload/news', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        }
+
+
+        // remove html tags and get the first 50 words
+        $short_description  = strip_tags($request->description);
+        $short_description = substr($short_description, 0, 50);
+
+
+        $news->title = $request->title;
+        $news->category = $request->category;
+        $news->short_description = $short_description;
+        $news->description = $request->description;
+        $news->image = $image;
+
 
         $news->save();
         return redirect(route('admin.news'));

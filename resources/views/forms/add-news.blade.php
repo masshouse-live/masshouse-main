@@ -1,6 +1,4 @@
 @extends('includes.dialog')
-<script src="https://cdn.tiny.cloud/1/a0pxndjlpo9rftzvaigzbxykpznjulfybfmkcls187ifrp1n/tinymce/7/tinymce.min.js"
-    referrerpolicy="origin"></script>
 
 @section('form')
     <div class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
@@ -41,8 +39,8 @@
                 <label class="font-bold" for="description">
                     Description
                 </label>
-                <textarea name="description" id="myeditorinstance" rows="10" class="border-2 border-accent/20  bg-primary rounded "
-                    placeholder="Description"></textarea>
+                <textarea name="description" id="myeditorinstance" rows="10"
+                    class="tinymce border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
 
             </div>
 
@@ -64,11 +62,3 @@
             </path>
         </svg><span>New Content</span></button>
 @endsection
-
-<script>
-    tinymce.init({
-        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-        plugins: 'table lists',
-        toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
-    });
-</script>
