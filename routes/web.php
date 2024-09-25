@@ -47,6 +47,7 @@ Route::group([
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/update-settings', [AdminController::class, 'update_settings'])->name('admin.update_settings');
     Route::get('/contact', [AdminController::class, 'messages'])->name('admin.contact');
+    Route::get('/contact/{id}', [AdminController::class, 'contact_details'])->name('admin.contact-details');
 
     Route::get('/privacy-policy', [AdminController::class, 'privacy_policy'])->name('admin.privacy-policy');
     Route::post('/update-privacy-policy', [AdminController::class, 'update_privacy_policy'])->name('admin.update-privacy-policy');

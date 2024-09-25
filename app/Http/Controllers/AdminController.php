@@ -763,6 +763,13 @@ class AdminController extends Controller
         return view('admin.contact', compact('contacts'));
     }
 
+    public function contact_details(Request $request)
+    {
+
+        $contact = Contact::where('id', $request->id)->first();
+        return view('admin.contact-details', compact('contact'));
+    }
+
     public function settings()
     {
         $settings =  SiteSttings::select('name', 'logo', 'contact_email', 'contact_phone', 'contact_address', 'menu_path')->where('id', 1)->get();
