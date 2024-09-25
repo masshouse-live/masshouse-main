@@ -30,8 +30,8 @@
                         <label class="font-bold" for="image">
                             Cover Image
                         </label>
-                        <input type="file" name="image" id="image" value=""
-                            class="edit-input   bg-primary rounded " placeholder="Image" />
+                        <input type="file" name="image" id="image" class="edit-input   bg-primary rounded "
+                            placeholder="Image" />
                         <small id="file_image" class="text-accent"></small>
                     </div>
 

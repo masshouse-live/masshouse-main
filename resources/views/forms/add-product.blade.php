@@ -91,8 +91,8 @@
                 <label class="font-bold" for="description">
                     Description
                 </label>
-                <textarea name="description" id="myeditorinstance" rows="10" class="border-2 border-accent/20  bg-primary rounded "
-                    placeholder="Description"></textarea>
+                <textarea name="description" id="myeditorinstance" rows="10"
+                    class="tinymce border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
             </div>
             {{-- images --}}
 
@@ -113,7 +113,7 @@
             <div id="extra_images" class="grid grid-cols-3 gap-4 px-4 items-center justify-center " id="extra_images">
                 <div class="justify-center items-center h-full w-full flex flex-col  col-span-1" id="add_extra_image">
 
-                    <button type="button" onclick="addExtraImage()"
+                    <button type="button" onclick="addExtraImage('add_extra_image','extra_images')"
                         class="py-1 px-5 flex items-center space-x-2 bg-accent shadow rounded text-white">
 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -144,10 +144,3 @@
             </path>
         </svg><span>New Product</span></button>
 @endsection
-<script>
-    tinymce.init({
-        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-        plugins: 'table lists',
-        toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
-    });
-</script>

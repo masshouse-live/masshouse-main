@@ -682,7 +682,7 @@ class AdminController extends Controller
         $gender = $request->gender ?? '';
         $size = $request->sizes ?? '';
         $color = $request->colors ?? '';
-        $merchandise = Merchandise::where('name', 'like', '%' . $search . '%')
+        $merchandise = Merchandise::with('images')->where('name', 'like', '%' . $search . '%')
             ->where('category', 'like', '%' . $category . '%')
             ->where('gender', 'like', '%' . $gender . '%')
             ->where('sizes', 'like', '%' . $size . '%')
@@ -750,6 +750,73 @@ class AdminController extends Controller
 
         return redirect(route('admin.merchandise'));
     }
+
+
+    public function edit_product(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'gender' => 'required',
+                'sizes' => 'required',
+                'colors' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'stock' => 'required',
+                'category' => 'required',
+                'id' => 'required',
+            ]);
+            $merchandise = Merchandise::find($request->id);
+
+
+            $image = $request->image ?? $merchandise->image;
+
+
+            if ($request->hasFile('image')) {
+                $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+            }
+
+            $merchandise->name = $request->name;
+            $merchandise->gender = $request->gender;
+            $merchandise->sizes = $request->sizes;
+            $merchandise->colors = $request->colors;
+            $merchandise->description = $request->description;
+            $merchandise->price = $request->price;
+            $merchandise->image = $image;
+            $merchandise->stock = $request->stock ?? 0;
+            $merchandise->category = $request->category ?? "merchandise";
+
+
+            $merchandise->save();
+            // order by id
+            $images = $merchandise->images()->orderBy('id', 'asc')->get();
+            for ($i = 1; $i <= 5; $i++) {
+                if ($request->hasFile('image' . $i)) {  // Check if the file exists
+                    $image = $this->upload_image(
+                        $request->file('image' . $i),
+                        'upload/merchandise',
+                        str_replace(' ', '', $request->file('image' . $i)->getClientOriginalName())
+                    );
+                    if ($i < count($images)) {
+                        $images[$i - 1]->image = $image;
+                        $images[$i - 1]->save();
+                    } else {
+                        $merchandise->images()->create([
+                            'image' => $image,
+                            "merchandise_id" => $merchandise->id
+                        ]);
+                    }
+                }
+            }
+
+
+            return redirect(route('admin.merchandise'));
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+
 
     public function messages(Request $request)
     {

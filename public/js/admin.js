@@ -12,9 +12,6 @@ const init = () => {
             link.classList.remove("active");
         }
     });
-
-    // add event listener to .open-dialog buttons
-    // add event listener to .close-dialog buttons
 };
 const initMenu = () => {
     $("#menu ul").hide();
@@ -59,7 +56,6 @@ const openEditDialog = (id, data) => {
     allInputs.forEach((input) => {
         // if file input find span with id file_[inputName] and set value]
         const inputName = input.getAttribute("name");
-        console.log(input.type);
         if (input.type === "file") {
             const span = document.getElementById(`file_${inputName}`);
             span.innerHTML = data[input.name];
@@ -89,6 +85,32 @@ const openEditDialog = (id, data) => {
             }
         }
     });
+
+    // remove all .drag-drop children of #edit_add_extra_image
+    const children = $("#extra_images_div").children();
+    children.each((index, child) => {
+        if ($(child).hasClass("drag-drop")) {
+            $(child).remove();
+        }
+    });
+
+    // if /admin/merchandise route
+    if (window.location.pathname === "/admin/merchandise") {
+        // add extra image
+        data["images"].forEach((image, index) => {
+            // add html before add_extra_image div inside extra_images div
+            html = `<label 
+            style="background-image: url('/${
+                image.image
+            }'); background-size: cover; background-position: center;"
+            class="drag-drop h-60 bg-secondary py-2 border-2 text-center justify-center items-center flex border-dashed col-span-1"> <h6 class="font-bold">Select or Drop Image</h6>
+ <input type="file" name="image${index + 1}"id="edit_mage${
+                index + 1
+            }" class="hidden" />  <div class="overlay"></div></label>`;
+            $("#edit_add_extra_image").before(html);
+        });
+        listednDrag();
+    }
 };
 
 $(document).ready(function () {
@@ -124,9 +146,7 @@ $(document).ready(function () {
                         sponsor_id: data_id,
                         from_index: prev_index,
                     }),
-                }).then((response) => {
-                    console.log(response);
-                });
+                }).then((response) => {});
             },
         });
     }
@@ -181,11 +201,8 @@ const listednDrag = () => {
             reader.readAsDataURL(file);
         }
     });
-
     // Handler for file input change on .drag-drop
     $("input[type='file']").on("change", function (e) {
-        console.log(e.target.files[0]);
-        // is child of .drag-drop
         e.preventDefault();
         if (!$(e.target).parent().hasClass("drag-drop")) {
             return;
@@ -213,9 +230,9 @@ $(document).ready(function () {
     listednDrag();
 });
 
-const addExtraImage = () => {
+const addExtraImage = (id_before, id_div) => {
     // existing images
-    const index = $("#extra_images").children().length;
+    const index = $(`#${id_div}`).children().length;
     // add max 5 images
     if (index >= 6) {
         alert("Maximum 5 images allowed");
@@ -225,14 +242,12 @@ const addExtraImage = () => {
  <input type="file" name="image${index}" id="image${index}" class="hidden" />  <div class="overlay"></div></label>`;
 
     // add html before add_extra_image div inside extra_images div
-    $("#add_extra_image").before(html);
+    $(`#${id_before}`).before(html);
     listednDrag();
 };
 
 const showDetails = (div_id) => {
     const div = document.getElementById(div_id);
-    // find div with id add either add or remove class show
-    // remove show for all other divs with class order-details
     const divs = document.querySelectorAll(".order-details");
     divs.forEach((d) => {
         if (d !== div) {

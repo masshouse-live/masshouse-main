@@ -44,6 +44,7 @@ Route::group([
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');
     Route::post('/add-product', [AdminController::class, 'add_product'])->name('admin.add_product');
+    Route::post('/edit-product', [AdminController::class, 'edit_product'])->name('admin.edit_product');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/update-settings', [AdminController::class, 'update_settings'])->name('admin.update_settings');
     Route::get('/contact', [AdminController::class, 'messages'])->name('admin.contact');
