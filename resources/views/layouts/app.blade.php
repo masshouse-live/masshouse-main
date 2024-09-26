@@ -48,7 +48,7 @@
 
 </head>
 
-<body>
+<body class="dark">
     <!--transparent navbar-->
     <nav class="navbar sticky home" id="transparentNavbar">
         <div class="nav-wrapper">

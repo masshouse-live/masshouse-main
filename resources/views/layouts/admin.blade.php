@@ -15,7 +15,7 @@
         referrerpolicy="origin"></script>
 </head>
 
-<body class="w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
+<body class="dark w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
     <main class="w-full grid 2xl:grid-cols-8 grid-cols-12">
         @include('includes.sidebar')
 

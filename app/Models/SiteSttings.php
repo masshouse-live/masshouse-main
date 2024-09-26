@@ -19,5 +19,7 @@ class SiteSttings extends Model
         "contact_phone",
         "contact_address",
         "menu_path",
+        "reservation_from",
+        "reservation_to",
     ];
 }

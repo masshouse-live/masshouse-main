@@ -41,6 +41,24 @@
                         value="{{ $settings->contact_phone ?? '' }}" class="border-2 border-accent/20  bg-primary rounded "
                         placeholder="Contact Phone" />
                 </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="flex flex-col space-y-2 px-4">
+                        <label class="font-bold" for="reservation_from">
+                            Reservation From
+                        </label>
+                        <input type="time" name="reservation_from" id="reservation_from"
+                            value="{{ $settings->reservation_from ?? '' }}:00"
+                            class="border-2 border-accent/20  bg-primary rounded " placeholder="Reservation From " />
+                    </div>
+                    <div class="flex flex-col space-y-2 px-4">
+                        <label class="font-bold" for="reservation_to">
+                            Reservation To
+                        </label>
+                        <input type="time" name="reservation_to" id="reservation_to"
+                            value="{{ $settings->reservation_to ?? '' }}:00"
+                            class="border-2 border-accent/20  bg-primary rounded " placeholder="Reservation To" />
+                    </div>
+                </div>
                 <div class="flex flex-col space-y-2 px-4">
                     <label class="font-bold" for="contact_address">
                         Contact Address

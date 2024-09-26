@@ -14,7 +14,8 @@ use App\Models\Contact;
 use App\Models\EventsVenue;
 use App\Models\Order;
 use App\Models\TeamMember;
-use Datetime;
+use App\Models\Table;
+use App\Models\TableReservation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -832,7 +833,16 @@ class AdminController extends Controller
 
     public function settings()
     {
-        $settings =  SiteSttings::select('name', 'logo', 'contact_email', 'contact_phone', 'contact_address', 'menu_path')->where('id', 1)->get();
+        $settings =  SiteSttings::select(
+            'name',
+            'logo',
+            'contact_email',
+            'reservation_from',
+            'reservation_to',
+            'contact_phone',
+            'contact_address',
+            'menu_path'
+        )->where('id', 1)->get();
         // get only the first record
         // if length is 0, return null
         $settings = $settings->first();
@@ -849,6 +859,8 @@ class AdminController extends Controller
             'contact_email' => 'required',
             'contact_phone' => 'required',
             'contact_address' => 'required',
+            'reservation_from' => 'required',
+            'reservation_to' => 'required',
         ]);
 
         $settings = SiteSttings::where('id', 1)->first();
@@ -872,6 +884,25 @@ class AdminController extends Controller
             $settings->menu_path = $menu_path;
             $settings->save();
         } else {
+
+            $reservation_from = $request->reservation_from ?? "";
+
+            if (!empty($reservation_from)) {
+                // Assuming the HTML time format is 'HH:MM'
+                $timeParts = explode(':', $request->reservation_from);
+                if (count($timeParts) > 0) {
+                    $reservation_from = $timeParts[0]; // Extract the hour part
+                }
+            }
+
+            $reservation_to = $request->reservation_to ?? "";
+            if (!empty($reservation_to)) {
+                $timeParts = explode(':', $request->reservation_to);
+
+                if (count($timeParts) > 0) {
+                    $reservation_to = $timeParts[0]; // Extract the hour part
+                }
+            }
             $settings =  SiteSttings::where('id', 1)->update([
                 'name' => $request->name,
                 'logo' => $image,
@@ -879,6 +910,8 @@ class AdminController extends Controller
                 'contact_phone' => $request->contact_phone,
                 'contact_address' => $request->contact_address,
                 'menu_path' => $menu_path,
+                'reservation_from' => $reservation_from,
+                'reservation_to' => $reservation_to
             ]);
         }
 
@@ -972,5 +1005,42 @@ class AdminController extends Controller
         $settings->save();
 
         return redirect(route('admin.return-policy'));
+    }
+
+    public function tables()
+    {
+
+        $tables = Table::paginate(10);
+
+        return view('admin.tables', compact("tables"));
+    }
+
+    public function add_table(Request $request)
+    {
+
+        $request->validate([
+            "number_seats" => 'required',
+            "total_tables" => 'required',
+            "amount" => 'required'
+        ]);
+
+
+        $table = new Table();
+        $table->number_seats = $request->number_seats;
+        $table->total_tables = $request->total_tables;
+        $table->amount = $request->amount;
+        $table->status = "available";
+        $table->save();
+        return redirect(route('admin.tables'));
+    }
+
+    public function table_details(Request $request)
+    {
+
+        $table = Table::get()->find($request->id);
+        $reservations = TableReservation::where('table_id', $request->id);
+        $settings =  SiteSttings::select('reservation_from', 'reservation_to')->where('id', 1)->get()->first();
+
+        return view('admin.table-details', compact("table", "reservations", 'settings'));
     }
 }

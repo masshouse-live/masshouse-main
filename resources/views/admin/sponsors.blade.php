@@ -25,5 +25,5 @@
             </div>
         </div>
     </main>
+    @include('forms.edit.edit-sponsor', ['id' => 'edit-sponsor'])
 @endsection
-@include('forms.edit.edit-sponsor', ['id' => 'edit-sponsor'])

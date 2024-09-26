@@ -48,6 +48,10 @@ Route::group([
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/update-settings', [AdminController::class, 'update_settings'])->name('admin.update_settings');
     Route::get('/contact', [AdminController::class, 'messages'])->name('admin.contact');
+    Route::get('/tables', [AdminController::class, 'tables'])->name('admin.tables');
+    Route::post('/add-table', [AdminController::class, 'add_table'])->name('admin.add-table');
+    Route::get('/table-details/{id}', [AdminController::class, 'table_details'])->name('admin.table-details');
+
 
     Route::get('/privacy-policy', [AdminController::class, 'privacy_policy'])->name('admin.privacy-policy');
     Route::post('/update-privacy-policy', [AdminController::class, 'update_privacy_policy'])->name('admin.update-privacy-policy');

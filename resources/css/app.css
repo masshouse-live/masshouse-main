@@ -117,8 +117,8 @@
     --accent: 13, 116, 190;
 }
 .dark {
-    --primary: 23, 33, 49;
-    --secondary: 34, 52, 76;
+    --primary: 0, 0, 0;
+    --secondary: 22, 22, 22;
     --tertiary: 196, 221, 255;
     --text-secondary: 211, 211, 211;
     --text-primary: 255, 255, 255;

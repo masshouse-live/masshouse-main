@@ -191,5 +191,5 @@
             {{ $playlist->links('pagination::tailwind') }}
         </div>
     </main>
+    @include('forms.edit.edit-media', ['id' => 'edit-media'])
 @endsection
-@include('forms.edit.edit-media', ['id' => 'edit-media'])
