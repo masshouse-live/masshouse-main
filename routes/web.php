@@ -6,14 +6,17 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\TableReservationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductOrderController;
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
-Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('admin.available_times');
-Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('admin.reserve_table');
+Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
+Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
+Route::post('/create-order', [ProductOrderController::class, 'create_order'])->name('create_order');
+Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_placed'])->name('orders_placed');
 
 // group admin
 Route::group([

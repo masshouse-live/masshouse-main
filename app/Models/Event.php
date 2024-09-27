@@ -18,6 +18,10 @@ class Event extends Model
         "tag",
     ];
 
+    protected $casts = [
+        'date_time' => 'datetime',
+    ];
+
     public function venue()
     {
         return $this->belongsTo(EventsVenue::class, 'events_venue_id');

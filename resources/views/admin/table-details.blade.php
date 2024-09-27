@@ -7,7 +7,8 @@
         </div>
         <f class="flex w-full px-4 justify-between items-center">
             <h2 class="text-3xl font-bold"> {{ $table->number_seats }} Seater Tables</h2>
-            <input type="date" name="date" class="border-2 rounded px-3 py-1 bg-primary filter-input" />
+            <input type="date" name="date"
+                class="border-2 rounded px-3 py-1 bg-primary filter-input dark:[color-scheme:dark]" />
         </f>
         <div class="overflow-auto h-auto py-3">
             <!-- Time Slot Row (header) -->

@@ -16,33 +16,44 @@
                                 From Date
                             </label>
                             <input type="date" id="from_date"
-                                class="border border-accent/20 bg-primary rounded-md px-2 py-1" name="from_date"
-                                defaultValue={searchParams?.from_date} />
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1"
+                                name="from_date" defaultValue={searchParams?.from_date} />
                         </div>
                         <div class="flex flex-col space-y-2">
                             <label for="to_date" class="text-textSecondary font-semibold">
                                 To Date
                             </label>
-                            <input type="date" class="border border-accent/20 bg-primary rounded-md px-2 py-1"
-                                name="to_date" id="to_date" defaultValue={searchParams?.to_date} />
+                            <input type="date"
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1" name="to_date"
+                                id="to_date" defaultValue={searchParams?.to_date} />
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="status" class="text-textSecondary font-semibold">
-                                Status
+                            <label for="filter_category" class="text-textSecondary font-semibold">
+                                Content Type
                             </label>
-                            <select class="border border-accent/20 bg-primary rounded-md px-5 py-1 " name="status"
-                                id="status">
+                            <select class="filter-input border border-accent/20 bg-primary rounded-md px-5 py-1 "
+                                name="filter_category" id="filter_category">
                                 <option value="">All</option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option value="news">News</option>
+                                <option value="blog">Blog</option>
                             </select>
                         </div>
                         <form class="flex flex-col space-y-2">
                             <label for="search" class="text-textSecondary font-semibold">
                                 Search
                             </label>
-                            <input type="search" class="border border-accent/20 bg-primary rounded-md px-2 py-1"
+                            <input type="search"
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
                                 name="search" id="search" defaultValue={searchParams?.search} />
+                            @php
+                                foreach ($_GET as $key => $value) {
+                                    $key = htmlspecialchars($key);
+                                    if ($key != 'search') {
+                                        $value = htmlspecialchars($value);
+                                        echo "<input type='hidden' name='$key' value='$value'/>";
+                                    }
+                                }
+                            @endphp
                             <button class="hidden"></button>
                         </form>
                     </div>
@@ -67,7 +78,7 @@
                             <div class="flex justify-between items-center ">
                                 <span class="text-accent font-semibold">{{ $news_->category }}</span>
                                 <p class="text-textSecondary font-semibold justify-end text-end flex ">
-                                    Created: {{ $news_->created_at->diffForHumans() }}
+                                    Created: {{ $news_->created_at->format('d/m/Y') }}
                                 </p>
                             </div>
                             <p class="text-textSecondary font-semibold line-clamp-1">

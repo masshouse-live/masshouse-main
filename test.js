@@ -35,3 +35,51 @@ fetch("/reserve-table", {
     .catch((error) => {
         console.error("Reservation failed:", error);
     });
+
+const orderData = {
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "123-456-7890",
+    address: "123 Main Street",
+    city: "New York",
+    state: "NY",
+    zip: "10001",
+    products: [
+        {
+            product_id: 1,
+            quantity: 3,
+            color: "red",
+            size: "M",
+        },
+        {
+            product_id: 2,
+            quantity: 1,
+            color: "blue",
+            size: "L",
+        },
+    ],
+};
+
+async function submitOrder() {
+    try {
+        const response = await fetch("/create-order", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(orderData),
+        });
+
+        if (response.ok) {
+            // Order placed successfully, redirect to the orders placed route
+            window.location.href = "/orders-placed";
+        } else {
+            // Handle error
+            const errorData = await response.json();
+            console.log("Error placing order:", errorData);
+        }
+    } catch (error) {
+        console.error("Error submitting order:", error);
+    }
+}
+
+// Call the function to submit the order
+submitOrder();

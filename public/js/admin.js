@@ -277,28 +277,23 @@ const handleFilterInput = () => {
     queries = url.searchParams;
     // loop through queries
     for (const [key, value] of queries) {
-        // find input with name key
-        const input = document.querySelector(`input[name="${key}"]`);
-        if (input) {
-            input.value = value;
-        }
-    }
-};
+        // Find all inputs or selects with the same name
+        const inputs = document.querySelectorAll(
+            `input[name="${key}"], select[name="${key}"]`
+        );
 
-const getAvailableTimes = (id) => {
-    const today = new Date("2024-09-26");
-    const date = today.toISOString().split("T")[0];
-
-    fetch(`/table-available-times/${id}?date=${date}`, {
-        method: "GET",
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
+        // Loop through all found inputs and set their values
+        inputs.forEach((input) => {
+            console.log(key, value, input.tagName);
+            if (input.tagName === "SELECT") {
+                // Set the value for select elements
+                input.value = value;
+            } else {
+                // Set the value for input elements
+                input.value = value;
+            }
         });
+    }
 };
 
 const viewReservationDetails = (id, data) => {
@@ -402,5 +397,4 @@ const viewReservationDetails = (id, data) => {
 $(document).ready(function () {
     listednDrag();
     handleFilterInput();
-    getAvailableTimes(2);
 });
