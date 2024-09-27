@@ -15,6 +15,7 @@ class TableReservation extends Model
         "customer_phone",
         "customer_address",
         "from_date",
+        "table_index",
         "to_date",
         "table_id",
         "status",

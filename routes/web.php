@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\TableReservationController;
 use App\Http\Controllers\AdminController;
 
 Auth::routes();
@@ -11,6 +12,8 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
+Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('admin.available_times');
+Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('admin.reserve_table');
 
 // group admin
 Route::group([

@@ -7,7 +7,7 @@
             @include('forms.add-table', ['id' => 'add-table'])
         </div>
         <div class="flex w-full px-4">
-            <div class="grid xl:grid-cols-5 2xl:grid-cols-6 w-full">
+            <div class="grid xl:grid-cols-5 2xl:grid-cols-6 w-full gap-5">
                 @foreach ($tables as $table)
                     <a href="{{ route('admin.table-details', $table->id) }}"
                         class="aspect-video w-full border col-span-1  relative flex items-center justify-center"

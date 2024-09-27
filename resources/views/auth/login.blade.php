@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <form method="POST" action="{{ route('login') }}" class="flex flex-col w-full py-5 space-y-4">
+    <form method="POST" action="{{ route('login') }}" class="flex flex-col w-full py-5 space-y-4 text-textPrimary">
         @csrf
         <div class="text-center font-bold text-xl">{{ __('Login') }}</div>
         <div class="flex flex-col space-y-2">
@@ -52,7 +52,7 @@
             </button>
 
             @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
+                <a class="btn btn-link pt-2" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
             @endif

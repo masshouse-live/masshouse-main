@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp("to_date");
             $table->foreignId('table_id')->constrained();
             $table->string('status');
+            $table->integer('table_index');
             $table->timestamps();
         });
     }

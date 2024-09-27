@@ -19,6 +19,7 @@ use App\Models\TableReservation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -1036,11 +1037,31 @@ class AdminController extends Controller
 
     public function table_details(Request $request)
     {
+        // Get the filtered date from the request, or default to today's date
+        $date = $request->date ?? date('Y-m-d');
 
-        $table = Table::get()->find($request->id);
-        $reservations = TableReservation::where('table_id', $request->id);
-        $settings =  SiteSttings::select('reservation_from', 'reservation_to')->where('id', 1)->get()->first();
+        // Get the start and end of the day for the specified date
+        $startOfDay = $date . ' 00:00:00';
+        $endOfDay = $date . ' 23:59:59';
 
-        return view('admin.table-details', compact("table", "reservations", 'settings'));
+        // Get the table based on the id from the request
+        $table = Table::find($request->id);
+
+        // Get all reservations for the given table id, and filter for the entire day
+        $reservations = TableReservation::where('table_id', $request->id)
+            ->whereBetween('from_date', [$startOfDay, $endOfDay])
+            ->get();
+
+
+        // Fetch reservation settings (reservation_from and reservation_to)
+        $settings = SiteSttings::select('reservation_from', 'reservation_to')
+            ->where('id', 1)
+            ->first();
+
+        // Group reservations by table_index to create array of arrays
+        $groupedReservations = $reservations->groupBy('table_index');
+
+        // Pass the grouped reservations along with the other data to the view
+        return view('admin.table-details', compact("table", "groupedReservations", 'settings', 'date'));
     }
 }
