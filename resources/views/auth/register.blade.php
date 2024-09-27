@@ -8,8 +8,9 @@
             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
             <div class="flex flex-col ">
-                <input id="name" type="text" class="border-2 rounded px-3 py-2 @error('name') border-red-400 @enderror"
-                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <input id="name" type="text"
+                    class="border-2 rounded px-3 py-2 bg-primary @error('name') border-red-400 @enderror" name="name"
+                    value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                 @error('name')
                     <span class=" text-red-700 rounded relative" role="alert">
@@ -24,7 +25,7 @@
 
             <div class="flex flex-col space-y-2">
                 <input id="email" type="email"
-                    class="border-2 rounded px-3 py-2 @error('email') border-red-400 @enderror" name="email"
+                    class="border-2 rounded px-3 py-2 bg-primary @error('email') border-red-400 @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email">
 
                 @error('email')
@@ -40,8 +41,8 @@
 
             <div class="flex flex-col space-y-2">
                 <input id="password" type="password"
-                    class="border-2 rounded px-3 py-2 @error('password') border-red-400 @enderror" name="password" required
-                    autocomplete="new-password">
+                    class="border-2 rounded px-3 py-2 bg-primary @error('password') border-red-400 @enderror"
+                    name="password" required autocomplete="new-password">
 
                 @error('password')
                     <span class=" text-red-700 rounded relative" role="alert">
@@ -55,8 +56,8 @@
             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
             <div class="flex flex-col space-y-2">
-                <input id="password-confirm" type="password" class="border-2 rounded px-3 py-2" name="password_confirmation"
-                    required autocomplete="new-password">
+                <input id="password-confirm" type="password" class="border-2 rounded px-3 py-2 bg-primary"
+                    name="password_confirmation" required autocomplete="new-password">
             </div>
         </div>
 

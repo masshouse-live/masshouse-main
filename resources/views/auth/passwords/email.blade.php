@@ -19,8 +19,8 @@
 
                     <div class="flex flex-col ">
                         <input id="email" type="email"
-                            class="border-2 rounded px-3 py-2 @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            class="border-2 rounded px-3 py-2 bg-primary @error('email') border-red-500 @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                         @error('email')
                             <span class=" text-red-700 rounded relative" role="alert">

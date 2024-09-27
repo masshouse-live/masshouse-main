@@ -34,5 +34,5 @@
             {{ $professionals->links('pagination::tailwind') }}
         </div>
     </main>
+    @include('forms.edit.edit-professional', ['id' => 'edit-professional'])
 @endsection
-@include('forms.edit.edit-professional', ['id' => 'edit-professional'])

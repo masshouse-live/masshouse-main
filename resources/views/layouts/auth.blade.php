@@ -15,7 +15,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="dark">
     <div class="w-full flex flex-col h-full justify-center items-center bg-accent">
         <div class="w-full flex h-full justify-center items-center overflow-auto">
             <div

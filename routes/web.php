@@ -4,13 +4,19 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\TableReservationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductOrderController;
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
+Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
+Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
+Route::post('/create-order', [ProductOrderController::class, 'create_order'])->name('create_order');
+Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_placed'])->name('orders_placed');
 
 // group admin
 Route::group([
@@ -44,10 +50,15 @@ Route::group([
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');
     Route::post('/add-product', [AdminController::class, 'add_product'])->name('admin.add_product');
+    Route::post('/edit-product', [AdminController::class, 'edit_product'])->name('admin.edit_product');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::post('/update-settings', [AdminController::class, 'update_settings'])->name('admin.update_settings');
     Route::get('/contact', [AdminController::class, 'messages'])->name('admin.contact');
     Route::get('/contact/{id}', [AdminController::class, 'contact_details'])->name('admin.contact-details');
+    Route::get('/tables', [AdminController::class, 'tables'])->name('admin.tables');
+    Route::post('/add-table', [AdminController::class, 'add_table'])->name('admin.add-table');
+    Route::get('/table-details/{id}', [AdminController::class, 'table_details'])->name('admin.table-details');
+
 
     Route::get('/privacy-policy', [AdminController::class, 'privacy_policy'])->name('admin.privacy-policy');
     Route::post('/update-privacy-policy', [AdminController::class, 'update_privacy_policy'])->name('admin.update-privacy-policy');

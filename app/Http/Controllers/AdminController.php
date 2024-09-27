@@ -13,22 +13,57 @@ use App\Models\SiteSttings;
 use App\Models\Contact;
 use App\Models\EventsVenue;
 use App\Models\Order;
+use App\Models\OrderTrend;
+use App\Models\ReservationTrend;
 use App\Models\TeamMember;
-use Datetime;
+use App\Models\Table;
+use App\Models\TableReservation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.index');
+        $request->validate([
+            'reservation_from' => 'nullable|date',
+            'reservation_to' => 'nullable|date|after_or_equal:reservation_from',
+            'orders_from' => 'nullable|date',
+            'orders_to' => 'nullable|date|after_or_equal:orders_from',
+        ]);
+
+        $reservation_from = $request->reservation_from ?? '';
+        $reservation_to = $request->reservation_to ?? '';
+
+        $reservationTrend = ReservationTrend::query();
+
+        if (!empty($reservation_from) && !empty($reservation_to)) {
+            $reservationTrend->whereBetween('date', [$reservation_from, $reservation_to]);
+        } else {
+            $reservationTrend->whereBetween('date', [now()->subDays(30), now()]);
+        }
+
+        $reservationTrend = $reservationTrend->orderBy('date', 'asc')->orderBy('hour', 'asc')->get();
+
+
+        $ordersTrend = OrderTrend::query();
+
+        if (!empty($request->orders_from) && !empty($request->orders_to)) {
+            $ordersTrend->whereBetween('date', [$request->orders_from, $request->orders_to]);
+        } else {
+            $ordersTrend->whereBetween('date', [now()->subDays(30), now()]);
+        }
+
+        $ordersTrend = $ordersTrend->orderBy('date', 'asc')->get();
+
+        return view('admin.index', compact('reservationTrend', 'ordersTrend'));
     }
+
     public function users_list(Request $request)
     {
         $search = $request->search ?? '';
-        $active = $request->active ?? ''; // 1 or 0
+        $status = $request->status ?? ''; // 1 or 0
         $order_by = $request->order_by ?? '-id'; // Default to -id (desc)
         $from_date = $request->from_date ?? '';
         $to_date = $request->to_date ?? '';
@@ -42,12 +77,15 @@ class AdminController extends Controller
         }
 
         // Apply active filter only if it's set (not an empty string)
-        if ($active !== '') {
-            $users->where('is_active', $active);
+        if ($status == 'active') {
+            $users->where('is_active', true);
+        } else if ($status == 'inactive') {
+            $users->where('is_active', false);
         }
 
         // Apply date range filter only if both from_date and to_date are provided
         if (!empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . ' 23:59:59';
             $users->whereBetween('created_at', [$from_date, $to_date]);
         }
 
@@ -81,6 +119,7 @@ class AdminController extends Controller
         $search = $request->search ?? '';
         $from_date = $request->from_date ?? '';
         $to_date = $request->to_date ?? '';
+        $filter_tag = $request->filter_tag ?? '';
         $order_by = $request->order_by ?? '-id'; // Default to '-id' for descending order
 
         // Create the base query
@@ -96,7 +135,12 @@ class AdminController extends Controller
 
         // Apply date range filter only if both from_date and to_date are provided
         if (!empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:23:59";
             $events->whereBetween('date_time', [$from_date, $to_date]);
+        }
+
+        if (!empty($filter_tag)) {
+            $events->where('tag', $filter_tag);
         }
 
         // Handle ordering: check for the minus sign
@@ -394,16 +438,33 @@ class AdminController extends Controller
     }
 
 
-    public function playlist()
+    public function playlist(Request $request)
     {
         $search = $request->search ?? '';
         $from_date = $request->from_date ?? '';
         $to_date = $request->to_date ?? '';
-        $playlist = Playlist::where('title', 'like', '%' . $search . '%');
+
+        $playlist = Playlist::query();
+
+
+        if (!empty($search)) {
+            $playlist->where('title', 'like', '%' . $search . '%');
+        }
 
 
         if (!empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:23:59";
             $playlist->whereBetween('created_at', [$from_date, $to_date]);
+        }
+
+        // if only from date
+        if (!empty($from_date) && empty($to_date)) {
+            $playlist->where('created_at', '>=', $from_date);
+        }
+
+        // if only to date
+        if (empty($from_date) && !empty($to_date)) {
+            $playlist->where('created_at', '<=', $to_date);
         }
 
 
@@ -596,13 +657,40 @@ class AdminController extends Controller
 
         $search = $request->search ?? '';
         $from_date = $request->from_date ?? '';
+        $filter_category = $request->filter_category ?? '';
         $to_date = $request->to_date ?? '';
         // search title, short description, description
-        $news = News::where('title', 'like', '%' . $search . '%')
-            ->orWhere('short_description', 'like', '%' . $search . '%')
-            ->orWhere('description', 'like', '%' . $search . '%')
-            ->whereBetween('created_at', [$from_date, $to_date])
-            ->paginate(10);
+        $news = News::query();
+        if (!empty($search)) {
+            $news = $news->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('short_description', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            });
+        }
+
+        if (!empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:23:59";
+            $news = $news->whereBetween('created_at', [$from_date, $to_date]);
+        }
+
+        if (!empty($from_date) && empty($to_date)) {
+            $news = $news->where('created_at', '>=', $from_date);
+        }
+
+        if (empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:23:59";
+            $news = $news->where('created_at', '<=', $to_date);
+        }
+
+
+        if (!empty($filter_category)) {
+            $news = $news->where('category', $filter_category);
+        }
+
+
+        $news = $news->orderBy('id', 'desc')->paginate(10);
+
 
         return view('admin.news', compact('news'));
     }
@@ -677,23 +765,99 @@ class AdminController extends Controller
 
     public function merchandise(Request $request)
     {
+
         $search = $request->search ?? '';
-        $category = $request->category ?? '';
-        $gender = $request->gender ?? '';
-        $size = $request->sizes ?? '';
-        $color = $request->colors ?? '';
-        $merchandise = Merchandise::where('name', 'like', '%' . $search . '%')
-            ->where('category', 'like', '%' . $category . '%')
-            ->where('gender', 'like', '%' . $gender . '%')
-            ->where('sizes', 'like', '%' . $size . '%')
-            ->where('colors', 'like', '%' . $color . '%')
-            ->paginate(10);
+        $category = $request->filter_category ?? '';
+        $gender = $request->filter_gender ?? '';
+        $size = $request->filter_size ?? '';
+        $color = $request->filter_color ?? '';
+        $merchandise = Merchandise::query();
+
+
+        if (!empty($search)) {
+            $merchandise = $merchandise->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('gender', 'like', '%' . $search . '%')
+                    ->orWhere('sizes', 'like', '%' . $search . '%')
+                    ->orWhere('colors', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhere('price', 'like', '%' . $search . '%');
+            });
+        }
+
+
+        if (!empty($category)) {
+            $merchandise = $merchandise->where('category', $category);
+        }
+
+        if (!empty($gender)) {
+            $merchandise = $merchandise->where('gender', $gender);
+        }
+
+
+        if (!empty($size)) {
+            $merchandise = $merchandise->where('sizes', 'like', '%' . $size . '%');
+        }
+
+
+        if (!empty($color)) {
+            $merchandise = $merchandise->where('colors', 'like', '%' . $color . '%');
+        }
+
+
+        $merchandise = $merchandise->orderBy('id', 'desc')->paginate(10);
+
         return view('admin.merchandise', compact('merchandise'));
     }
 
     public function merch_orders(Request $request)
     {
-        $merch_orders = Order::orderBy('id', 'desc')->paginate(10);
+        $status = $request->status ?? '';
+        $from_date = $request->from_date ?? '';
+        $to_date = $request->to_date ?? '';
+        $search = $request->search ?? '';
+
+
+        $merch_orders = Order::with('product_orders.merchandise');
+
+
+        if (!empty($status)) {
+            $merch_orders = $merch_orders->where('status', $status);
+        }
+
+
+        if (!empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:23:59";
+            $merch_orders->whereBetween('created_at', [$from_date, $to_date]);
+        }
+
+
+        if (!empty($from_date) && empty($to_date)) {
+            $merch_orders->where('created_at', '>=', $from_date);
+        }
+
+
+        if (empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:23:59";
+            $merch_orders->where('created_at', '<=', $to_date);
+        }
+
+
+        if (!empty($search)) {
+            $merch_orders = $merch_orders->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%')
+                    ->orWhere('address', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $search . '%');
+            });
+        }
+
+
+        $merch_orders = $merch_orders->orderBy('id', 'desc')->paginate(10);
+
+
+
         return view('admin.merch-orders', compact("merch_orders"));
     }
 
@@ -751,6 +915,73 @@ class AdminController extends Controller
         return redirect(route('admin.merchandise'));
     }
 
+
+    public function edit_product(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'gender' => 'required',
+                'sizes' => 'required',
+                'colors' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'stock' => 'required',
+                'category' => 'required',
+                'id' => 'required',
+            ]);
+            $merchandise = Merchandise::find($request->id);
+
+
+            $image = $request->image ?? $merchandise->image;
+
+
+            if ($request->hasFile('image')) {
+                $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+            }
+
+            $merchandise->name = $request->name;
+            $merchandise->gender = $request->gender;
+            $merchandise->sizes = $request->sizes;
+            $merchandise->colors = $request->colors;
+            $merchandise->description = $request->description;
+            $merchandise->price = $request->price;
+            $merchandise->image = $image;
+            $merchandise->stock = $request->stock ?? 0;
+            $merchandise->category = $request->category ?? "merchandise";
+
+
+            $merchandise->save();
+            // order by id
+            $images = $merchandise->images()->orderBy('id', 'asc')->get();
+            for ($i = 1; $i <= 5; $i++) {
+                if ($request->hasFile('image' . $i)) {  // Check if the file exists
+                    $image = $this->upload_image(
+                        $request->file('image' . $i),
+                        'upload/merchandise',
+                        str_replace(' ', '', $request->file('image' . $i)->getClientOriginalName())
+                    );
+                    if ($i < count($images)) {
+                        $images[$i - 1]->image = $image;
+                        $images[$i - 1]->save();
+                    } else {
+                        $merchandise->images()->create([
+                            'image' => $image,
+                            "merchandise_id" => $merchandise->id
+                        ]);
+                    }
+                }
+            }
+
+
+            return redirect(route('admin.merchandise'));
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+
+
     public function messages(Request $request)
     {
         $search = $request->search ?? '';
@@ -772,7 +1003,16 @@ class AdminController extends Controller
 
     public function settings()
     {
-        $settings =  SiteSttings::select('name', 'logo', 'contact_email', 'contact_phone', 'contact_address', 'menu_path')->where('id', 1)->get();
+        $settings =  SiteSttings::select(
+            'name',
+            'logo',
+            'contact_email',
+            'reservation_from',
+            'reservation_to',
+            'contact_phone',
+            'contact_address',
+            'menu_path'
+        )->where('id', 1)->get();
         // get only the first record
         // if length is 0, return null
         $settings = $settings->first();
@@ -789,6 +1029,8 @@ class AdminController extends Controller
             'contact_email' => 'required',
             'contact_phone' => 'required',
             'contact_address' => 'required',
+            'reservation_from' => 'required',
+            'reservation_to' => 'required',
         ]);
 
         $settings = SiteSttings::where('id', 1)->first();
@@ -812,6 +1054,25 @@ class AdminController extends Controller
             $settings->menu_path = $menu_path;
             $settings->save();
         } else {
+
+            $reservation_from = $request->reservation_from ?? "";
+
+            if (!empty($reservation_from)) {
+                // Assuming the HTML time format is 'HH:MM'
+                $timeParts = explode(':', $request->reservation_from);
+                if (count($timeParts) > 0) {
+                    $reservation_from = $timeParts[0]; // Extract the hour part
+                }
+            }
+
+            $reservation_to = $request->reservation_to ?? "";
+            if (!empty($reservation_to)) {
+                $timeParts = explode(':', $request->reservation_to);
+
+                if (count($timeParts) > 0) {
+                    $reservation_to = $timeParts[0]; // Extract the hour part
+                }
+            }
             $settings =  SiteSttings::where('id', 1)->update([
                 'name' => $request->name,
                 'logo' => $image,
@@ -819,6 +1080,8 @@ class AdminController extends Controller
                 'contact_phone' => $request->contact_phone,
                 'contact_address' => $request->contact_address,
                 'menu_path' => $menu_path,
+                'reservation_from' => $reservation_from,
+                'reservation_to' => $reservation_to
             ]);
         }
 
@@ -912,5 +1175,62 @@ class AdminController extends Controller
         $settings->save();
 
         return redirect(route('admin.return-policy'));
+    }
+
+    public function tables()
+    {
+
+        $tables = Table::paginate(10);
+
+        return view('admin.tables', compact("tables"));
+    }
+
+    public function add_table(Request $request)
+    {
+
+        $request->validate([
+            "number_seats" => 'required',
+            "total_tables" => 'required',
+            "amount" => 'required'
+        ]);
+
+
+        $table = new Table();
+        $table->number_seats = $request->number_seats;
+        $table->total_tables = $request->total_tables;
+        $table->amount = $request->amount;
+        $table->status = "available";
+        $table->save();
+        return redirect(route('admin.tables'));
+    }
+
+    public function table_details(Request $request)
+    {
+        // Get the filtered date from the request, or default to today's date
+        $date = $request->date ?? date('Y-m-d');
+
+        // Get the start and end of the day for the specified date
+        $startOfDay = $date . ' 00:00:00';
+        $endOfDay = $date . ' 23:59:59';
+
+        // Get the table based on the id from the request
+        $table = Table::find($request->id);
+
+        // Get all reservations for the given table id, and filter for the entire day
+        $reservations = TableReservation::where('table_id', $request->id)
+            ->whereBetween('from_date', [$startOfDay, $endOfDay])
+            ->get();
+
+
+        // Fetch reservation settings (reservation_from and reservation_to)
+        $settings = SiteSttings::select('reservation_from', 'reservation_to')
+            ->where('id', 1)
+            ->first();
+
+        // Group reservations by table_index to create array of arrays
+        $groupedReservations = $reservations->groupBy('table_index');
+
+        // Pass the grouped reservations along with the other data to the view
+        return view('admin.table-details', compact("table", "groupedReservations", 'settings', 'date'));
     }
 }

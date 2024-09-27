@@ -32,5 +32,5 @@
         </div>
         {{ $team->links() }}
     </main>
+    @include('forms.edit.edit-team', ['id' => 'edit-team'])
 @endsection
-@include('forms.edit.edit-team', ['id' => 'edit-team'])

@@ -18,33 +18,45 @@
                                 From Date
                             </label>
                             <input type="date" id="from_date"
-                                class="border border-accent/20 bg-primary rounded-md px-2 py-1" name="from_date"
-                                defaultValue={searchParams?.from_date} />
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
+                                name="from_date" />
                         </div>
                         <div class="flex flex-col space-y-2">
                             <label for="to_date" class="text-textSecondary font-semibold">
                                 To Date
                             </label>
-                            <input type="date" class="border border-accent/20 bg-primary rounded-md px-2 py-1"
-                                name="to_date" id="to_date" defaultValue={searchParams?.to_date} />
+                            <input type="date"
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
+                                name="to_date" id="to_date" />
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="status" class="text-textSecondary font-semibold">
-                                Status
+                            <label for="filter_tag" class="text-textSecondary font-semibold">
+                                Event Type
                             </label>
-                            <select class="border border-accent/20 bg-primary rounded-md px-5 py-1 " name="status"
-                                id="status">
+                            <select class="filter-input border border-accent/20 bg-primary rounded-md px-5 py-1 "
+                                name="filter_tag" id="filter_tag">
                                 <option value="">All</option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option value="daytime">daytime</option>
+                                <option value="nightlife">nightlife</option>
+                                <option value="excusive">excusive</option>
                             </select>
                         </div>
                         <form class="flex flex-col space-y-2">
                             <label for="search" class="text-textSecondary font-semibold">
                                 Search
                             </label>
-                            <input type="search" class="border border-accent/20 bg-primary rounded-md px-2 py-1"
-                                name="search" id="search" defaultValue={searchParams?.search} />
+                            <input type="search"
+                                class="border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
+                                name="search" id="search" />
+                            @php
+                                foreach ($_GET as $key => $value) {
+                                    $key = htmlspecialchars($key);
+                                    if ($key != 'search') {
+                                        $value = htmlspecialchars($value);
+                                        echo "<input type='hidden' name='$key' value='$value'/>";
+                                    }
+                                }
+                            @endphp
                             <button class="hidden"></button>
                         </form>
                     </div>
@@ -54,109 +66,24 @@
                 <div class="grid grid-cols-7 item-end text-end gap-2 font-medium">
                     <a class="text-start flex justify-start space-x-0.5 col-span-2">
                         <span>Event Title</span>
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mb-2">
-                                    <path fillRule="evenodd"
-                                        d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mt-1">
-                                    <path fillRule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                        </div>
+
                     </a>
                     <a class="flex  w-full justify-end">
                         Event Date
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mb-2">
-                                    <path fillRule="evenodd"
-                                        d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mt-1">
-                                    <path fillRule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                        </div>
+
                     </a>
 
                     <a class="flex  w-full justify-end">
                         <span>Event Venue</span>
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mb-2">
-                                    <path fillRule="evenodd"
-                                        d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mt-1">
-                                    <path fillRule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                        </div>
+
                     </a>
                     <a class="flex w-full justify-end ">
                         Event Tag
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mb-2">
-                                    <path fillRule="evenodd"
-                                        d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mt-1">
-                                    <path fillRule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                        </div>
+
                     </a>
                     <a class="flex  w-full justify-end">
                         Created At
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mb-2">
-                                    <path fillRule="evenodd"
-                                        d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-5 h-5 -mt-1">
-                                    <path fillRule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clipRule="evenodd" />
-                                </svg>
-                            </span>
-                        </div>
+
                     </a>
                     <span>Action</span>
                 </div>
@@ -169,12 +96,13 @@
                             class="text-start font-bold capitalize whitespace-nowrap col-span-2 overflow-ellipsis line-clamp-1">
                             {{ $event->title }}
                         </a>
-                        <span>{{ $event->date_time }}</span>
+                        <span>{{ $event->date_time->format('Y-m-d H:i') }}
+                        </span>
                         <span>{{ $event->venue->name }}</span>
                         <span class="text-accent font-bold capitalize whitespace-nowrap overflow-ellipsis line-clamp-1">
                             {{ $event->tag }}</span>
                         <span class="">
-                            {{ $event->created_at->diffForHumans() }}
+                            {{ $event->created_at->format('Y-m-d') }}
                         </span>
                         <div class="flex justify-end">
                             <button onclick="openEditDialog('edit-event', {{ $event }})"

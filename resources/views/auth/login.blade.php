@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <form method="POST" action="{{ route('login') }}" class="flex flex-col w-full py-5 space-y-4">
+    <form method="POST" action="{{ route('login') }}" class="flex flex-col w-full py-5 space-y-4 text-textPrimary">
         @csrf
         <div class="text-center font-bold text-xl">{{ __('Login') }}</div>
         <div class="flex flex-col space-y-2">
@@ -9,7 +9,7 @@
 
             <div class="flex flex-col ">
                 <input id="email" type="email"
-                    class="border-2 rounded px-3 py-2 @error('email') border-red-400 @enderror" name="email"
+                    class="border-2 rounded px-3 py-2 bg-primary @error('email') border-red-400 @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
@@ -25,8 +25,8 @@
 
             <div class="flex flex-col space-y-2">
                 <input id="password" type="password"
-                    class="border-2 rounded px-3 py-2 @error('password') border-red-400 @enderror" name="password" required
-                    autocomplete="current-password">
+                    class="border-2 rounded px-3 py-2 bg-primary @error('password') border-red-400 @enderror"
+                    name="password" required autocomplete="current-password">
 
                 @error('password')
                     <span class=" text-red-700 rounded relative" role="alert">
@@ -52,7 +52,7 @@
             </button>
 
             @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
+                <a class="btn btn-link pt-2" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
             @endif
