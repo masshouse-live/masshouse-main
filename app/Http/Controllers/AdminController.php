@@ -13,20 +13,53 @@ use App\Models\SiteSttings;
 use App\Models\Contact;
 use App\Models\EventsVenue;
 use App\Models\Order;
+use App\Models\OrderTrend;
+use App\Models\ReservationTrend;
 use App\Models\TeamMember;
 use App\Models\Table;
 use App\Models\TableReservation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.index');
+        $request->validate([
+            'reservation_from' => 'nullable|date',
+            'reservation_to' => 'nullable|date|after_or_equal:reservation_from',
+            'orders_from' => 'nullable|date',
+            'orders_to' => 'nullable|date|after_or_equal:orders_from',
+        ]);
+
+        $reservation_from = $request->reservation_from ?? '';
+        $reservation_to = $request->reservation_to ?? '';
+
+        $reservationTrend = ReservationTrend::query();
+
+        if (!empty($reservation_from) && !empty($reservation_to)) {
+            $reservationTrend->whereBetween('date', [$reservation_from, $reservation_to]);
+        } else {
+            $reservationTrend->whereBetween('date', [now()->subDays(30), now()]);
+        }
+
+        $reservationTrend = $reservationTrend->orderBy('date', 'asc')->orderBy('hour', 'asc')->get();
+
+
+        $ordersTrend = OrderTrend::query();
+
+        if (!empty($request->orders_from) && !empty($request->orders_to)) {
+            $ordersTrend->whereBetween('date', [$request->orders_from, $request->orders_to]);
+        } else {
+            $ordersTrend->whereBetween('date', [now()->subDays(30), now()]);
+        }
+
+        $ordersTrend = $ordersTrend->orderBy('date', 'asc')->get();
+
+        return view('admin.index', compact('reservationTrend', 'ordersTrend'));
     }
+
     public function users_list(Request $request)
     {
         $search = $request->search ?? '';

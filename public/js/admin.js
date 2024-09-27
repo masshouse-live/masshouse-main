@@ -398,3 +398,227 @@ $(document).ready(function () {
     listednDrag();
     handleFilterInput();
 });
+$(document).ready(function () {
+    // Step 1: Retrieve the data from the data attribute
+    var data = $("#data-container").data("reservations");
+
+    // Parse the date and group data by 'date'
+    var parseDate = d3.timeParse("%Y-%m-%d"); // Adjust format based on your date format
+    data.forEach(function (d) {
+        d.date = parseDate(d.date);
+    });
+
+    // Grouping the data by date
+    var groupedData = Array.from(
+        d3.group(data, (d) => d.date),
+        ([key, values]) => ({
+            date: key,
+            total_count: d3.sum(values, (d) => d.count),
+            total_paid: d3.sum(values, (d) => d.paid_reservation),
+            total_amount: d3.sum(values, (d) => d.amount),
+        })
+    );
+
+    // Append 0 to dates in between which have no data
+    var minDate = moment(d3.min(data, (d) => d.date));
+    var maxDate = moment(d3.max(data, (d) => d.date));
+    var date = minDate.clone(); // Clone the minDate to avoid mutating it
+
+    // Create a set of existing dates for quick lookup
+    const existingDates = new Set(groupedData.map((d) => d.date));
+
+    // Loop through each date from minDate to maxDate
+    while (date.isSameOrBefore(maxDate)) {
+        const dateString = date.format("YYYY-MM-DD"); // Adjust format as needed
+        if (!existingDates.has(dateString)) {
+            groupedData.push({
+                date: parseDate(dateString),
+                total_count: 0,
+                total_paid: 0,
+                total_amount: 0,
+            });
+        }
+        date.add(1, "days"); // Increment by one day
+    }
+
+    // Sort grouped data by date
+    groupedData.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // Extract data for the chart
+    var labels = groupedData.map((d) => d3.timeFormat("%Y-%m-%d")(d.date)); // Format date as labels
+    var totalCounts = groupedData.map((d) => d.total_count);
+
+    // Create the chart
+    var ctx = document.getElementById("reservation-chart").getContext("2d");
+
+    // Calculate height dynamically based on aspect ratio (if needed)
+    var canvas = document.getElementById("reservation-chart");
+
+    // Optional: You can define a fixed height or calculate based on aspect ratio
+    var height = canvas.clientHeight;
+    canvas.height = height;
+
+    // Step 3: Create the chart
+    new Chart(ctx, {
+        type: "bar", // Bar chart type
+        data: {
+            labels: labels, // X-axis labels (dates)
+            datasets: [
+                {
+                    label: "Total Reservations", // Dataset label
+                    data: totalCounts, // Y-axis data (total_count)
+                    backgroundColor: "rgba(54, 162, 235, 0.8)", // Bar fill color
+                    borderColor: "rgba(54, 162, 235, 1)", // Bar border color
+                    borderWidth: 1, // Bar border width
+                },
+            ],
+        },
+        options: {
+            responsive: true, // Make chart responsive
+            maintainAspectRatio: false, // Allow the chart to fill the canvas
+            scales: {
+                x: {
+                    type: "category", // Change to category to handle string labels
+                    title: {
+                        display: true,
+                        text: "Date", // X-axis label
+                    },
+                },
+                y: {
+                    beginAtZero: true, // Start y-axis at zero
+                    title: {
+                        display: true,
+                        text: "Total Count", // Y-axis label
+                    },
+                },
+            },
+        },
+    });
+
+    var totalPaid = d3.sum(groupedData, (d) => d.total_paid);
+    var totalCount = d3.sum(groupedData, (d) => d.total_count);
+    var totalUnpaid = totalCount - totalPaid;
+
+    // Data for the donut chart
+    var donutData = {
+        labels: ["Total Paid", "Total Unpaid"],
+        datasets: [
+            {
+                data: [totalPaid, totalUnpaid],
+                backgroundColor: [
+                    "rgba(54, 162, 235, 0.6)", // Paid color
+                    "rgba(255, 99, 132, 0.6)", // Unpaid color
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    // Step 3: Create the donut chart
+    var ctx = document
+        .getElementById("reservation-donut-chart")
+        .getContext("2d");
+
+    new Chart(ctx, {
+        type: "doughnut", // Doughnut chart type
+        data: donutData,
+        options: {
+            responsive: true,
+            cutout: "90%",
+            borderColor: "rgba(0, 0, 0, 0.1)",
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: "top",
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            var label = tooltipItem.label || "";
+                            if (label) {
+                                label += ": ";
+                            }
+                            label +=
+                                Math.round(tooltipItem.raw) +
+                                " (" +
+                                Math.round(
+                                    (tooltipItem.raw / totalCount) * 100
+                                ) +
+                                "%)";
+                            return label;
+                        },
+                    },
+                },
+            },
+        },
+    });
+
+    const orderData = $("#orders-data-container").data("orders");
+
+    // Extract data for the chart
+    const orders_labels = orderData.map((d) => d.date); // X-axis labels (dates)
+    const totalOrders = orderData.map((d) => d.total_orders); // Y-axis data (total_orders)
+
+    // Replace with zero for dates with no data
+    const minOrderDate = moment(d3.min(orderData, (d) => d.date));
+    const maxOrderDate = moment(d3.max(orderData, (d) => d.date));
+
+    const orderdate = minOrderDate.clone(); // Clone the minDate to avoid mutating it
+    const existingOrderDates = new Set(orders_labels); // Create a Set for fast look-up
+    console.log(existingOrderDates);
+
+    while (orderdate.isSameOrBefore(maxOrderDate)) {
+        const formattedDate = orderdate.format("YYYY-MM-DD"); // Format the date only once
+        if (!existingOrderDates.has(formattedDate)) {
+            orders_labels.push(formattedDate);
+            totalOrders.push(0);
+        }
+        orderdate.add(1, "day");
+    }
+
+    // Create the chart
+    const ctx_orders = document.getElementById("orders-chart").getContext("2d");
+
+    // Set canvas height dynamically based on the aspect ratio
+    const orders_canvas = document.getElementById("orders-chart");
+    const orders_height = orders_canvas.clientHeight;
+    orders_canvas.height = orders_height;
+
+    new Chart(ctx_orders, {
+        type: "line", // Line chart type
+        data: {
+            labels: orders_labels, // X-axis labels (dates)
+            datasets: [
+                {
+                    label: "Total Orders", // Dataset label
+                    data: totalOrders, // Y-axis data (total_orders)
+                    backgroundColor: "transparent",
+                    borderColor: "rgba(54, 162, 235, 1)", // Line color
+                    borderWidth: 2, // Line width
+                    fill: true, // Fill the area under the line
+                    tension: 0.5, // Smoothness of the line
+                },
+            ],
+        },
+        options: {
+            responsive: true, // Make chart responsive
+            maintainAspectRatio: false, // Allow the chart to fill the canvas
+            scales: {
+                x: {
+                    type: "category", // Use category for string labels
+                    title: {
+                        display: true,
+                        text: "Date", // X-axis label
+                    },
+                },
+                y: {
+                    beginAtZero: true, // Start y-axis at zero
+                    title: {
+                        display: true,
+                        text: "Total Orders", // Y-axis label
+                    },
+                },
+            },
+        },
+    });
+});

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ReservationTrend;
 use App\Models\SiteSttings;
 use App\Models\Table;
 use App\Models\TableReservation;
@@ -95,10 +96,29 @@ class TableReservationController extends Controller
                     'status' => 'placed',
                     'table_index' => $tableIndex,
                 ]);
+                // add to trend
+                $date = $fromDateTime->format('Y-m-d');
+                $hour = $fromDateTime->format('H');
+
+                $reservationTrend = ReservationTrend::where('date', $date)->where('hour', $hour)->first();
+
+                if ($reservationTrend) {
+                    $reservationTrend->count = $reservationTrend->count + 1;
+                    $reservationTrend->save();
+                } else {
+                    $reservationTrend = new ReservationTrend();
+                    $reservationTrend->date = $date;
+                    $reservationTrend->hour = $hour;
+                    $reservationTrend->count = 1;
+                    $reservationTrend->paid_reservation = 0;
+                    $reservationTrend->amount = 0;
+                    $reservationTrend->save();
+                }
 
                 return response()->json(['success' => 'Table reserved successfully!'], 200);
             }
         }
+
 
 
         // If no available table index was found

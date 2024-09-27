@@ -15,7 +15,7 @@
                                 From Date
                             </label>
                             <input type="date" id="from_date"
-                                class="border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
                                 name="from_date" />
                         </div>
                         <div class="flex flex-col space-y-2">
@@ -23,18 +23,21 @@
                                 To Date
                             </label>
                             <input type="date"
-                                class="border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
                                 name="to_date" id="to_date" />
                         </div>
                         <div class="flex flex-col space-y-2">
                             <label for="status" class="text-textSecondary font-semibold">
                                 Status
                             </label>
-                            <select class="border border-accent/20 bg-primary rounded-md px-5 py-1 " name="status"
-                                id="status">
+                            <select class="filter-input border border-accent/20 bg-primary rounded-md px-5 py-1 "
+                                name="status" id="status">
                                 <option value="">All</option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option value="order_placed">Order Placed</option>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
                             </select>
                         </div>
                         <form class="flex flex-col space-y-2">
@@ -42,8 +45,17 @@
                                 Search
                             </label>
                             <input type="search"
-                                class="border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
+                                class="filter-input border border-accent/20 bg-primary rounded-md px-2 py-1 dark:[color-scheme:dark]"
                                 name="search" id="search" />
+                            @php
+                                foreach ($_GET as $key => $value) {
+                                    $key = htmlspecialchars($key);
+                                    if ($key != 'search') {
+                                        $value = htmlspecialchars($value);
+                                        echo "<input type='hidden' name='$key' value='$value'/>";
+                                    }
+                                }
+                            @endphp
                             <button class="hidden"></button>
                         </form>
                     </div>
@@ -132,7 +144,7 @@
                                                     <span>
                                                         kes.{{ number_format($merch_order_item->price, 2, '.', ',') }}</span>
                                                     <div>
-                                                        <span class="capitalize p-1"
+                                                        <span class="capitalize p-1 rounded shadow"
                                                             style="background-color: {{ $merch_order_item->color }}">{{ $merch_order_item->color }}</span>
                                                     </div>
                                                     <span class="uppercase">{{ $merch_order_item->size }}</span>
@@ -161,6 +173,7 @@
                                             <option value="pending">Processing</option>
                                             <option value="shipped">Shipped</option>
                                             <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
                                         </select>
                                     </div>
                                 </div>

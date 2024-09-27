@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Merchandise;
 use App\Models\Order;
 use App\Models\ProductOrder;
+use App\Models\OrderTrend;
 
 use Illuminate\Http\Request;
 
@@ -67,7 +68,18 @@ class ProductOrderController extends Controller
         $order->total = $total;
         $order->save();
 
-        // Redirect to order placed page
+        // get trend for today
+        $order_trend = OrderTrend::where('date', date('Y-m-d'))->first();
+        if (!$order_trend) {
+            $order_trend = new OrderTrend();
+            $order_trend->date = date('Y-m-d');
+            $order_trend->total_orders = 0;
+            $order_trend->total_revenue = 0;
+        }
+        $order_trend->total_orders = $order_trend->total_orders + 1;
+        $order_trend->total_revenue = $order_trend->total_revenue + $total;
+        $order_trend->save();
+
         return redirect(route('orders_placed', ['order_id' => $order->id]));
     }
 
