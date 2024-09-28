@@ -80,12 +80,9 @@
                     </a>
                     <a class="flex w-full justify-end ">
                         Client Name
-
                     </a>
-
                     <a class="flex  w-full justify-end">
                         Contact Date
-
                     </a>
 
                 </div>
