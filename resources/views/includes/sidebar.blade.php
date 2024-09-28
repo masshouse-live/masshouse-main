@@ -129,11 +129,17 @@
                             </a>
 
                             <ul class="pl-8">
+                                <li><a href="{{ route('admin.merchandise_categories') }}"
+                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+
+                                        <span>Merch Categories</span>
+                                    </a></li>
                                 <li><a href="{{ route('admin.merchandise') }}"
                                         class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Merchandise</span>
                                     </a></li>
+
                                 <li><a href="{{ route('admin.merch_orders') }}"
                                         class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 

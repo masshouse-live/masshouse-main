@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('playlists', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('spotify_link');
-            $table->string('youtube_link');
-            $table->string('souncloud_link');
-            $table->string('applemusic_link');
+            $table->string('name');
             $table->string('image');
+            $table->string('slug');
+            $table->string('tags')->nullable();
+            $table->integer('price_from');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('playlists');
+        Schema::dropIfExists('product_categories');
     }
 };

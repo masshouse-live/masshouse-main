@@ -72,7 +72,7 @@
                 </ul>
             </div>
             <div class="logo">
-                <a href="index.html">
+                <a href="/">
                     <img src="{{ asset('images/logo-white.png') }}" />
                 </a>
             </div>
@@ -102,7 +102,7 @@
                 </ul>
             </div>
             <div class="logo">
-                <a href="index.html">
+                <a href="/">
                     <img src="images/logo-white.png" />
                 </a>
             </div>
@@ -122,7 +122,7 @@
     <nav class="navbar sticky mobile home" id="transparentNavbar">
         <div class="nav-wrapper">
             <div class="logo">
-                <a href="index.html">
+                <a href="/">
                     <img src="{{ asset('images/logo-white.png') }}" alt="logo" />
                 </a>
             </div>
@@ -135,7 +135,7 @@
                     <li><a href="/tickets">Tickets</a></li>
                     <li><a href="/shop">Shop</a></li>
                     <li><a href="/contact">Contact Us</a></li>
-                    <!-- <li><a href="index.html"><img src="images/logo-white.png" alt="logo"></a></li> -->
+                    <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
             </div>
             <a class="burger-nav"></a>
@@ -146,7 +146,7 @@
     <nav class="navbar sticky mobile alternative-navbar" id="alternativeNavbar">
         <div class="nav-wrapper">
             <div class="logo">
-                <a href="index.html"><img src="{{ asset('images/logo-white.png') }}" alt="logo" /></a>
+                <a href="/"><img src="{{ asset('images/logo-white.png') }}" alt="logo" /></a>
             </div>
 
             <div class="nav-list">
@@ -157,7 +157,7 @@
                     <li><a href="/tickets">Tickets</a></li>
                     <li><a href="/shop">Shop</a></li>
                     <li><a href="/contact">Contact Us</a></li>
-                    <!-- <li><a href="index.html"><img src="images/logo-white.png" alt="logo"></a></li> -->
+                    <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
             </div>
             <a class="burger-nav"></a>

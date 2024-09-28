@@ -21,6 +21,7 @@ use App\Models\TableReservation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -885,6 +886,7 @@ class AdminController extends Controller
 
         $merchandise->name = $request->name;
         $merchandise->gender = $request->gender;
+        $merchandise->slug = Str::slug($request->name) . '-' . Str::random(5);
         $merchandise->sizes = $request->sizes;
         $merchandise->colors = $request->colors;
         $merchandise->description = $request->description;

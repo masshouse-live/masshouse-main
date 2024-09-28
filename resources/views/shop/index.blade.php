@@ -75,12 +75,12 @@
         </div>
         <br>
         <!-- <div class="swiper-filter">
-                <ul>
-                    <li><a href="#">ALL</a></li>
-                    <li><a href="#" class="active">ACCESSORIES</a></li>
-                    <li><a href="#">EXCLUSIVE</a></li>
-                </ul>
-            </div> -->
+                    <ul>
+                        <li><a href="#">ALL</a></li>
+                        <li><a href="#" class="active">ACCESSORIES</a></li>
+                        <li><a href="#">EXCLUSIVE</a></li>
+                    </ul>
+                </div> -->
 
 
 
@@ -101,7 +101,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 130px;"
-                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 130px;"
-                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 130px;"
-                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 130px;"
-                                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 130px;"
-                                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 130px;"
-                                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -289,12 +289,12 @@
         </div>
         <br>
         <!-- <div class="swiper-filter">
-                    <ul>
-                        <li><a href="#">ALL</a></li>
-                        <li><a href="#" class="active">ACCESSORIES</a></li>
-                        <li><a href="#">EXCLUSIVE</a></li>
-                    </ul>
-                </div> -->
+                        <ul>
+                            <li><a href="#">ALL</a></li>
+                            <li><a href="#" class="active">ACCESSORIES</a></li>
+                            <li><a href="#">EXCLUSIVE</a></li>
+                        </ul>
+                    </div> -->
 
 
 
@@ -318,7 +318,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -345,7 +345,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -372,7 +372,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -398,7 +398,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -424,7 +424,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -451,7 +451,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -478,7 +478,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -504,7 +504,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                              class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>

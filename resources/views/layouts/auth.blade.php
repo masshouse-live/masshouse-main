@@ -15,14 +15,14 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="dark">
+<body class="dark text-textPrimary">
     <div class="w-full flex flex-col h-full justify-center items-center bg-accent">
         <div class="w-full flex h-full justify-center items-center overflow-auto">
             <div
                 class="flex flex-col max-w-md bg-primary  mx-auto w-full border-2 border-accent rounded shadow py-20 px-5">
                 <div class="w-full justify-center flex">
-                    <img alt="Access Logo" src="{{ asset('images/logo_hr.png') }}" alt="Masshouse Logo" width=""
-                        height="" class="h-32 w-auto" />
+                    <img alt="Masshouse Logo" src="{{ asset('images/logos/auth_logo.png') }}" alt="Masshouse Logo"
+                        width="" height="" class="h-32 w-auto" />
                 </div>
                 @yield('content')
             </div>

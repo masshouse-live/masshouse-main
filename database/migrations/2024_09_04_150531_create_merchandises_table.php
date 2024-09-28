@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('merchandises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->string('description');
             $table->string('image');
             $table->string('price');
             $table->string('stock');
-            $table->string('category');
+            // table product_categories
+            $table->foreignId('product_category_id')->constrained();
             $table->string('colors');
             $table->string('sizes');
             $table->string('gender');
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('merchandise');
+        Schema::dropIfExists('merchandises');
     }
 };

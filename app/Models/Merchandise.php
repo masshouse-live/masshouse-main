@@ -27,4 +27,10 @@ class Merchandise extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class);
+    }
 }
