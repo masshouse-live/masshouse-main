@@ -69,14 +69,11 @@
                         Category
 
                     </a>
-
                     <a class="flex  w-full justify-end">
                         <span>Client Email</span>
-
                     </a>
                     <a class="flex w-full justify-end ">
                         Client Phone
-
                     </a>
                     <a class="flex w-full justify-end ">
                         Client Name
@@ -84,7 +81,6 @@
                     <a class="flex  w-full justify-end">
                         Contact Date
                     </a>
-
                 </div>
             </div>
             <div class="px-5 py-4 border-2 border-accent/20  bg-primary w-full rounded-md shadow gap-2 flex flex-col">
