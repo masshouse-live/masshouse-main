@@ -6,13 +6,21 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\TableReservationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductOrderController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TicketsController;
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
+Route::get('/news', [NewsController::class, 'news'])->name('news');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
+Route::get('/shop', [ShopController::class, 'index'])->name('tickets');
 Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
 Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
 Route::post('/create-order', [ProductOrderController::class, 'create_order'])->name('create_order');

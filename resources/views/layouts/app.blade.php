@@ -66,9 +66,9 @@
         <div class="nav-wrapper">
             <div class="nav1">
                 <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="news.html">Media</a></li>
-                    <li><a href="news.html">Whats Up!</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/news">Media</a></li>
+                    <li><a href="/news">Whats Up!</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -79,9 +79,9 @@
             <div class="nav2">
                 <ul>
                     <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-                    <li><a href="tickets.html">Tickets</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="contact.html" class="nav-button">Contact Us</a></li>
+                    <li><a href="/tickets">Tickets</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                    <li><a href="/contact" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
             <a class="burger-nav"></a>
@@ -96,9 +96,9 @@
 
             <div class="nav1">
                 <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="news.html">Media</a></li>
-                    <li><a href="news.html">Whats Up!</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/news">Media</a></li>
+                    <li><a href="/news">Whats Up!</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -108,9 +108,9 @@
             </div>
             <div class="nav2">
                 <ul>
-                    <li><a href="tickets.html">Tickets</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="contact.html" class="nav-button">Contact Us</a></li>
+                    <li><a href="/tickets">Tickets</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                    <li><a href="/contact" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -129,12 +129,12 @@
 
             <div class="nav-list">
                 <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="news.html">Media</a></li>
-                    <li><a href="news.html">Whats Up!</a></li>
-                    <li><a href="tickets.html">Tickets</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/news">Media</a></li>
+                    <li><a href="/news">Whats Up!</a></li>
+                    <li><a href="/tickets">Tickets</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
                     <!-- <li><a href="index.html"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
             </div>
@@ -151,12 +151,12 @@
 
             <div class="nav-list">
                 <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="news.html">Media</a></li>
-                    <li><a href="news.html">Whats Up!</a></li>
-                    <li><a href="tickets.html">Tickets</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/news">Media</a></li>
+                    <li><a href="/news">Whats Up!</a></li>
+                    <li><a href="/tickets">Tickets</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
                     <!-- <li><a href="index.html"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
             </div>
@@ -215,23 +215,23 @@
 
                     <ul>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;MHL</a>
                         </li>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;Ticketing</a>
                         </li>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;About Us</a>
                         </li>
                         <li>
-                            <a href="news.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/news" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;News & Blogs</a>
                         </li>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;All about MHL</a>
                         </li>
                     </ul>
@@ -248,19 +248,19 @@
 
                     <ul>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;Nairobi</a>
                         </li>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;Kisumu</a>
                         </li>
                         <li>
-                            <a href="about.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;Naivasha</a>
                         </li>
                         <li>
-                            <a href="news.html" class="footer-link text-white" style="text-decoration: none">
+                            <a href="/news" class="footer-link text-white" style="text-decoration: none">
                                 >&nbsp;Mombasa</a>
                         </li>
                     </ul>
