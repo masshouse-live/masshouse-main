@@ -14,6 +14,7 @@ use App\Models\Contact;
 use App\Models\EventsVenue;
 use App\Models\Order;
 use App\Models\OrderTrend;
+use App\Models\ProductCategory;
 use App\Models\ReservationTrend;
 use App\Models\TeamMember;
 use App\Models\Table;
@@ -764,6 +765,44 @@ class AdminController extends Controller
         return redirect(route('admin.news'));
     }
 
+    public function merchandise_categories(Request $request)
+    {
+
+        $search = $request->search ?? '';
+        $merchandise_categories = ProductCategory::query();
+        if (!empty($search)) {
+            $merchandise_categories = $merchandise_categories->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        }
+        $merchandise_categories = $merchandise_categories->orderBy('id', 'desc')->paginate(10);
+        return view('admin.merchandise_categories', compact('merchandise_categories'));
+    }
+
+    public function create_category(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required',
+            'tags' => 'required',
+            'subtitle' => 'required',
+            'price_from' => 'required',
+        ]);
+
+
+        $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        $merchandise_category = new ProductCategory();
+        $merchandise_category->name = $request->name;
+        $merchandise_category->subtitle = $request->subtitle;
+        $merchandise_category->slag = Str::slug($request->name);
+        $merchandise_category->image = $image;
+        $merchandise_category->tags = $request->tags;
+        $merchandise_category->price_from = $request->price_from;
+        $merchandise_category->save();
+        return redirect(route('admin.merchandise_categories'));
+    }
+
     public function merchandise(Request $request)
     {
 
@@ -1052,6 +1091,8 @@ class AdminController extends Controller
             $settings->logo = $image;
             $settings->contact_email = $request->contact_email;
             $settings->contact_phone = $request->contact_phone;
+            $settings->reservation_from = $request->reservation_from;
+            $settings->reservation_to = $request->reservation_to;
             $settings->contact_address = $request->contact_address;
             $settings->menu_path = $menu_path;
             $settings->save();

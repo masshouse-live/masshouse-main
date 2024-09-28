@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                    <div class="text-2xl text-center py-5">{{ __('Verify Your Email Address') }}</div>
 
                     <div class="card-body">
                         @if (session('resent'))
@@ -19,7 +19,7 @@
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <button type="submit"
-                                class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                                class="text-accent p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                         </form>
                     </div>
                 </div>

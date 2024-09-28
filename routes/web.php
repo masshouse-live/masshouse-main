@@ -12,7 +12,13 @@ use App\Http\Controllers\ProductOrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TicketsController;
 
-Auth::routes();
+// redirect to '/' if not logged in
+Auth::routes(
+    [
+        'register' => true,
+        'verify' => true
+    ]
+);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
@@ -29,7 +35,7 @@ Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_pl
 // group admin
 Route::group([
     'prefix' => 'admin',
-    'middleware' => ['auth', "admin"]
+    'middleware' => ['auth', "admin", "verified"]
 ], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/users', [AdminController::class, 'users_list'])->name('admin.users_list');
@@ -55,6 +61,7 @@ Route::group([
     Route::get('/news', [AdminController::class, 'news_list'])->name('admin.news');
     Route::post('/add-news', [AdminController::class, 'add_news'])->name('admin.add_news');
     Route::post('/edit-news', [AdminController::class, 'edit_news'])->name('admin.edit_news');
+    Route::post('/create-category', [AdminController::class, 'create_category'])->name('admin.create_category');
     Route::get('/merchandise-categories', [AdminController::class, 'merchandise_categories'])->name('admin.merchandise_categories');
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');
