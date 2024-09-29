@@ -32,7 +32,7 @@
                                     d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                             </svg>
                             <!-- <i style="margin-left: 50px;"
-                                    class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
                         </a>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                                     d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                             </svg>
                             <!-- <i style="margin-left: 50px;"
-                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                class="text-dark fa-solid fa-up-right-from-square"></i> -->
                         </a>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 30px;"
-                                        class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                         </div>
@@ -621,12 +621,7 @@
                 <!-- <div class="swiper-pagination"></div> -->
             </div>
 
-            <!-- Swiper JS -->
-            <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
             <!-- Initialize Swiper -->
-            <script src="js/upcomingevents-swiper.js"></script>
-
         </section>
 
 

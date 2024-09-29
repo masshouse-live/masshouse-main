@@ -46,6 +46,7 @@
 
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!--sticky navbar-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -167,6 +168,8 @@
     <script src="{{ asset('js/mobile-alternative-navbar.js') }}"></script>
 
     @yield('content')
+    <script src="{{ asset('js/upcomingevents-swiper.js') }}"></script>
+    <script src="{{ asset('js/player.js') }}"></script>
 
     <footer>
         <div>

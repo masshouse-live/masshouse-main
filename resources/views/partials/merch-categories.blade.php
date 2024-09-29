@@ -8,7 +8,7 @@
                     <p>{{ $category->tags }}{{ \Str::length($category->tags) > 0 ? '' : '.' }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="button">
-                            <a href="/merch/category={{ $category->slug }}" class="button1">SHOP NOW
+                            <a href="/shop/merch/category={{ $category->slug }}" class="button1">SHOP NOW
                                 <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
                                     width="1.5em" height="1.5em" viewBox="0 0 256 256">
                                     <path fill="currentColor"

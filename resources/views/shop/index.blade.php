@@ -34,12 +34,6 @@
                 <p class="black">EXCLUSIVE MERCHANDISE</p>
             </div>
         </div>
-
-        <script>
-            var copy = document.querySelector(".word-slide2").cloneNode(true);
-            document.querySelector(".words2").appendChild(copy);
-        </script> <!--infinite loop script-->
-
         <div class="hd">
             <h3>FOR YOU!</h3>
         </div>
@@ -75,75 +69,18 @@
         </div>
         <br>
         <!-- <div class="swiper-filter">
-                    <ul>
-                        <li><a href="#">ALL</a></li>
-                        <li><a href="#" class="active">ACCESSORIES</a></li>
-                        <li><a href="#">EXCLUSIVE</a></li>
-                    </ul>
-                </div> -->
+                                    <ul>
+                                        <li><a href="#">ALL</a></li>
+                                        <li><a href="#" class="active">ACCESSORIES</a></li>
+                                        <li><a href="#">EXCLUSIVE</a></li>
+                                    </ul>
+                                </div> -->
 
 
 
         <!-- Swiper -->
         <div class="swiper mySwiper case-studies">
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/poloshirt-black.png" alt="image">
-                    <div class="merch-details">
-                        <span>MEN'S STYLE</span>
-
-                        <div class="button">
-                            <a href="merch.html" class="button1a">SHOP NOW &nbsp;
-                                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                                <!-- <i style="margin-left: 130px;"
-                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/sweatshirt.png" alt="image">
-                    <div class="merch-details">
-                        <span>LADIES STYLE</span>
-
-                        <div class="button">
-                            <a href="merch.html" class="button1a">SHOP NOW &nbsp;
-                                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                                <!-- <i style="margin-left: 130px;"
-                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/tshirt-mockup.png" alt="image">
-                    <div class="merch-details">
-                        <span>COUPLE GOALS</span>
-
-                        <div class="button">
-                            <a href="merch.html" class="button1a">SHOP NOW &nbsp;
-                                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                                <!-- <i style="margin-left: 130px;"
-                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="swiper-slide merch-box">
                     <img src="images/shop/poloshirt-black.png" alt="image">
@@ -202,6 +139,63 @@
                     </div>
                 </div>
 
+                <div class="swiper-slide merch-box">
+                    <img src="images/shop/poloshirt-black.png" alt="image">
+                    <div class="merch-details">
+                        <span>MEN'S STYLE</span>
+
+                        <div class="button">
+                            <a href="merch.html" class="button1a">SHOP NOW &nbsp;
+                                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                </svg>
+                                <!-- <i style="margin-left: 130px;"
+                                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide merch-box">
+                    <img src="images/shop/sweatshirt.png" alt="image">
+                    <div class="merch-details">
+                        <span>LADIES STYLE</span>
+
+                        <div class="button">
+                            <a href="merch.html" class="button1a">SHOP NOW &nbsp;
+                                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                </svg>
+                                <!-- <i style="margin-left: 130px;"
+                                                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide merch-box">
+                    <img src="images/shop/tshirt-mockup.png" alt="image">
+                    <div class="merch-details">
+                        <span>COUPLE GOALS</span>
+
+                        <div class="button">
+                            <a href="merch.html" class="button1a">SHOP NOW &nbsp;
+                                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                </svg>
+                                <!-- <i style="margin-left: 130px;"
+                                                                                                      class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
 
@@ -211,7 +205,6 @@
         </div>
 
         <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
         <!-- Initialize Swiper -->
         <script src="js/upcomingevents-swiper.js"></script>
@@ -289,12 +282,12 @@
         </div>
         <br>
         <!-- <div class="swiper-filter">
-                        <ul>
-                            <li><a href="#">ALL</a></li>
-                            <li><a href="#" class="active">ACCESSORIES</a></li>
-                            <li><a href="#">EXCLUSIVE</a></li>
-                        </ul>
-                    </div> -->
+                                        <ul>
+                                            <li><a href="#">ALL</a></li>
+                                            <li><a href="#" class="active">ACCESSORIES</a></li>
+                                            <li><a href="#">EXCLUSIVE</a></li>
+                                        </ul>
+                                    </div> -->
 
 
 
@@ -318,7 +311,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -345,7 +338,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -372,7 +365,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -398,7 +391,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -424,7 +417,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -451,7 +444,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -478,7 +471,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -504,7 +497,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 130px;"
-                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                  class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                             <div><br>
@@ -523,7 +516,6 @@
         </div>
 
         <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
         <!-- Initialize Swiper -->
         <script src="js/upcomingevents-swiper.js"></script>

@@ -4,8 +4,8 @@
     <!--landing-page section-->
     <section class="landing-page">
         <!-- <div class="lp-wrapper">
-                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                                                                                                                                                                                                                                                                                                    </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -44,11 +44,6 @@
 
         <h2>THE LIVE PARTY</h2>
 
-        <script>
-            var copy = document.querySelector(".word-slide").cloneNode(true);
-            document.querySelector(".words").appendChild(copy);
-        </script>
-        <!--infinite loop script-->
     </section>
 
     <section class="shop-now" style="border-bottom: 1px solid #fff">
@@ -92,11 +87,7 @@
 
         <!-- Swiper -->
         @include('partials.merch-categories', ['categories' => $merchandise_categories])
-        <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-        <!-- Initialize Swiper -->
-        <script src="js/upcomingevents-swiper.js"></script>
     </section>
 
     <!--music-player section-->
@@ -138,14 +129,20 @@
                             <h2>DJ KNEE-BREAKER</h2>
                             <span>LIVE AT THE MASSHOUSE LIVE</span>
                             <br /><br />
-                            <hr style="border: 2px soild #fff !important" />
+                            <div id="progress-indicator"
+                                style="background-color: #777; width: 100%; height: 4px; position:relative">
+                                <span
+                                    style="width: 10px; height: 10px;position: absolute; top: -3px; left: 0; background-color: #fff; border-radius: 50%"
+                                    id="progress-ball"></span>
+                                <div class="progress" id="progress" style="height: 4px; width: 0%"></div>
+                            </div>
                             <br />
                             <ul class="music-icons list-unstyled list-inline">
                                 <li class="list-inline-item mx-3">
                                     <i class="fa-solid fa-backward-step"></i>
                                 </li>
                                 <li class="list-inline-item mx-3">
-                                    <i class="fa-solid fa-play"></i>
+                                    <i class="fa-solid fa-play" id="play-music"></i>
                                 </li>
                                 <li class="list-inline-item mx-3">
                                     <i class="fa-solid fa-stop"></i>
@@ -156,47 +153,45 @@
                             </ul>
                         </div>
                         <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
+                            <audio id="music-player"
+                                src="https://upcdn.io/FW25c2f/raw/uploads/2024/05/25/4kbAqbHE12-Are%20Sinners%20Raptured%20First.%20mp3.mp3"></audio>
                             <div class="music-icons">
                                 <i class="fa-solid fa-share-nodes"></i>
                                 <br />
                                 <i class="fa-solid fa-list"></i>
                                 <br />
-                                <i class="fa-solid fa-minus"></i>
-                                <br />
-                                <div class="volume-bar">
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus" style="color: #777"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
-                                    <i class="fa-solid fa-minus"></i>
+                                <i class="fa-solid fa-plus" id="increase-volume"></i>
+                                <div class="volume-bar" id="volume-bar" style="padding-top: 20px;">
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
+                                    <i class="fa-solid fa-minus vol-indicator"></i>
                                 </div>
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-minus" id="decrease-volume"></i>
                                 <br />
-                                <i class="fa-solid fa-volume-high"></i>
+                                <i class="fa-solid fa-volume-mute" id="level"></i>
                             </div>
                         </div>
                     </div>

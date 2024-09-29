@@ -3,7 +3,7 @@
 @section('content')
     <section class="about-landing">
         <!-- <p class="white">HOME OF AMAZING EXPERIENCES</p>
-                                                                                    <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
+                                                                                                            <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
         <div class="words">
             <div class="words-slide">
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
@@ -15,22 +15,6 @@
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
             </div>
         </div>
-        <!-- <style>
-                                                                                        @keyframes  slide {
-                                                                                from {
-                                                                                    transform: translateX(-100%);
-                                                                                }
-
-                                                                                to {
-                                                                                    transform: translateX(0);
-                                                                                }
-                                                                                }
-                                                                                    </style> -->
-
-        <script>
-            var copy = document.querySelector(".word-slide").cloneNode(true);
-            document.querySelector(".words").appendChild(copy);
-        </script> <!--infinite loop script-->
 
         <div class="words2">
             <div class="words-slide2">
@@ -99,10 +83,8 @@
             </div>
 
             <!-- Swiper JS -->
-            <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
             <!-- Initialize Swiper -->
-            <script src="js/upcomingevents-swiper.js"></script>
         </section>
         <section class="venue-pictures">
             <div class="row vp-wrapper">
@@ -143,72 +125,25 @@
             <!-- Swiper -->
             <div class="swiper mySwiper case-studies">
                 <div class="swiper-wrapper">
-
-                    <div class="swiper-slide team-box">
-                        <div class="team-box-img">
-                            <img src="images/team/user1.PNG" alt="">
+                    @foreach ($team_members as $member)
+                        <div class="swiper-slide team-box">
+                            <div class="team-box-img">
+                                <img src="{{ asset($member->image) }}" alt="">
+                            </div>
+                            <div class="team-details">
+                                <h5>{{ $member->name }}</h5>
+                                <p>{{ $member->title }}</p>
+                            </div>
                         </div>
-                        <div class="team-details">
-                            <h5>NICK NYAGA</h5>
-                            <p>Managing Director</p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide team-box">
-                        <div class="team-box-img">
-                            <img src="images/team/user2.PNG" alt="">
-                        </div>
-                        <div class="team-details">
-                            <h5>CHARLES RUIRU</h5>
-                            <p> Events Cordinator</p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide team-box">
-                        <div class="team-box-img">
-                            <img src="images/team/user3.PNG" alt="">
-                        </div>
-                        <div class="team-details">
-                            <h5>MKENYA MWENZA</h5>
-                            <p>Sound Guru</p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide team-box">
-                        <div class="team-box-img">
-                            <img src="images/team/user4.PNG" alt="">
-                        </div>
-                        <div class="team-details">
-                            <h5>OMWAMI KIBOKOLAO</h5>
-                            <p>Stage Manager</p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide team-box">
-                        <div class="team-box-img">
-                            <img src="images/team/user1.PNG" alt="">
-                        </div>
-                        <div class="team-details">
-                            <h5>NICK NYAGA</h5>
-                            <p>Managing Director</p>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide team-box"></div>
+                    @endforeach
 
 
                 </div>
 
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <!-- <div class="swiper-pagination"></div> -->
             </div>
 
-            <!-- Swiper JS -->
-            <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-            <!-- Initialize Swiper -->
-            <script src="js/upcomingevents-swiper.js"></script>
         </section>
 
         <!--pro-corner section-->
@@ -234,7 +169,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                            class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                    class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>

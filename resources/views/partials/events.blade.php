@@ -21,7 +21,7 @@
     <div class="swiper mySwiper case-studies">
         <div class="swiper-wrapper">
             @foreach ($events as $event)
-                <div class="swiper-slide work-box $">
+                <div class="swiper-slide work-box ">
                     <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo" />
                     <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo" />
                     <h6>
@@ -65,7 +65,6 @@
     </div>
 
     <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script src="js/upcomingevents-swiper.js"></script>
