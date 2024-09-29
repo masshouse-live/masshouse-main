@@ -4,8 +4,8 @@
     <!--landing-page section-->
     <section class="landing-page">
         <!-- <div class="lp-wrapper">
-                          <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                        </div> -->
+                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                    </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -75,7 +75,7 @@
     <!--upcoming-events section-->
     @include('partials.events', ['events' => $events])
     <!--partners-n-sponsors section-->
-    @include('partials.partners')
+    @include('partials.partners', ['color' => 'white', 'partners' => $sponsors])
 
     <!--merchandise-alert section-->
     <section class="merchandise-alert">
@@ -91,176 +91,7 @@
         </div>
 
         <!-- Swiper -->
-        <div class="swiper mySwiper case-studies">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/poloshirt-black.png" alt="image" />
-                    <div class="merch-details">
-                        <h5>MASSHOUSE SIGNATURE POLO</h5>
-                        <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="button">
-                                <a href="merch.html" class="button1">SHOP NOW &nbsp;
-                                    <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div>
-                                <br />
-                                <p style="font-size: 12px; font-family: 'Arian LT Bold'">
-                                    KES <br />
-                                    2,699.00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/front-hoodie.png" alt="image" />
-                    <div class="merch-details">
-                        <h5>MASSHOUSE SOCIETY HOODIE</h5>
-                        <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="button">
-                                <a href="merch.html" class="button1">SHOP NOW &nbsp;
-                                    <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div>
-                                <br />
-                                <p style="font-size: 12px; font-family: 'Arian LT Bold'">
-                                    KES <br />
-                                    3,499.00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/headphone-masshouse.png" alt="image" />
-                    <div class="merch-details">
-                        <h5>MASSHOUSE X ORAIMO</h5>
-                        <p>COLOR FINISH</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="button">
-                                <a href="merch.html" class="button1">SHOP NOW &nbsp;
-                                    <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div>
-                                <br />
-                                <p style="font-size: 12px; font-family: 'Arian LT Bold'">
-                                    KES <br />
-                                    2,699.00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/poloshirt-black.png" alt="image" />
-                    <div class="merch-details">
-                        <h5>MASSHOUSE SIGNATURE POLO</h5>
-                        <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="button">
-                                <a href="merch.html" class="button1">SHOP NOW &nbsp;
-                                    <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div>
-                                <br />
-                                <p style="font-size: 12px; font-family: 'Arian LT Bold'">
-                                    KES <br />
-                                    2,699.00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/front-hoodie.png" alt="image" />
-                    <div class="merch-details">
-                        <h5>MASSHOUSE SOCIETY HOODIE</h5>
-                        <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="button">
-                                <a href="merch.html" class="button1">SHOP NOW &nbsp;
-                                    <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div>
-                                <br />
-                                <p style="font-size: 12px; font-family: 'Arian LT Bold'">
-                                    KES <br />
-                                    3,499.00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide merch-box">
-                    <img src="images/shop/headphone-masshouse.png" alt="image" />
-                    <div class="merch-details">
-                        <h5>MASSHOUSE X ORAIMO</h5>
-                        <p>COLOR FINISH</p>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="button">
-                                <a href="merch.html" class="button1">SHOP NOW &nbsp;
-                                    <svg style="margin-left: 120px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div>
-                                <br />
-                                <p style="font-size: 12px; font-family: 'Arian LT Bold'">
-                                    KES <br />
-                                    2,699.00
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            <!-- <div class="swiper-pagination"></div> -->
-        </div>
-
+        @include('partials.merch-categories', ['categories' => $merchandise_categories])
         <!-- Swiper JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 

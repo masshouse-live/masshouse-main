@@ -1,18 +1,19 @@
-<section class="partners-n-sponsors">
+<section class="partners-n-sponsors {{ $color == 'black' ? 'about' : '' }}">
+    @if ($color == 'black')
+        <div style="margin-left: 50px; margin-bottom: 30px;">
+            <h3>PARTNERS & SPONSORS</h3>
+        </div>
+    @endif
     <div class="logos">
         <div class="logos-slide">
-            <img src="images/sponsors/Drenla Logo.png" />
-            <img src="images/sponsors/eabl.png" />
-            <img src="images/sponsors/donjulio.png" />
-            <img src="images/sponsors/tanqueray.png" />
-            <img src="images/sponsors/kbl.png" />
-            <img src="images/sponsors/singleton.png" />
-            <img src="images/sponsors/safaricom.png" />
+            @foreach ($partners as $partner)
+                <img src="{{ asset($color == 'black' ? $partner->logo_black : $partner->logo_white) }}" />
+            @endforeach
+
         </div>
     </div>
     <script>
         var copy = document.querySelector(".logos-slide").cloneNode(true);
         document.querySelector(".logos").appendChild(copy);
     </script>
-    <!--infinite loop script-->
 </section>

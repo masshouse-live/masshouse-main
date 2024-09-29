@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Playlist;
+use App\Models\ProductCategory;
 use App\Models\SiteSttings;
 use App\Models\Sponsor;
 
@@ -37,7 +38,9 @@ class HomeController extends Controller
         $sponsors = Sponsor::all();
         $coming_event = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->first();
         $playlist = Playlist::orderBy('created_at', 'desc')->take(6)->get();
-        return view('home', compact("events", "coming_event", "sponsors", "playlist"));
+        $merchandise_categories = ProductCategory::query();
+        $merchandise_categories = $merchandise_categories->orderBy('id', 'desc')->paginate(10);
+        return view('home', compact("events", "coming_event", "sponsors", "playlist", "merchandise_categories"));
     }
 
     public function menu()
