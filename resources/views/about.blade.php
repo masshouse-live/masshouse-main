@@ -3,7 +3,7 @@
 @section('content')
     <section class="about-landing">
         <!-- <p class="white">HOME OF AMAZING EXPERIENCES</p>
-                                        <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
+                                                                                    <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
         <div class="words">
             <div class="words-slide">
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
@@ -16,16 +16,16 @@
             </div>
         </div>
         <!-- <style>
-                                            @keyframes  slide {
-                                    from {
-                                        transform: translateX(-100%);
-                                    }
+                                                                                        @keyframes  slide {
+                                                                                from {
+                                                                                    transform: translateX(-100%);
+                                                                                }
 
-                                    to {
-                                        transform: translateX(0);
-                                    }
-                                    }
-                                        </style> -->
+                                                                                to {
+                                                                                    transform: translateX(0);
+                                                                                }
+                                                                                }
+                                                                                    </style> -->
 
         <script>
             var copy = document.querySelector(".word-slide").cloneNode(true);
@@ -74,74 +74,28 @@
                 <h3>UNLIMITED ENTERTAINMENT AT OUR SELECTED VENUES</h3>
             </div>
             <br>
-
-
-
             <!-- Swiper -->
             <div class="swiper mySwiper case-studies">
                 <div class="swiper-wrapper">
-
-                    <div class="swiper-slide venue-box one">
-                        <img src="images/venues/nairobi.jpg" alt="image">
-                        <p>NAIROBI</p>
-                        <div class="button">
-                            <a href="" class="button1">CHECK OUT VENUE
-                                <svg style="margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
-                                    height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                                <!-- <i class="text-dark fa-solid fa-up-right-from-square"></i> -->
-                            </a>
+                    @foreach ($venues as $venue)
+                        <div class="swiper-slide venue-box one">
+                            <img src="{{ asset($venue->cover_photo) }}" alt="image">
+                            <p>{{ $venue->name }}</p>
+                            <div class="button">
+                                <a href="" class="button1">CHECK OUT VENUE
+                                    <svg style="margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
+                                        height="1.5em" viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                    </svg>
+                                    <!-- <i class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="swiper-slide venue-box two">
-                        <img src="images/venues/mombasa.jpg" alt="image">
-                        <p>MOMBASA</p>
-                        <div class="button">
-                            <a href="" class="button1">CHECK OUT VENUE
-                                <svg style="margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
-                                    height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide venue-box three">
-                        <img src="images/venues/naivasha.jpg" alt="image">
-                        <p>NAIVASHA</p>
-                        <div class="button">
-                            <a href="" class="button1">CHECK OUT VENUE
-                                <svg style="margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
-                                    height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide venue-box">
-
-                    </div>
-
-                    <div class="swiper-slide venue-box">
-
-                    </div>
-
-                    <div class="swiper-slide venue-box">
-
-                    </div>
-
-
+                    @endforeach
                 </div>
-
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <!-- <div class="swiper-pagination"></div> -->
             </div>
 
             <!-- Swiper JS -->
@@ -280,7 +234,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                            class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>

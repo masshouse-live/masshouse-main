@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventsVenue;
 use App\Models\Sponsor;
 use App\Models\TeamMember;
 use App\Models\Professional;
@@ -19,9 +20,10 @@ class AboutController extends Controller
             $events->where('tag', $evets_filter);
         }
         $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->get();
+        $venues =  EventsVenue::all();
         $sponsors = Sponsor::all()->take(6);
         $team_members = TeamMember::all();
         $professionals = Professional::all();
-        return view('about', compact("events", "sponsors", "team_members", "professionals"));
+        return view('about', compact("events", "sponsors", "team_members", "professionals", "venues"));
     }
 }
