@@ -1,6 +1,4 @@
 @extends('includes.dialog')
-<script src="https://cdn.tiny.cloud/1/a0pxndjlpo9rftzvaigzbxykpznjulfybfmkcls187ifrp1n/tinymce/7/tinymce.min.js"
-    referrerpolicy="origin"></script>
 @section('form')
     <div class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
         <form action="{{ route('admin.add_product') }}" method="POST" enctype="multipart/form-data">
@@ -70,29 +68,17 @@
                 <select type="text" name="category" id="category" value=""
                     class="border-2 border-accent/20  bg-primary rounded ">
                     <option disabled selected value="">-- Select Category --</option>
-                    <option value="tshirts">T-Shirts</option>
-                    <option value="shirts">Shirts</option>
-                    <option value="pants">Pants</option>
-                    <option value="jackets">Jackets</option>
-                    <option value="sweaters">Sweaters</option>
-                    <option value="hoodies">Hoodies</option>
-                    <option value="sweatshirts">Sweatshirts</option>
-                    <option value="caps">Caps</option>
-                    <option value="sunglasses">Sunglasses</option>
-                    <option value="earphones">Earphones</option>
-                    <option value="headphones">Headphones</option>
-                    <option value="speakers">Speakers</option>
-                    <option value="watches">Watches</option>
-                    <option value="lighters">Lighters</option>
-                    <option value="other">Other</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="flex flex-col space-y-2 px-4 py-2">
                 <label class="font-bold" for="description">
                     Description
                 </label>
-                <textarea name="description" id="myeditorinstance" rows="10"
-                    class="tinymce border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
+                <textarea name="description" id="" rows="10" class="editor border-2 border-accent/20  bg-primary rounded "
+                    placeholder="Description"></textarea>
             </div>
             {{-- images --}}
 

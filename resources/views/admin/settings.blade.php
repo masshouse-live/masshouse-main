@@ -55,8 +55,9 @@
                             Reservation To
                         </label>
                         <input type="time" name="reservation_to" id="reservation_to"
-                            value="{{ $settings->reservation_to ?? '' }}:00"
+                            value="{{ $settings->reservation_to ?? '' }}:59"
                             class="border-2 border-accent/20  bg-primary rounded " placeholder="Reservation To" />
+                        <small>Will always end at :59th min of selected hour</small>
                     </div>
                 </div>
                 <div class="flex flex-col space-y-2 px-4">

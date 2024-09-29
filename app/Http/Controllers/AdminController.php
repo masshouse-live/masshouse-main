@@ -700,7 +700,6 @@ class AdminController extends Controller
     public function add_news(Request $request)
     {
 
-
         $request->validate([
             'title' => 'required',
             'category' => 'required',
@@ -781,23 +780,57 @@ class AdminController extends Controller
 
     public function create_category(Request $request)
     {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'image' => 'required',
+                'subtitle' => 'required',
+                'price_from' => 'required',
+            ]);
+
+
+            $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+            $merchandise_category = new ProductCategory();
+            $merchandise_category->name = $request->name;
+            $merchandise_category->subtitle = $request->subtitle;
+            $merchandise_category->slug = Str::slug($request->name);
+            $merchandise_category->image = $image;
+            $merchandise_category->tags = $request->tags ?? '';
+            $merchandise_category->price_from = $request->price_from;
+            $merchandise_category->save();
+            return redirect(route('admin.merchandise_categories'));
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function update_category(Request $request)
+    {
 
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
-            'tags' => 'required',
             'subtitle' => 'required',
             'price_from' => 'required',
+            'id' => 'required',
         ]);
 
 
-        $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
-        $merchandise_category = new ProductCategory();
+        $merchandise_category = ProductCategory::find($request->id);
+
+
+        $image = $merchandise_category->image;
+
+
+        if ($request->hasFile('image')) {
+            $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        }
+
+
         $merchandise_category->name = $request->name;
         $merchandise_category->subtitle = $request->subtitle;
-        $merchandise_category->slag = Str::slug($request->name);
+        $merchandise_category->slug = Str::slug($request->name);
         $merchandise_category->image = $image;
-        $merchandise_category->tags = $request->tags;
+        $merchandise_category->tags = $request->tags ?? '';
         $merchandise_category->price_from = $request->price_from;
         $merchandise_category->save();
         return redirect(route('admin.merchandise_categories'));
@@ -811,7 +844,7 @@ class AdminController extends Controller
         $gender = $request->filter_gender ?? '';
         $size = $request->filter_size ?? '';
         $color = $request->filter_color ?? '';
-        $merchandise = Merchandise::query();
+        $merchandise = Merchandise::with("category");
 
 
         if (!empty($search)) {
@@ -827,7 +860,9 @@ class AdminController extends Controller
 
 
         if (!empty($category)) {
-            $merchandise = $merchandise->where('category', $category);
+
+            $category = ProductCategory::where('slug', $category)->first()->id;
+            $merchandise = $merchandise->where('product_category_id', $category);
         }
 
         if (!empty($gender)) {
@@ -847,7 +882,10 @@ class AdminController extends Controller
 
         $merchandise = $merchandise->orderBy('id', 'desc')->paginate(10);
 
-        return view('admin.merchandise', compact('merchandise'));
+        $categories = ProductCategory::get();
+
+
+        return view('admin.merchandise', compact('merchandise', 'categories'));
     }
 
     public function merch_orders(Request $request)
@@ -903,57 +941,63 @@ class AdminController extends Controller
 
     public function add_product(Request $request)
     {
-
-        $request->validate([
-            'name' => 'required',
-            'gender' => 'required',
-            'sizes' => 'required',
-            'colors' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'image' => 'required',
-            'stock' => 'required',
-            'category' => 'required',
-        ]);
-
-
-        $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+        try {
+            $request->validate([
+                'name' => 'required',
+                'gender' => 'required',
+                'sizes' => 'required',
+                'colors' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'image' => 'required',
+                'stock' => 'required',
+                'category' => 'required',
+            ]);
 
 
-        $merchandise = new Merchandise();
+            $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
 
 
-        $merchandise->name = $request->name;
-        $merchandise->gender = $request->gender;
-        $merchandise->slug = Str::slug($request->name) . '-' . Str::random(5);
-        $merchandise->sizes = $request->sizes;
-        $merchandise->colors = $request->colors;
-        $merchandise->description = $request->description;
-        $merchandise->price = $request->price;
-        $merchandise->image = $image;
-        $merchandise->stock = $request->stock ?? 0;
-        $merchandise->category = $request->category ?? "merchandise";
+            $merchandise = new Merchandise();
+
+            // find category given slug
+            $category = ProductCategory::where('slug', $request->category)->first();
+            dd($category);
+
+            $merchandise->name = $request->name;
+            $merchandise->gender = $request->gender;
+            $merchandise->slug = Str::slug($request->name) . '-' . Str::random(5);
+            $merchandise->sizes = $request->sizes;
+            $merchandise->colors = $request->colors;
+            $merchandise->description = $request->description ?? "";
+            $merchandise->price = $request->price;
+            $merchandise->image = $image;
+            $merchandise->stock = $request->stock ?? 0;
+            $merchandise->product_category_id = $category->id;
 
 
-        $merchandise->save();
+            $merchandise->save();
 
-        // CREATE images could be in image[1-5]
-        for ($i = 1; $i <= 5; $i++) {
-            if ($request->hasFile('image' . $i)) {  // Check if the file exists
-                $image = $this->upload_image(
-                    $request->file('image' . $i),
-                    'upload/merchandise',
-                    str_replace(' ', '', $request->file('image' . $i)->getClientOriginalName())
-                );
+            // CREATE images could be in image[1-5]
+            for ($i = 1; $i <= 5; $i++) {
+                if ($request->hasFile('image' . $i)) {  // Check if the file exists
+                    $image = $this->upload_image(
+                        $request->file('image' . $i),
+                        'upload/merchandise',
+                        str_replace(' ', '', $request->file('image' . $i)->getClientOriginalName())
+                    );
 
-                $merchandise->images()->create([
-                    'image' => $image,
-                    "merchandise_id" => $merchandise->id
-                ]);
+                    $merchandise->images()->create([
+                        'image' => $image,
+                        "merchandise_id" => $merchandise->id
+                    ]);
+                }
             }
-        }
 
-        return redirect(route('admin.merchandise'));
+            return redirect(route('admin.merchandise'));
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 
 
@@ -975,7 +1019,7 @@ class AdminController extends Controller
 
 
             $image = $request->image ?? $merchandise->image;
-
+            $category = ProductCategory::where('slug', $request->category)->first();
 
             if ($request->hasFile('image')) {
                 $image = $this->upload_image($request->file('image'), 'upload/merchandise', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
@@ -989,7 +1033,7 @@ class AdminController extends Controller
             $merchandise->price = $request->price;
             $merchandise->image = $image;
             $merchandise->stock = $request->stock ?? 0;
-            $merchandise->category = $request->category ?? "merchandise";
+            $merchandise->product_category_id = $category->id;
 
 
             $merchandise->save();

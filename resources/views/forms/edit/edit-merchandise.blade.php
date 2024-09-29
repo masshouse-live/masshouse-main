@@ -82,21 +82,9 @@
                         <select type="text" name="category" id="category" value=""
                             class="edit-input border-2 border-accent/20  bg-primary rounded ">
                             <option disabled selected value="">-- Select Category --</option>
-                            <option value="tshirts">T-Shirts</option>
-                            <option value="shirts">Shirts</option>
-                            <option value="pants">Pants</option>
-                            <option value="jackets">Jackets</option>
-                            <option value="sweaters">Sweaters</option>
-                            <option value="hoodies">Hoodies</option>
-                            <option value="sweatshirts">Sweatshirts</option>
-                            <option value="caps">Caps</option>
-                            <option value="sunglasses">Sunglasses</option>
-                            <option value="earphones">Earphones</option>
-                            <option value="headphones">Headphones</option>
-                            <option value="speakers">Speakers</option>
-                            <option value="watches">Watches</option>
-                            <option value="lighters">Lighters</option>
-                            <option value="other">Other</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="flex flex-col space-y-2 px-4 py-2">
@@ -104,7 +92,7 @@
                             Description
                         </label>
                         <textarea name="description" id="myeditorinstanceedit" rows="10"
-                            class="tinymce edit-input border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
+                            class="editor edit-input border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
                     </div>
                     {{-- images --}}
 

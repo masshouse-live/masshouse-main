@@ -56,9 +56,7 @@
                 </label>
                 <input type="text" name="applemusic_link" id="applemusic_link" value=""
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Apple Music Link" />
-
             </div>
-
             <div class="px-4 py-4">
                 <button type="submit" class="py-1 px-5 flex items-center space-x-2 bg-accent shadow rounded text-white">
                     <span>Create Media </span>

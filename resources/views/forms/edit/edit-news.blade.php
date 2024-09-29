@@ -52,7 +52,7 @@
                             Description
                         </label>
                         <textarea name="description" id="myeditorinstanceedit" rows="10"
-                            class="edit-input tinymce border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
+                            class="edit-input editor border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
                     </div>
 
                     <div class="px-4 py-4">

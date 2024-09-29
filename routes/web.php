@@ -62,6 +62,7 @@ Route::group([
     Route::post('/add-news', [AdminController::class, 'add_news'])->name('admin.add_news');
     Route::post('/edit-news', [AdminController::class, 'edit_news'])->name('admin.edit_news');
     Route::post('/create-category', [AdminController::class, 'create_category'])->name('admin.create_category');
+    Route::post('/update-category', [AdminController::class, 'update_category'])->name('admin.update_category');
     Route::get('/merchandise-categories', [AdminController::class, 'merchandise_categories'])->name('admin.merchandise_categories');
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');

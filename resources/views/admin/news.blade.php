@@ -61,9 +61,9 @@
             </div>
             <div class="bg-primary py-4 w-full rounded-md  grid grid-cols-5 items-center">
                 @foreach ($news as $news_)
-                    <div class="flex flex-col space-y-1 border aspect-square p-1 overflow-hidden relative">
+                    <div class="flex flex-col  border border-accent/20 rounded aspect-square  overflow-hidden relative">
                         <button onclick="openEditDialog('edit-news', {{ $news_ }})"
-                            class="absolute top-2 right-1 bg-accent rounded shadoe text-white p-1 text-xl">
+                            class="absolute top-2 right-1 bg-accent rounded shadow text-white p-1 text-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,13 +93,4 @@
         </div>
     </main>
     @include('forms.edit.edit-news', ['id' => 'edit-news'])
-    <script>
-        (function() {
-            tinymce.init({
-                selector: 'textarea.tinymce', // Replace this CSS selector to match the placeholder element for TinyMCE
-                plugins: 'table lists',
-                toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
-            });
-        })();
-    </script>
 @endsection

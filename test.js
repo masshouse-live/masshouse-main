@@ -1,7 +1,7 @@
 const reservationData = {
     table_id: "1", // Assuming table ID is 1; adjust as needed
-    from_time: "08:00", // Start time
-    to_time: "11:00", // End time
+    from_time: "15:00", // Start time
+    to_time: "19:59", // End time
     date: new Date().toISOString().split("T")[0], // Today's date
     customer_name: " Dwight Schrute", // Customer's name
     customer_email: "dwight@example.com", // Customer's email

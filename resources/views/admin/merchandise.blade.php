@@ -17,22 +17,10 @@
                             </label>
                             <select class="filter-input border border-accent/20 bg-primary rounded-md px-5 py-1 "
                                 name="filter_category" id="filter_category">
-                                < <option value="">-- All --</option>
-                                    <option value="tshirts">T-Shirts</option>
-                                    <option value="shirts">Shirts</option>
-                                    <option value="pants">Pants</option>
-                                    <option value="jackets">Jackets</option>
-                                    <option value="sweaters">Sweaters</option>
-                                    <option value="hoodies">Hoodies</option>
-                                    <option value="sweatshirts">Sweatshirts</option>
-                                    <option value="caps">Caps</option>
-                                    <option value="sunglasses">Sunglasses</option>
-                                    <option value="earphones">Earphones</option>
-                                    <option value="headphones">Headphones</option>
-                                    <option value="speakers">Speakers</option>
-                                    <option value="watches">Watches</option>
-                                    <option value="lighters">Lighters</option>
-                                    <option value="other">Other</option>
+                                <option value="">-- All --</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="flex flex-col space-y-2">
@@ -129,7 +117,6 @@
                     </a>
                     <a class="flex  w-full justify-end">
                         Colors
-
                     </a>
                     <span>Gender | Action</span>
                 </div>
@@ -147,9 +134,9 @@
                         </div>
 
                         <div>
-                            @if ($merch->category)
+                            @if ($merch->category->name)
                                 <span
-                                    class="bg-accent shadow text-white rounded py-0.5 px-1 border border-accent/10">{{ $merch->category }}</span>
+                                    class="bg-accent shadow text-white rounded py-0.5 px-1 border border-accent/10">{{ $merch->category->name }}</span>
                             @endif
                         </div>
 
@@ -187,13 +174,4 @@
         </div>
     </main>
     @include('forms.edit.edit-merchandise', ['id' => 'edit-product'])
-    <script>
-        (function() {
-            tinymce.init({
-                selector: 'textarea.tinymce', // Replace this CSS selector to match the placeholder element for TinyMCE
-                plugins: 'table lists',
-                toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
-            });
-        })();
-    </script>
 @endsection

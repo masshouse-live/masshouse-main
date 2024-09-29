@@ -11,7 +11,7 @@
                 <label class="font-bold" for="title">
                     Title
                 </label>
-                <input type="text" name="title" id="title" value=""
+                <input type="text" required name="title" id="title" value=""
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Title" />
 
             </div>
@@ -19,7 +19,7 @@
                 <label class="font-bold" for="category">
                     Content Type
                 </label>
-                <select type="text" name="category" id="category" value=""
+                <select required type="text" name="category" id="category" value=""
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Tag">
                     <option disabled selected value="">-- Select Content Type --</option>
                     <option value="news">News</option>
@@ -31,7 +31,7 @@
                 <label class="font-bold" for="image">
                     Image
                 </label>
-                <input type="file" name="image" id="image" value="" class=" bg-primary rounded "
+                <input type="file" required name="image" id="image" value="" class=" bg-primary rounded "
                     placeholder="Image" />
 
             </div>
@@ -39,11 +39,10 @@
                 <label class="font-bold" for="description">
                     Description
                 </label>
-                <textarea name="description" id="myeditorinstance" rows="10"
-                    class="tinymce border-2 border-accent/20  bg-primary rounded " placeholder="Description"></textarea>
+                <textarea name="description" required id="myeditorinstance" rows="10"
+                    class="editor border-2 border-accent/20 rounded" placeholder="Description"></textarea>
 
             </div>
-
             <div class="px-4 py-4">
                 <button type="submit" class="py-1 px-5 flex items-center space-x-2 bg-accent shadow rounded text-white">
                     <span>Add News </span>

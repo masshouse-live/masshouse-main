@@ -25,8 +25,6 @@
 
             <!-- Table Rows -->
             <div class="px-4 dividex-2 flex flex-col">
-
-
                 @foreach ($groupedReservations as $index => $reservations)
                     <div class="shadow-lg rounded-lg flex">
                         <!-- Table Name Column -->
@@ -39,31 +37,43 @@
                             style="display: flex; border: 1px solid #ddd; border-left: none; height: 100px; position: relative; box-sizing: border-box;">
                             <!-- Render the time division background (hourly slots) -->
                             @for ($hour = $settings->reservation_from; $hour <= $settings->reservation_to; $hour++)
-                                <div class="time-slot min-w-24 "
+                                <div class="time-slot min-w-24"
                                     style="flex: 1; border-right: 1px solid #ddd; box-sizing: border-box;"></div>
                             @endfor
 
                             <!-- Render each reservation -->
                             @foreach ($reservations as $reservation)
                                 @php
-                                    // Convert timestamps into hour values for start and end times
-                                    $startHour = \Carbon\Carbon::parse($reservation['from_date'])->format('H');
-                                    $endHour = \Carbon\Carbon::parse($reservation['to_date'])->format('H');
+                                    // Convert timestamps into hour and minute values for start and end times
+                                    $startDateTime = \Carbon\Carbon::parse($reservation['from_date']);
+                                    $endDateTime = \Carbon\Carbon::parse($reservation['to_date']);
+                                    $startHour = $startDateTime->format('H');
+                                    $endHour = $endDateTime->format('H');
+                                    $startMinute = $startDateTime->format('i');
+                                    $endMinute = $endDateTime->format('i');
 
                                     // Total range of hours in the calendar (e.g., 8 AM to 11 PM)
-                                    $totalHours = $settings->reservation_to - $settings->reservation_from;
+                                    $totalHours = $settings->reservation_to - $settings->reservation_from + 1; // Include last hour
+
+                                    // Calculate total minutes for width calculation
+                                    $totalReservationMinutes =
+                                        ($endHour - $startHour) * 60 + ($endMinute - $startMinute);
+                                    $totalAvailableMinutes = $totalHours * 60; // Update for the total available minutes
 
                                     // Calculate startOffset based on the difference from the reservation start time to the calendar start
-                                    $startOffset = (($startHour - $settings->reservation_from) / $totalHours) * 100;
+                                    $startOffset =
+                                        ((($startHour - $settings->reservation_from) * 60 + $startMinute) /
+                                            $totalAvailableMinutes) *
+                                        100;
 
-                                    $hoursDiff = $endHour - $startHour;
-                                    $width = ($hoursDiff / $totalHours) * 100;
-                                    $occuredBorderPixels = $settings->reservation_from - $startHour;
+                                    // Width as a percentage based on total available minutes
+                                    $width = ($totalReservationMinutes / $totalAvailableMinutes) * 100;
+                                    $endDateTimePlusOne = \Carbon\Carbon::parse($reservation['to_date'])->addMinute();
                                 @endphp
-                                <div class="absolute text-xs text-white "
+                                <div class="absolute text-xs text-white"
                                     style="
-                                        left: calc({{ $startOffset + 0.18003 * $occuredBorderPixels }}%);
-                                        width: calc({{ $width - 0.19 * $hoursDiff }}%);
+                                        left: calc({{ $startOffset }}%);
+                                        width: calc({{ $width }}%);
                                         height: 100%;
                                         top: 0;
                                         display: flex;
@@ -75,8 +85,9 @@
                                         style="background-color: {{ sprintf('#%06X', mt_rand(0, 0xffffff)) }}; width: 100%; position: absolute;"
                                         class="rounded px-2 py-1 cursor-pointer">
                                         {{ $reservation['customer_name'] }} -
-                                        {{ \Carbon\Carbon::parse($reservation['from_date'])->format('M d, Y') }}
-                                        ({{ $startHour }}:00 - {{ $endHour }}:00)
+                                        {{ $startDateTime->format('M d, Y') }}
+                                        ({{ $startHour }}:{{ str_pad($startMinute, 2, '0', STR_PAD_LEFT) }} -
+                                        {{ $endDateTimePlusOne->format('H:i') }})
                                     </span>
                                 </div>
                             @endforeach
@@ -84,6 +95,7 @@
                     </div>
                 @endforeach
             </div>
+
         </div>
 
     </main>

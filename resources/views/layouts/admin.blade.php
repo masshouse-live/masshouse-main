@@ -9,10 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="/assets/vendor/ckeditor5.css">
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdn.tiny.cloud/1/a0pxndjlpo9rftzvaigzbxykpznjulfybfmkcls187ifrp1n/tinymce/7/tinymce.min.js"
-        referrerpolicy="origin"></script>
+
 </head>
 
 <body class="dark w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
@@ -42,5 +43,6 @@
 
 {{-- load admin.js --}}
 <script src="{{ asset('js/admin.js') }}"></script>
+@vite('resources/js/editor.js')
 
 </html>

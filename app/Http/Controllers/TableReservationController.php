@@ -31,23 +31,26 @@ class TableReservationController extends Controller
 
         // Convert to full datetime format
         $fromDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', "$date $fromTime");
-        $toDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', "$date $toTime");
+
+        // Set to_date to end at 59:59 of the booked hour
+        $toDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', "$date $toTime")->endOfHour();
+
         Log::info("From DateTime: " . $fromDateTime);
         Log::info("To DateTime: " . $toDateTime);
+
         // Fetch reservation settings (reservation_from and reservation_to)
         $settings = SiteSttings::select('reservation_from', 'reservation_to')
             ->where('id', 1)
             ->first();
 
-
         // Convert the settings to Carbon time instances
         $reservationFromTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_from);
-        $reservationToTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_to);
+        $reservationToTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_to)->endOfHour(); // Ensure it ends at the last second
 
         // Check if the requested time is within the allowed range
         if (
             $fromDateTime->lt($reservationFromTime) ||
-            $toDateTime->gt($reservationToTime->addHour()) // Include the last hour
+            $toDateTime->gt($reservationToTime)
         ) {
             return response()->json(['error' => 'Selected time is outside of allowed reservation hours.'], 400);
         }
@@ -68,14 +71,12 @@ class TableReservationController extends Controller
                 ->where(function ($query) use ($fromDateTime, $toDateTime) {
                     $query->where(function ($query) use ($fromDateTime, $toDateTime) {
                         // Include all scenarios where there is an overlap
-                        $query->where(function ($query) use ($fromDateTime, $toDateTime) {
-                            $query->whereBetween('from_date', [$fromDateTime, (clone $toDateTime)->subSecond()]) // Exclude the exact end time
-                                ->orWhereBetween('to_date', [$fromDateTime->addSecond(), $toDateTime]) // Exclude the exact start time
-                                ->orWhere(function ($query) use ($fromDateTime, $toDateTime) {
-                                    $query->where('from_date', '<', (clone $toDateTime)->subSecond()) // Adjust to prevent overlap
-                                        ->where('to_date', '>', (clone $fromDateTime)->addSecond());
-                                });
-                        });
+                        $query->whereBetween('from_date', [$fromDateTime, (clone $toDateTime)->subSecond()]) // Exclude the exact end time
+                            ->orWhereBetween('to_date', [$fromDateTime->addSecond(), $toDateTime]) // Exclude the exact start time
+                            ->orWhere(function ($query) use ($fromDateTime, $toDateTime) {
+                                $query->where('from_date', '<', (clone $toDateTime)->subSecond()) // Adjust to prevent overlap
+                                    ->where('to_date', '>', (clone $fromDateTime)->addSecond());
+                            });
                     });
                 })
                 ->exists();
@@ -96,7 +97,7 @@ class TableReservationController extends Controller
                     'status' => 'placed',
                     'table_index' => $tableIndex,
                 ]);
-                // add to trend
+                // Add to trend
                 $date = $fromDateTime->format('Y-m-d');
                 $hour = $fromDateTime->format('H');
 
@@ -119,11 +120,10 @@ class TableReservationController extends Controller
             }
         }
 
-
-
         // If no available table index was found
         return response()->json(['error' => 'No available tables for the selected time.'], 400);
     }
+
 
     public function available_times(Request $request, $tableId)
     {
@@ -142,8 +142,9 @@ class TableReservationController extends Controller
         $totalTables = $table->total_tables;
 
         for ($hour = $startHour; $hour <= $endHour; $hour++) {
+            // Set from and to times
             $fromDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->date . " $hour:00");
-            $toDateTime = $fromDateTime->copy()->addHour();
+            $toDateTime = $fromDateTime->copy()->endOfHour(); // Set to the last second of the hour
 
             $isAvailable = false;
 
@@ -154,14 +155,12 @@ class TableReservationController extends Controller
                     ->where(function ($query) use ($fromDateTime, $toDateTime) {
                         $query->where(function ($query) use ($fromDateTime, $toDateTime) {
                             // Include all scenarios where there is an overlap
-                            $query->where(function ($query) use ($fromDateTime, $toDateTime) {
-                                $query->whereBetween('from_date', [$fromDateTime, $toDateTime->subSecond()]) // Exclude the exact end time
-                                    ->orWhereBetween('to_date', [$fromDateTime->addSecond(), $toDateTime]) // Exclude the exact start time
-                                    ->orWhere(function ($query) use ($fromDateTime, $toDateTime) {
-                                        $query->where('from_date', '<', $toDateTime->subSecond()) // Adjust to prevent overlap
-                                            ->where('to_date', '>', $fromDateTime->addSecond());
-                                    });
-                            });
+                            $query->whereBetween('from_date', [$fromDateTime, $toDateTime->subSecond()]) // Exclude the exact end time
+                                ->orWhereBetween('to_date', [$fromDateTime->addSecond(), $toDateTime]) // Exclude the exact start time
+                                ->orWhere(function ($query) use ($fromDateTime, $toDateTime) {
+                                    $query->where('from_date', '<', $toDateTime->subSecond()) // Adjust to prevent overlap
+                                        ->where('to_date', '>', $fromDateTime->addSecond());
+                                });
                         });
                     })
                     ->exists();

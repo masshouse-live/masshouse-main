@@ -1,7 +1,7 @@
 <form action="{{ route($route) }}" method="POST" class="w-full" enctype="multipart/form-data">
     @csrf
-    <textarea name="{{ $name }}" id="myeditorinstance" rows="10"
-        class="border-2 border-accent/20  bg-primary rounded " placeholder="Description">
+    <textarea name="{{ $name }}" rows="10" class="editor border-2 border-accent/20  bg-primary rounded "
+        placeholder="Description">
     {{ $content }}
     </textarea>
     <duv class="w-full flex py-5">
@@ -10,10 +10,3 @@
         </button>
     </duv>
 </form>
-<script>
-    tinymce.init({
-        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-        plugins: 'table lists',
-        toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
-    });
-</script>

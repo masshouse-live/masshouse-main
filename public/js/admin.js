@@ -39,6 +39,7 @@ const closeDialog = (id) => {
 };
 
 const openEditDialog = (id, data) => {
+    console.log(data);
     // get next and add "flex" class
     const this_el = document.getElementById(id);
     $(this_el).addClass("flex");
@@ -72,11 +73,17 @@ const openEditDialog = (id, data) => {
                 input.value = time;
             } else if (inputName === "event_venue") {
                 input.value = data["venue"]["id"];
+            } else if (
+                inputName === "category" &&
+                typeof data["category"] === "object"
+            ) {
+                input.value = data["category"]["slug"];
             } else if (input.type === "textarea") {
                 // if id is myeditorinstanceedit
                 const id = input.getAttribute("id");
                 if (id === "myeditorinstanceedit") {
-                    tinymce.get(id).setContent(data[inputName]);
+                    const editorInstance = window["editor" + id];
+                    editorInstance.setData(data[inputName]);
                 } else {
                     input.value = data[inputName];
                 }
@@ -296,12 +303,22 @@ const handleFilterInput = () => {
     }
 };
 
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes * 60000);
+}
+
 const viewReservationDetails = (id, data) => {
     console.log(data);
     const this_el = document.getElementById(id);
 
     $(this_el).addClass("flex");
     $(this_el).removeClass("hidden");
+    const toDate = new Date(data.to_date);
+    const newDate = addMinutes(toDate, 1);
+    const formattedTime = newDate.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
 
     const html = `<div class="flex flex-col">
                         <h2 class="text-xl font-bold">Reservation for <span class="text-accent">${
@@ -313,10 +330,7 @@ const viewReservationDetails = (id, data) => {
     ).toLocaleTimeString("en-us", {
         hour: "2-digit",
         minute: "2-digit",
-    })} - ${new Date(data.to_date).toLocaleTimeString("en-us", {
-        hour: "2-digit",
-        minute: "2-digit",
-    })})</h2>
+    })} - ${formattedTime})</h2>
                         <p class="text- font-medium pt-5">Reservation Confirmed</p>
                         <div class="flex ">
                             <div
@@ -404,7 +418,7 @@ $(document).ready(function () {
 
     // Parse the date and group data by 'date'
     var parseDate = d3.timeParse("%Y-%m-%d"); // Adjust format based on your date format
-    data.forEach(function (d) {
+    data?.forEach(function (d) {
         d.date = parseDate(d.date);
     });
 
