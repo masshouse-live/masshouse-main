@@ -34,16 +34,25 @@
                         <input type="text" name="url" id="url" value=""
                             class="edit-input border-2 border-accent/20  bg-primary rounded ">
                     </div>
-
                     <div class="flex flex-col space-y-2 px-4 py-2">
-                        <label class="font-bold" for="logo">
-                            Logo
+                        <label class="font-bold" for="logo_black">
+                            Logo Black
                         </label>
-                        <input type="file" name="logo" id="logo" value=""
-                            class="edit-input bg-primary rounded ">
-                        <small id="file_logo" class="text-accent"></small>
+                        <input type="file" name="logo_black" id="logo_black" value=""
+                            class=" bg-primary rounded ">
+                        <small id="file_logo_black" class="text-accent"></small>
 
                     </div>
+                    <div class="flex flex-col space-y-2 px-4 py-2">
+                        <label class="font-bold" for="logo_white">
+                            Logo White
+                        </label>
+                        <input type="file" name="logo_white" id="logo_white" value=""
+                            class=" bg-primary rounded ">
+                        <small id="file_logo_white" class="text-accent"></small>
+
+                    </div>
+
 
                     <div class="px-4 py-4">
                         <button type="submit"

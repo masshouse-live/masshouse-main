@@ -26,9 +26,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::whereDate('date_time', '>=', date('Y-m-d'))->take(8)->get();
+        $evets_filter  = $request->events ?? '';
+        $events = Event::with("venue");
+        if ($evets_filter) {
+            $events->where('tag', $evets_filter);
+        }
+        $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->get();
         $sponsors = Sponsor::all();
         $coming_event = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->first();
         $playlist = Playlist::orderBy('created_at', 'desc')->take(6)->get();

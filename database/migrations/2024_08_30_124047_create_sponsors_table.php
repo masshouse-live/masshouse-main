@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('url');
-            $table->string('logo');
+            $table->string('logo_black');
+            $table->string('logo_white');
             $table->integer('rank');
             $table->timestamps();
         });

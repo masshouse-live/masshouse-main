@@ -25,10 +25,16 @@
             </div>
 
             <div class="flex flex-col space-y-2 px-4 py-2">
-                <label class="font-bold" for="logo">
-                    Logo
+                <label class="font-bold" for="logo_black">
+                    Logo Black
                 </label>
-                <input type="file" name="logo" id="logo" value="" class=" bg-primary rounded ">
+                <input type="file" name="logo_black" id="logo_black" value="" class=" bg-primary rounded ">
+            </div>
+            <div class="flex flex-col space-y-2 px-4 py-2">
+                <label class="font-bold" for="logo_white">
+                    Logo White
+                </label>
+                <input type="file" name="logo_white" id="logo_white" value="" class=" bg-primary rounded ">
             </div>
 
             <div class="px-4 py-4">

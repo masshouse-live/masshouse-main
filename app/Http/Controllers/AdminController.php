@@ -184,9 +184,8 @@ class AdminController extends Controller
                 "tag" => "required",
             ]);
 
-
             // upload banner
-            $banner = $this->upload_image($request->file('banner'), 'upload/events', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
+            $banner = $this->upload_image($request->file('banner'), 'upload/events', str_replace(' ', '', $request->file('banner')->getClientOriginalName()));
 
             $event = new Event();
             $event->title = $request->title;
@@ -224,7 +223,7 @@ class AdminController extends Controller
             $banner = $event->banner;
 
             if ($request->hasFile('banner')) {
-                $banner = $this->upload_image($request->file('banner'), 'upload/events', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
+                $banner = $this->upload_image($request->file('banner'), 'upload/events', str_replace(' ', '', $request->file('banner')->getClientOriginalName()));
             }
 
 
@@ -612,15 +611,18 @@ class AdminController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'logo' => 'required',
+            'logo_black' => 'required',
+            'logo_white' => 'required',
             'url' => 'required',
         ]);
 
-        $image = $this->upload_image($request->file('logo'), 'upload/sponsors', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
+        $logo_black = $this->upload_image($request->file('logo_black'), 'upload/sponsors', str_replace(' ', '', $request->file('logo_black')->getClientOriginalName()));
+        $logo_white = $this->upload_image($request->file('logo_white'), 'upload/sponsors', str_replace(' ', '', $request->file('logo_white')->getClientOriginalName()));
 
         $sponsor = new Sponsor();
         $sponsor->name = $request->name;
-        $sponsor->logo = $image;
+        $sponsor->logo_black = $logo_black;
+        $sponsor->logo_white = $logo_white;
         $sponsor->url = $request->url;
         $sponsor->rank = Sponsor::all()->count() + 1;
         $sponsor->save();
@@ -637,13 +639,19 @@ class AdminController extends Controller
             ]);
 
             $sponsor = Sponsor::find($request->id);
-            $image = $sponsor->logo;
+            $logo_black = $sponsor->logo_black;
 
-            if ($request->hasFile('logo')) {
-                $image = $this->upload_image($request->file('logo'), 'upload/sponsors', str_replace(' ', '', $request->file('logo')->getClientOriginalName()));
+            if ($request->hasFile('logo_black')) {
+                $logo_black = $this->upload_image($request->file('logo_black'), 'upload/sponsors', str_replace(' ', '', $request->file('logo_black')->getClientOriginalName()));
             }
+            $logo_white =  $sponsor->logo_white;
+            if ($request->hasFile('logo_white')) {
+                $logo_white = $this->upload_image($request->file('logo_white'), 'upload/sponsors', str_replace(' ', '', $request->file('logo_white')->getClientOriginalName()));
+            }
+
             $sponsor->name = $request->name;
-            $sponsor->logo = $image;
+            $sponsor->logo_black = $logo_black;
+            $sponsor->logo_white = $logo_white;
             $sponsor->url = $request->url;
             $sponsor->save();
 

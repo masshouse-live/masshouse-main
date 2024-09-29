@@ -63,10 +63,11 @@ const openEditDialog = (id, data) => {
         } else {
             // if event_date spklit by " " and set date and time seprately
             if (inputName === "event_date") {
-                const date = data["date_time"].split(" ")[0];
+                const date = data["date_time"].split("T")[0];
                 input.value = date;
             } else if (inputName === "event_time") {
-                const time = data["date_time"].split(" ")[1];
+                const time = data["date_time"].split("T")[1].split(".")[0];
+                console.log(time);
                 input.value = time;
             } else if (inputName === "event_time") {
                 const time = data["date_time"].split(" ")[1];
@@ -308,7 +309,6 @@ function addMinutes(date, minutes) {
 }
 
 const viewReservationDetails = (id, data) => {
-    console.log(data);
     const this_el = document.getElementById(id);
 
     $(this_el).addClass("flex");
