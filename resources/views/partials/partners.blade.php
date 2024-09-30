@@ -15,7 +15,7 @@
     <script>
         // if length of partners is less than 10 
         if ({{ count($partners) }} < 10) {
-            const copy = document.querySelector(".logos-slide").cloneNode(true);
+            var copy = document.querySelector(".logos-slide").cloneNode(true);
             document.querySelector(".logos").appendChild(copy);
         }
     </script>

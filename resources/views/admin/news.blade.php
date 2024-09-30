@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-primary py-4 w-full rounded-md  grid grid-cols-5 items-center">
+            <div class="bg-primary py-4 w-full rounded-md  grid grid-cols-5 gap-4 items-center">
                 @foreach ($news as $news_)
                     <div class="flex flex-col  border border-accent/20 rounded aspect-square  overflow-hidden relative">
                         <button onclick="openEditDialog('edit-news', {{ $news_ }})"

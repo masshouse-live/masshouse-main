@@ -33,8 +33,9 @@
                         <select type="text" name="category" id="category" value=""
                             class="edit-input border-2 border-accent/20  bg-primary rounded " placeholder="Tag">
                             <option disabled selected value="">-- Select Content Type --</option>
-                            <option value="news">News</option>
-                            <option value="blog">Blog</option>
+                            <option value="interview">Interview</option>
+                            <option value="article">Article</option>
+                            <option value="blog">Blog/Instabuzz</option>
                         </select>
                     </div>
 

@@ -719,13 +719,13 @@ class AdminController extends Controller
         $image = $this->upload_image($request->file('image'), 'upload/news', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
         // remove html tags and get the first 50 words
         $short_description  = strip_tags($request->description);
-        $short_description = substr($short_description, 0, 50);
+        $short_description = substr($short_description, 0, 100);
         $news = new News();
         $news->title = $request->title;
         $news->category = $request->category;
         $news->short_description = $short_description;
         $news->description = $request->description;
-        // created_by is the id of the logged in user
+        $news->slug = Str::slug($request->title);
         $news->created_by = Auth::user()->name;
         $news->views = 0;
         $news->image = $image;
@@ -758,13 +758,14 @@ class AdminController extends Controller
 
         // remove html tags and get the first 50 words
         $short_description  = strip_tags($request->description);
-        $short_description = substr($short_description, 0, 50);
+        $short_description = substr($short_description, 0, 100);
 
 
         $news->title = $request->title;
         $news->category = $request->category;
         $news->short_description = $short_description;
         $news->description = $request->description;
+        $news->slug = Str::slug($request->title);
         $news->image = $image;
 
 

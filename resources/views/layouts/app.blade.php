@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>MassHouse</title>
+    <title>MassHouse | @yield('title')</title>
     <!--icon-->
     <link rel="icon" href="{{ asset('images/logo-white.png') }}" type="image/x-icon" />
 
@@ -104,7 +104,7 @@
             </div>
             <div class="logo">
                 <a href="/">
-                    <img src="images/logo-white.png" />
+                    <img src="{{ asset('images/logo-white.png') }}" />
                 </a>
             </div>
             <div class="nav2">

@@ -24,6 +24,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
 Route::get('/news', [NewsController::class, 'news'])->name('news');
+Route::get('/blogs-news/{slug}', [NewsController::class, 'news_detail'])->name('news_detail');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
 Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
@@ -34,7 +35,7 @@ Route::group([
     'prefix' => 'shop'
 ], function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.shop');
-    Route::get('/merchandise', [ShopController::class, 'index'])->name('shop.merchandise');
+    Route::get('/merchandise', [ShopController::class, 'merchandise'])->name('shop.merchandise');
 });
 // group admin
 Route::group([

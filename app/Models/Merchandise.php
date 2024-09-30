@@ -16,7 +16,7 @@ class Merchandise extends Model
         "image",
         "price",
         "stock",
-        "category",
+        "product_category_id",
         "colors",
         "sizes",
         "gender",

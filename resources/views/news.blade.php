@@ -6,73 +6,45 @@
         <h2>NEWS</h2>
 
     </section>
+    @php
+        $active_news = Request::get('news');
+    @endphp
 
     <!--news-articles section-->
     <section class="news-articles">
         <div class="news-filter">
             <ul>
-                <li><a href="#" class="active">All</a></li>
-                <li><a href="#">Interview</a></li>
-                <li><a href="#">Article</a></li>
+                <li><a href="?" class="{{ $active_news == null ? 'active' : '' }}">All</a></li>
+                <li><a href="?news=interview" class="{{ $active_news == 'interview' ? 'active' : '' }}">Interview</a></li>
+                <li><a href="?news=article" class="{{ $active_news == 'article' ? 'active' : '' }}">Article</a></li>
             </ul>
         </div>
         <div class="row article-wrapper">
-            <div class="article-box one col-lg-4 col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="images/news1-ph.PNG" alt="image">
-                </div>
-                <div class="news-details">
-                    <span>Article</span>
-                    <h3>MASSHOUSE LAUNCH EVENT</h3>
-                    <div class="button">
-                        <a href="zblog.html" style="padding-left: 50px;" class="button2">READ MORE &nbsp;
-                            <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                            <!-- <i style="margin-left: 50px;"
-                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
-                        </a>
+            @foreach ($news as $blog)
+                <div class="article-box one col-lg-4 col-md-6 col-sm-12">
+                    <div class="img-box">
+                        <img src="images/news1-ph.PNG" alt="image">
+                    </div>
+                    <div class="news-details">
+                        <span>{{ $blog->category }}</span>
+                        <h3>{{ $blog->title }}</h3>
+                        <div class="button">
+                            <a href="{{ route('news_detail', $blog->slug) }}" style="padding-left: 50px;"
+                                class="button2">READ
+                                MORE &nbsp;
+                                <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                </svg>
+                                <!-- <i style="margin-left: 50px;"
+                                                                                                                                                                                                                        class="text-white fa-solid fa-up-right-from-square"></i> -->
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="article-box two col-lg-4 col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="images/news2-ph.PNG" alt="image">
-                </div>
-                <div class="news-details">
-                    <span>Article</span>
-                    <h3>DIRECTORS REVEAL THE DREAM BEHIND THE BRAND</h3>
-                    <div class="button">
-                        <a href="zblog.html" style="padding-left: 50px;" class="button2">READ MORE &nbsp;
-                            <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="article-box three col-lg-4 col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="images/news3-ph.PNG" alt="image">
-                </div>
-                <div class="news-details">
-                    <span>Article</span>
-                    <h3>UNMISSABLE POST-EVENTS EXCLUSIVE BITES</h3>
-                    <div class="button">
-                        <a href="zblog.html" style="padding-left: 50px;" class="button2">READ MORE &nbsp;
-                            <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </section>
 
@@ -83,98 +55,45 @@
         </div>
         <br>
         <div class="row blog-wrapper">
-            <div class="blog-box one col-lg-4 col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="images/blog-ph-1.PNG" alt="image">
-                </div>
-                <div class="blog-details">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="date">
-                            <span>24 0CT 2024</span>
-                        </div>
-                        <div class="admin">
-                            <span class="admin"><i class="fa-regular fa-circle-user"></i>&nbsp;BY ADMIN</span>
-                        </div>
+            @foreach ($blogs as $blog)
+                <div class="blog-box one col-lg-4 col-md-6 col-sm-12">
+                    <div class="img-box">
+                        <img src="{{ asset($blog->image) }}" alt="image">
                     </div>
-                    <h4>EXCLUSIVE: A spotlight check
-                        on Masshouse Live the most
-                        sough after event hub and why.</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                        nonummy nibh euismod tincidunt ut laoreet dolore magna
-                        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud</p>
-                    <div class="button">
-                        <a href="zblog.html" style="padding-left: 50px;" class="button1">READ MORE &nbsp;
-                            <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                            <!-- <i style="margin-left: 50px;"
-                                                                                                class="text-dark fa-solid fa-up-right-from-square"></i> -->
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="blog-box two col-lg-4 col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="images/blog-ph-2.PNG" alt="image">
-                </div>
-                <div class="blog-details">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="date">
-                            <span>24 0CT 2024</span>
+                    <div class="blog-details">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="date">
+                                <span>{{ $blog->created_at->format('d M, Y') }}</span>
+                            </div>
+                            <div class="admin">
+                                <span class="admin" style="text-transform: uppercase;"><i
+                                        class="fa-regular fa-circle-user"></i>&nbsp;BY
+                                    {{ $blog->created_by }}</span>
+                            </div>
                         </div>
-                        <div class="admin">
-                            <span class="admin"><i class="fa-regular fa-circle-user"></i>&nbsp;BY ADMIN</span>
+                        <h4>
+                            {{ $blog->title }}
+                        </h4>
+                        <p>
+                            {{ $blog->short_description }}
+                        </p>
+                        <div class="button">
+                            <a href="{{ route('news_detail', $blog->slug) }}" style="padding-left: 50px;"
+                                class="button1">READ
+                                MORE &nbsp;
+                                <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                </svg>
+                                <!-- <i style="margin-left: 50px;"
+                                                                                                                                                                                                                        class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                            </a>
                         </div>
                     </div>
-                    <h4>Making it personal: How
-                        Masshouse’s personalisation
-                        creates epic events for ravellers.</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                        nonummy nibh euismod tincidunt ut laoreet dolore magna
-                        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud</p>
-                    <div class="button">
-                        <a href="zblog.html" style="padding-left: 50px;" class="button1">READ MORE &nbsp;
-                            <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
                 </div>
-            </div>
-            <div class="blog-box three col-lg-4 col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="images/blog-ph-3.PNG" alt="image">
-                </div>
-                <div class="blog-details">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="date">
-                            <span>24 0CT 2024</span>
-                        </div>
-                        <div class="admin">
-                            <span class="admin"><i class="fa-regular fa-circle-user"></i>&nbsp;BY ADMIN</span>
-                        </div>
-                    </div>
-                    <h4>Cultural extravaganza: Celebrating
-                        Kenyan heritage through first
-                        hand events</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                        nonummy nibh euismod tincidunt ut laoreet dolore magna
-                        aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud</p>
-                    <div class="button">
-                        <a href="zblog.html" style="padding-left: 50px;" class="button1">READ MORE &nbsp;
-                            <svg style="margin-left: 50px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </section>
 
@@ -252,7 +171,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 30px;"
-                                                                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                            class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                         </div>
@@ -296,29 +215,7 @@
         </section>
 
         <!--partners-n-sponsors section-->
-        <section class="partners-n-sponsors news">
-            <div style="padding: 30px 0;padding-bottom: 10px;background-color: #000;">
-                <h3 class="text-white">PARTNERS & SPONSORS</h3>
-            </div>
-            <br><br>
-            <div class="logos">
-                <div class="logos-slide">
-                    <img src="images/sponsors/eabl-black.png" />
-                    <img src="images/sponsors/donjulio-black.png" />
-                    <img src="images/sponsors/tanqueray-black.png" />
-                    <img src="images/sponsors/kbl-black.png" />
-                    <img src="images/sponsors/singleton-black.png" />
-                    <img src="images/sponsors/safaricom-black.png" />
-
-                </div>
-            </div>
-
-
-            <script>
-                var copy = document.querySelector(".logos-slide").cloneNode(true);
-                document.querySelector(".logos").appendChild(copy);
-            </script> <!--infinite loop script-->
-        </section>
+        @include('partials.partners', ['color' => 'black', 'partners' => $sponsors, 'type' => 'news'])
 
         <!--other-stuff section-->
         <section class="other-stuff">
@@ -351,282 +248,7 @@
         </section>
 
         <!--upcoming-events section-->
-        <section class="upcoming-events">
-            <div class="sub-heading">
-                <h3>UPCOMING EVENTS</h3>
-            </div>
-            <div class="swiper-filter">
-                <ul>
-                    <li><a href="#">DAYTIME</a></li>
-                    <li><a href="#" class="active">NIGHTLIFE</a></li>
-                    <li><a href="#">EXCLUSIVE</a></li>
-                </ul>
-            </div>
-
-
-
-            <!-- Swiper -->
-            <div class="swiper mySwiper case-studies">
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide work-box one">
-                        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
-                        <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
-
-                        <h6>AUG 24TH 2024</h6>
-                        <p>1800 HRS</p>
-                        <!-- <br> -->
-                        <p>Masshouse Live*</p>
-                        <br><br>
-
-                        <h6>FRIDAY</h6>
-                        <!-- <br> -->
-                        <h2>24 AUG</h2>
-                        <!-- <br> -->
-                        <h6>GOOD VIBES & GOOD TIMES</h6>
-                        <p>THE LIVE PARTY</p>
-
-                        <br>
-
-                        <div class="button">
-                            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
-                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-
-                            </a>
-                        </div>
-                        <br>
-
-                        <div class="uc-cta d-flex justify-content-between">
-                            <div>
-                                <h6>VIP TABLES</h6>
-                            </div>
-                            <div>
-                                <h6>BOOK NOW</h6>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="swiper-slide work-box">
-                        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
-                        <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
-
-                        <h6>AUG 24TH 2024</h6>
-                        <p>1800 HRS</p>
-                        <!-- <br> -->
-                        <p>Masshouse Live*</p>
-                        <br><br>
-
-                        <h6>FRIDAY</h6>
-                        <!-- <br> -->
-                        <h2>24 AUG</h2>
-                        <!-- <br> -->
-                        <h6>GOOD VIBES & GOOD TIMES</h6>
-                        <p>THE LIVE PARTY</p>
-
-                        <br>
-
-                        <div class="button">
-                            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
-                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                        <br>
-
-                        <div class="uc-cta d-flex justify-content-between">
-                            <div>
-                                <h6>VIP TABLES</h6>
-                            </div>
-                            <div>
-                                <h6>BOOK NOW</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide work-box">
-                        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
-                        <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
-
-                        <h6>AUG 24TH 2024</h6>
-                        <p>1800 HRS</p>
-                        <!-- <br> -->
-                        <p>Masshouse Live*</p>
-                        <br><br>
-
-                        <h6>FRIDAY</h6>
-                        <!-- <br> -->
-                        <h2>24 AUG</h2>
-                        <!-- <br> -->
-                        <h6>GOOD VIBES & GOOD TIMES</h6>
-                        <p>THE LIVE PARTY</p>
-
-                        <br>
-
-                        <div class="button">
-                            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
-                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                        <br>
-
-                        <div class="uc-cta d-flex justify-content-between">
-                            <div>
-                                <h6>VIP TABLES</h6>
-                            </div>
-                            <div>
-                                <h6>BOOK NOW</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide work-box">
-                        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
-                        <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
-
-                        <h6>AUG 24TH 2024</h6>
-                        <p>1800 HRS</p>
-                        <!-- <br> -->
-                        <p>Masshouse Live*</p>
-                        <br><br>
-
-                        <h6>FRIDAY</h6>
-                        <!-- <br> -->
-                        <h2>24 AUG</h2>
-                        <!-- <br> -->
-                        <h6>GOOD VIBES & GOOD TIMES</h6>
-                        <p>THE LIVE PARTY</p>
-
-                        <br>
-
-                        <div class="button">
-                            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
-                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                        <br>
-
-                        <div class="uc-cta d-flex justify-content-between">
-                            <div>
-                                <h6>VIP TABLES</h6>
-                            </div>
-                            <div>
-                                <h6>BOOK NOW</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide work-box">
-                        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
-                        <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
-
-                        <h6>AUG 24TH 2024</h6>
-                        <p>1800 HRS</p>
-                        <!-- <br> -->
-                        <p>Masshouse Live*</p>
-                        <br><br>
-
-                        <h6>FRIDAY</h6>
-                        <!-- <br> -->
-                        <h2>24 AUG</h2>
-                        <!-- <br> -->
-                        <h6>GOOD VIBES & GOOD TIMES</h6>
-                        <p>THE LIVE PARTY</p>
-
-                        <br>
-
-                        <div class="button">
-                            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
-                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                        <br>
-
-                        <div class="uc-cta d-flex justify-content-between">
-                            <div>
-                                <h6>VIP TABLES</h6>
-                            </div>
-                            <div>
-                                <h6>BOOK NOW</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide work-box one">
-                        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
-                        <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
-
-                        <h6>AUG 24TH 2024</h6>
-                        <p>1800 HRS</p>
-                        <!-- <br> -->
-                        <p>Masshouse Live*</p>
-                        <br><br>
-
-                        <h6>FRIDAY</h6>
-                        <!-- <br> -->
-                        <h2>24 AUG</h2>
-                        <!-- <br> -->
-                        <h6>GOOD VIBES & GOOD TIMES</h6>
-                        <p>THE LIVE PARTY</p>
-
-                        <br>
-
-                        <div class="button">
-                            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
-                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                    <path fill="currentColor"
-                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                </svg>
-                            </a>
-                        </div>
-                        <br>
-
-                        <div class="uc-cta d-flex justify-content-between">
-                            <div>
-                                <h6>VIP TABLES</h6>
-                            </div>
-                            <div>
-                                <h6>BOOK NOW</h6>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <!-- <div class="swiper-pagination"></div> -->
-            </div>
-
-            <!-- Initialize Swiper -->
-        </section>
-
-
-
-
+        @include('partials.events', ['events' => $events])
         <!--music-player2 section-->
         <section class="music-player2">
             <div class="music-box2 text-center">
