@@ -3,9 +3,29 @@
 @section('content')
     <!--landing-page section-->
     <section class="landing-page">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
         <!-- <div class="lp-wrapper">
-                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                              <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                                                                                                                                                                                                                                                                                                            </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -23,6 +43,8 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/cursor-trail.js') }}"></script>
+
     </section>
 
     <!--next-event section-->

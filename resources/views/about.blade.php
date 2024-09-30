@@ -3,7 +3,7 @@
 @section('content')
     <section class="about-landing">
         <!-- <p class="white">HOME OF AMAZING EXPERIENCES</p>
-                                                                                                            <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
+                                                                                                                                                                                        <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
         <div class="words">
             <div class="words-slide">
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
@@ -66,13 +66,12 @@
                             <img src="{{ asset($venue->cover_photo) }}" alt="image">
                             <p>{{ $venue->name }}</p>
                             <div class="button">
-                                <a href="" class="button1">CHECK OUT VENUE
+                                <a href="#" class="button1" data-venue-id="{{ $venue->id }}">CHECK OUT VENUE
                                     <svg style="margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
                                         height="1.5em" viewBox="0 0 256 256">
                                         <path fill="currentColor"
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
-                                    <!-- <i class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                         </div>
@@ -81,37 +80,36 @@
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
-
-            <!-- Swiper JS -->
-
-            <!-- Initialize Swiper -->
         </section>
-        <section class="venue-pictures">
-            <div class="row vp-wrapper">
-                <div class="vp-left col-lg-5 col-md-6 col-sm-12">
-                    <div class="vp-box1">
-                        <img src="images/venue-ph-1.PNG" alt="image">
-                    </div>
-                    <div class="vp-box2">
-                        <img src="images/venue-ph-2.PNG" alt="image">
-                    </div>
-                </div>
-                <div class="vp-right col-lg-7 col-md-6 col-sm-12">
-                    <div class="vp-box3 d-flex">
-                        <div class="box1 col-lg-7 col-md-6 col-sm-12">
-                            <img src="images/venue-ph-3.PNG" alt="image">
+        @foreach ($venues as $venue)
+            <!-- Each venue has its own venue-pictures section -->
+            <section class="venue-pictures {{ $loop->iteration == 1 ? 'show' : '' }}"
+                id="venue-pictures-{{ $venue->id }}">
+                <div class="row vp-wrapper">
+                    <div class="vp-left col-lg-5 col-md-6 col-sm-12">
+                        <div class="vp-box1">
+                            <img src="{{ asset($venue->images[0]->image) }}" alt="image">
                         </div>
-                        <div class="box2 col-lg-5 col-md-6 col-sm-12">
-                            <img src="images/venue-ph-4.PNG" alt="image">
+                        <div class="vp-box2">
+                            <img src="{{ asset($venue->images[1]->image) }}" alt="image">
                         </div>
                     </div>
-                    <div class="vp-box4">
-                        <img src="images/venue-ph-5.PNG" alt="image">
+                    <div class="vp-right col-lg-7 col-md-6 col-sm-12">
+                        <div class="vp-box3 d-flex">
+                            <div class="box1 col-lg-7 col-md-6 col-sm-12">
+                                <img src="{{ asset($venue->images[2]->image) }}" alt="image">
+                            </div>
+                            <div class="box2 col-lg-5 col-md-6 col-sm-12">
+                                <img src="{{ asset($venue->images[3]->image) }}" alt="image">
+                            </div>
+                        </div>
+                        <div class="vp-box4">
+                            <img src="{{ asset($venue->images[4]->image) }}" alt="image">
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
+        @endforeach
         <!--team section-->
         <section class="team">
             <div class="sub-heading">
@@ -169,7 +167,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                    class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -266,4 +264,43 @@
     </div>
     @include('partials.events', ['events' => $events])
     @include('partials.partners', ['color' => 'black', 'partners' => $sponsors])
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.button1');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Get the venue ID from the data attribute
+                    const venueId = this.getAttribute('data-venue-id');
+
+                    // Hide all venue-pictures sections
+                    document.querySelectorAll('.venue-pictures').forEach(section => {
+                        section.classList.remove('show');
+                        section.style.display = 'none';
+                    });
+
+                    // Show the selected venue's pictures
+                    const venuePictures = document.querySelector(`#venue-pictures-${venueId}`);
+                    venuePictures.style.display = 'block';
+                    setTimeout(() => {
+                        venuePictures.classList.add('show');
+                    }, 10);
+                });
+            });
+        });
+    </script>
+    <style>
+        .venue-pictures {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .venue-pictures.show {
+            display: block;
+            opacity: 1;
+        }
+    </style>
 @endsection

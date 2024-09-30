@@ -348,5 +348,8 @@
         </div>
     </footer>
 </body>
+<script src="{{ asset('js/menu.js') }}"></script>
+
+</html>
 
 </html>
