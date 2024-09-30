@@ -803,6 +803,7 @@ class AdminController extends Controller
             $merchandise_category->subtitle = $request->subtitle;
             $merchandise_category->slug = Str::slug($request->name);
             $merchandise_category->image = $image;
+            $merchandise_category->type = $request->type ?? null;
             $merchandise_category->tags = $request->tags ?? '';
             $merchandise_category->price_from = $request->price_from;
             $merchandise_category->save();
@@ -838,11 +839,28 @@ class AdminController extends Controller
         $merchandise_category->subtitle = $request->subtitle;
         $merchandise_category->slug = Str::slug($request->name);
         $merchandise_category->image = $image;
+        $merchandise_category->type = $request->type ?? null;
         $merchandise_category->tags = $request->tags ?? '';
         $merchandise_category->price_from = $request->price_from;
         $merchandise_category->save();
         return redirect(route('admin.merchandise_categories'));
     }
+
+    public function highlight_category(Request $request)
+    {
+        $id = $request->id;
+
+        // Set the highlight field of all categories to false in one query
+        ProductCategory::where('highlight', true)->update(['highlight' => false]);
+
+        // Find the selected category and toggle its highlight status
+        $category = ProductCategory::find($id);
+        $category->highlight = true; // Ensure this category is now highlighted
+        $category->save();
+
+        return redirect(route('admin.merchandise_categories'));
+    }
+
 
     public function merchandise(Request $request)
     {

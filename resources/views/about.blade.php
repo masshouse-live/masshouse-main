@@ -3,7 +3,7 @@
 @section('content')
     <section class="about-landing">
         <!-- <p class="white">HOME OF AMAZING EXPERIENCES</p>
-                                                                                                                                                                                        <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
+                                                                                                                                                                                                                <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
         <div class="words">
             <div class="words-slide">
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
@@ -66,7 +66,7 @@
                             <img src="{{ asset($venue->cover_photo) }}" alt="image">
                             <p>{{ $venue->name }}</p>
                             <div class="button">
-                                <a href="#" class="button1" data-venue-id="{{ $venue->id }}">CHECK OUT VENUE
+                                <a href="#" class="button1 venues" data-venue-id="{{ $venue->id }}">CHECK OUT VENUE
                                     <svg style="margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
                                         height="1.5em" viewBox="0 0 256 256">
                                         <path fill="currentColor"
@@ -167,7 +167,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                        class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -220,7 +220,8 @@
                     <p>PARTNERSHIPS</p>
 
                     <div class="button">
-                        <a href="" style="padding-left: 30px;" class="button1">PARTNER WITH US &nbsp;
+                        <a href="/contact?type=partnership" style="padding-left: 30px;" class="button1">PARTNER WITH US
+                            &nbsp;
                             <svg style="margin-left: 30px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
                                 width="1.5em" height="1.5em" viewBox="0 0 256 256">
                                 <path fill="currentColor"
@@ -234,7 +235,8 @@
                     <p>CORPORATES</p>
 
                     <div class="button">
-                        <a href="" style="padding-left: 30px;" class="button1">BE PART OF US &nbsp;
+                        <a href="/contact?type=corporate" style="padding-left: 30px;" class="button1">BE PART OF US
+                            &nbsp;
                             <svg style="margin-left: 30px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
                                 width="1.5em" height="1.5em" viewBox="0 0 256 256">
                                 <path fill="currentColor"
@@ -248,7 +250,8 @@
                     <p>SPECIALISTS</p>
 
                     <div class="button">
-                        <a href="" style="padding-left: 30px;" class="button1">LINK WITH AN EXPERT &nbsp;
+                        <a href="/contact?type=expert" style="padding-left: 30px;" class="button1">LINK WITH AN EXPERT
+                            &nbsp;
                             <svg style="margin-left: 30px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
                                 width="1.5em" height="1.5em" viewBox="0 0 256 256">
                                 <path fill="currentColor"
@@ -266,7 +269,7 @@
     @include('partials.partners', ['color' => 'black', 'partners' => $sponsors])
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.button1');
+            const buttons = document.querySelectorAll('.venues');
 
             buttons.forEach(button => {
                 button.addEventListener('click', function(event) {

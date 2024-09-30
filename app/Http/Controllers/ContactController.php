@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('contact');
+        $sponsors = Sponsor::all();
+
+        return view('contact', compact('sponsors'));
     }
 }

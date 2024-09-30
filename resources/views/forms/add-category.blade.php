@@ -23,7 +23,17 @@
                 <input type="text" name="subtitle" id="subtitle" value=""
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Category Name" />
             </div>
-
+            <div class="flex flex-col space-y-2 px-4">
+                <label class="font-bold" for="type">
+                    Category Type
+                </label>
+                <select type="text" name="type" id="type" value="" required
+                    class=" border-2 border-accent/20  bg-primary rounded ">
+                    <option>-- Select Type --</option>
+                    <option value="alpha">Alpha</option>
+                    <option value="">Normal</option>
+                </select>
+            </div>
             <div class="flex flex-col space-y-2 px-4">
                 <label class="font-bold" for="price_from">
                     From Price

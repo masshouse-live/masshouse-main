@@ -102,27 +102,5 @@
 
 
     <!--partners-n-sponsors section-->
-    <section class="partners-n-sponsors news">
-        <div style="padding: 30px 0;padding-bottom: 10px;background-color: #000;">
-            <h3 class="text-white">PARTNERS & SPONSORS</h3>
-        </div>
-        <br><br>
-        <div class="logos">
-            <div class="logos-slide">
-                <img src="images/sponsors/eabl-black.png" />
-                <img src="images/sponsors/donjulio-black.png" />
-                <img src="images/sponsors/tanqueray-black.png" />
-                <img src="images/sponsors/kbl-black.png" />
-                <img src="images/sponsors/singleton-black.png" />
-                <img src="images/sponsors/safaricom-black.png" />
-
-            </div>
-        </div>
-
-
-        <script>
-            var copy = document.querySelector(".logos-slide").cloneNode(true);
-            document.querySelector(".logos").appendChild(copy);
-        </script> <!--infinite loop script-->
-    </section>
+    @include('partials.partners', ['color' => 'black', 'partners' => $sponsors])
 @endsection

@@ -32,7 +32,7 @@
                                     d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                             </svg>
                             <!-- <i style="margin-left: 50px;"
-                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
                         </a>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                                     d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                             </svg>
                             <!-- <i style="margin-left: 50px;"
-                                                class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                                class="text-dark fa-solid fa-up-right-from-square"></i> -->
                         </a>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 30px;"
-                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                         </div>
@@ -634,19 +634,27 @@
                     <div class="mpr-left col-lg-10 col-md-6 col-sm-12">
                         <h3 class="text-center">LISTEN TO THE BEAT OF THE MONTH</h3>
                         <br><br>
-                        <hr style="border: 2px soild #fff!important;">
+                        <div id="progress-indicator"
+                            style="background-color: #777; width: 100%; height: 4px; position:relative">
+                            <span
+                                style="width: 10px; height: 10px;position: absolute; top: -3px; left: 0; background-color: #fff; border-radius: 50%"
+                                id="progress-ball"></span>
+                            <div class="progress" id="progress" style="height: 4px; width: 0%"></div>
+                        </div>
+                        <br />
+                        <br />
                         <ul class="music-icons list-unstyled list-inline">
                             <li class="list-inline-item mx-3">
-                                <i class="fa-solid fa-backward-step"></i>
+                                <i class="fa-solid fa-backward-step" id="backward-step"></i>
                             </li>
                             <li class="list-inline-item mx-3">
-                                <i class="fa-solid fa-play"></i>
+                                <i class="fa-solid fa-play" id="play-music"></i>
                             </li>
                             <li class="list-inline-item mx-3">
-                                <i class="fa-solid fa-stop"></i>
+                                <i class="fa-solid fa-stop" id="stop-music"></i>
                             </li>
                             <li class="list-inline-item mx-3">
-                                <i class="fa-solid fa-forward-step"></i>
+                                <i class="fa-solid fa-forward-step" id="forward-step"></i>
                             </li>
 
                         </ul>
@@ -658,40 +666,50 @@
 
                         </ul>
                     </div>
+
                     <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
+                        <audio id="music-player"
+                            src="https://upcdn.io/FW25c2f/raw/uploads/2024/05/25/4kbAqbHE12-Are%20Sinners%20Raptured%20First.%20mp3.mp3"></audio>
+
                         <div class="music-icons">
 
-                            <i class="fa-solid fa-minus"></i>
+                            <i class="fa-solid fa-plus" id="increase-volume"></i>
                             <br>
-                            <div class="volume-bar">
-                                <i class="fa-solid fa-minus" style="color: #777;"></i>
-                                <i class="fa-solid fa-minus" style="color: #777;"></i>
-                                <i class="fa-solid fa-minus" style="color: #777;"></i>
-                                <i class="fa-solid fa-minus" style="color: #777;"></i>
-                                <i class="fa-solid fa-minus" style="color: #777;"></i>
-                                <i class="fa-solid fa-minus" style="color: #777;"></i>
-
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
-                                <i class="fa-solid fa-minus"></i>
+                            <div class="volume-bar" id="volume-bar" style="padding-top: 20px;">
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
+                                <i class="fa-solid fa-minus vol-indicator"></i>
                             </div>
-                            <i class="fa-solid fa-plus"></i>
-                            <br>
-                            <i class="fa-solid fa-volume-high"></i>
                         </div>
+                        <i class="fa-solid fa-minus" id="decrease-volume"></i>
+                        <br>
+                        <i class="fa-solid fa-volume-mute" id="level"></i>
                     </div>
                 </div>
-
             </div>
 
-        </section>
+    </div>
+
+    </section>
 
     </div>
 @endsection

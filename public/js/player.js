@@ -22,6 +22,10 @@ function updateVolumeBar(player) {
     } else {
         document.getElementById("level").className = "fa-solid fa-volume-mute";
     }
+    // if muted
+    if (player.muted) {
+        document.getElementById("level").className = "fa-solid fa-volume-xmark";
+    }
 }
 
 const increaseVolume = (player) => {
@@ -64,7 +68,7 @@ const clickIcon = (event, player) => {
         player.volume = newVolume;
 
         console.log(`Icon index: ${clickedIndex}, New volume: ${newVolume}`);
-        updateVolumeBar();
+        updateVolumeBar(player);
     }
 };
 
@@ -116,6 +120,36 @@ const updateProgressBar = (player) => {
     document
         .getElementById("volume-bar")
         .addEventListener("click", (event) => clickIcon(event, player));
+
+    // backward-step
+    document.getElementById("backward-step").addEventListener("click", () => {
+        player.currentTime -= 10;
+        updateProgressBar(player);
+    });
+
+    // forward-step
+    document.getElementById("forward-step").addEventListener("click", () => {
+        player.currentTime += 10;
+        updateProgressBar(player);
+    });
+
+    // stop
+    document.getElementById("stop-music").addEventListener("click", () => {
+        player.pause();
+        player.currentTime = 0;
+        document.getElementById("play-music").className = "fa-solid fa-play";
+        resetProgressBar();
+    });
+
+    document.getElementById("level").addEventListener("click", () => {
+        console.log("click");
+        if (player.muted) {
+            player.muted = false;
+        } else {
+            player.muted = true;
+        }
+        updateVolumeBar(player);
+    });
 
     // Update progress bar as the song plays
     player.addEventListener("timeupdate", () => {

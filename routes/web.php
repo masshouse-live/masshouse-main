@@ -26,12 +26,16 @@ Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
 Route::get('/news', [NewsController::class, 'news'])->name('news');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
-Route::get('/shop', [ShopController::class, 'index'])->name('tickets');
 Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
 Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
 Route::post('/create-order', [ProductOrderController::class, 'create_order'])->name('create_order');
 Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_placed'])->name('orders_placed');
-
+Route::group([
+    'prefix' => 'shop'
+], function () {
+    Route::get('/', [ShopController::class, 'index'])->name('shop.shop');
+    Route::get('/merchandise', [ShopController::class, 'index'])->name('shop.merchandise');
+});
 // group admin
 Route::group([
     'prefix' => 'admin',
@@ -64,6 +68,7 @@ Route::group([
     Route::post('/create-category', [AdminController::class, 'create_category'])->name('admin.create_category');
     Route::post('/update-category', [AdminController::class, 'update_category'])->name('admin.update_category');
     Route::get('/merchandise-categories', [AdminController::class, 'merchandise_categories'])->name('admin.merchandise_categories');
+    Route::get('/higlight-category/{id}', [AdminController::class, 'highlight_category'])->name('admin.highlight_category');
     Route::get('/merchandise', [AdminController::class, 'merchandise'])->name('admin.merchandise');
     Route::get('/merch-orders', [AdminController::class, 'merch_orders'])->name('admin.merch_orders');
     Route::post('/add-product', [AdminController::class, 'add_product'])->name('admin.add_product');
