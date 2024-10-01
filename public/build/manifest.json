@@ -7,5 +7,11 @@
     "css": [
       "assets/app-B9lZA4S_.css"
     ]
+  },
+  "resources/js/editor.js": {
+    "file": "assets/editor-ooakHsM9.js",
+    "name": "editor",
+    "src": "resources/js/editor.js",
+    "isEntry": true
   }
 }
