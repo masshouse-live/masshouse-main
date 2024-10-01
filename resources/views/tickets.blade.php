@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Events & Tickets')
 @section('content')
     <section class="event-ticket">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

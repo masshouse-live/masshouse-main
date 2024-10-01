@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('customer_email');
             $table->string('customer_phone');
             $table->string('customer_address')->nullable();
-            $table->timestamp("from_date");
-            $table->timestamp("to_date");
+            $table->timestamp('from_date')->nullable();  // Allow NULL
+            $table->timestamp('to_date')->nullable();    // Allow NULL
             $table->foreignId('table_id')->constrained();
             $table->string('status');
             $table->integer('table_index');
