@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
 </head>
 
 <body class="dark w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
