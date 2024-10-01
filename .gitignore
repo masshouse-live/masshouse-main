@@ -1,6 +1,5 @@
 /.phpunit.cache
 /node_modules
-/public/build
 /public/upload
 /public/images/shop
 /public/images/sponsors
