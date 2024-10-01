@@ -46,7 +46,7 @@ Route::get('/audio/{filename}', [AudioController::class, 'streamAudio'])->name('
 // group admin
 Route::group([
     'prefix' => 'admin',
-    'middleware' => ['auth', "admin", "verified"]
+    'middleware' => ['auth', "verified", "admin"]
 ], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/users', [AdminController::class, 'users_list'])->name('admin.users_list');
