@@ -61,8 +61,7 @@
                     </div>
                     <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
                         <audio id="music-player">
-                            <source src="{{ route('audio.stream', 'Are Sinners Raptured First.mp3') }}"
-                                type="audio/mpeg">
+                            <source src="{{ route('audio.stream', 'test.mp3') }}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                         <div class="music-icons">
