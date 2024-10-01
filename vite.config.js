@@ -12,7 +12,7 @@ export default defineConfig({
             ),
         }),
         laravel({
-            input: ["resources/js/app.js"],
+            input: ["resources/js/app.js", "resources/js/editor.js"],
             refresh: true,
         }),
     ],
