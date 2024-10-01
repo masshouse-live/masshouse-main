@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/editor.js'])
+
 </head>
 
 <body class="dark w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
@@ -27,7 +29,6 @@
     </main>
 </body>
 {{-- load js --}}
-@vite('resources/js/app.js')
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.4/d3.min.js"></script>
@@ -40,6 +41,5 @@
 
 {{-- load admin.js --}}
 <script src="{{ asset('js/admin.js') }}"></script>
-@vite('resources/js/editor.js')
 
 </html>
