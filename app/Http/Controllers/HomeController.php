@@ -8,6 +8,7 @@ use App\Models\ProductCategory;
 use App\Models\NewsletterSubscription;
 use App\Models\SiteSttings;
 use App\Models\Sponsor;
+use Spatie\Newsletter\Facades\Newsletter;
 
 use Illuminate\Http\Request;
 
@@ -62,6 +63,7 @@ class HomeController extends Controller
             $input = $request->all();
             $input['subscribed'] = 1;
             NewsletterSubscription::create($input);
+            Newsletter::subscribe($input['email']);
 
             return redirect()->back();
         } catch (\Exception $e) {

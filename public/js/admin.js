@@ -636,3 +636,23 @@ $(document).ready(function () {
         },
     });
 });
+
+const unsubscribeNewsletter = (email, subscribed) => {
+    const url = "/admin/newsletter-unsubscribe";
+    headers = {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Add CSRF token to headers
+        "Content-Type": "application/json",
+    };
+    fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+            email: email,
+            subscribed: subscribed,
+        }),
+    }).then((response) => {
+        console.log(response);
+    });
+
+    window.location.href = "/admin/newsletter";
+};

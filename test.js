@@ -59,6 +59,11 @@ fetch("/reserve-table", {
         console.error("Reservation failed:", error);
     });
 
+const headers = {
+    "Content-Type": "application/json",
+    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Add CSRF token to headers
+};
+
 const orderData = {
     name: "John Doe",
     email: "john.doe@example.com",

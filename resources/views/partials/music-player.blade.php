@@ -60,8 +60,11 @@
                         </ul>
                     </div>
                     <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
-                        <audio id="music-player"
-                            src="https://upcdn.io/FW25c2f/raw/uploads/2024/05/25/4kbAqbHE12-Are%20Sinners%20Raptured%20First.%20mp3.mp3"></audio>
+                        <audio id="music-player">
+                            <source src="{{ route('audio.stream', 'Are Sinners Raptured First.mp3') }}"
+                                type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
                         <div class="music-icons">
                             <i class="fa-solid fa-share-nodes"></i>
                             <br />

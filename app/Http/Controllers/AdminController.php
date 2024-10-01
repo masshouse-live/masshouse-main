@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Spatie\Newsletter\Facades\Newsletter;
 
 class AdminController extends Controller
 {
@@ -167,8 +168,28 @@ class AdminController extends Controller
         $subscriber = NewsletterSubscription::find($id);
         $subscriber->delete();
 
+        Newsletter::delete($subscriber->email);
 
         return redirect()->back()->with('success', 'Subscriber deleted successfully!');
+    }
+
+    public function unsubscribe_newsletter(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            "subscribed" => 'required'
+        ]);
+        $input = $request->all();
+        // mark subscribed as false or true
+        // subscribe to newsletter or unsubscribe
+        if ($input['subscribed'] == 1) {
+            NewsletterSubscription::where('email', $input['email'])->update(['subscribed' => $input['subscribed']]);
+            Newsletter::subscribe($input['email']);
+        } else {
+            NewsletterSubscription::where('email', $input['email'])->update(['subscribed' => $input['subscribed']]);
+            Newsletter::unsubscribe($input['email']);
+        }
+        return json_encode(['success' => true]);
     }
 
 
@@ -1045,7 +1066,6 @@ class AdminController extends Controller
 
             // find category given slug
             $category = ProductCategory::where('slug', $request->category)->first();
-            dd($category);
 
             $merchandise->name = $request->name;
             $merchandise->gender = $request->gender;

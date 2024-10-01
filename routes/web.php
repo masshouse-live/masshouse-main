@@ -11,6 +11,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductOrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\AudioController;
 
 // redirect to '/' if not logged in
 Auth::routes(
@@ -38,6 +39,10 @@ Route::group([
     Route::get('/', [ShopController::class, 'index'])->name('shop.shop');
     Route::get('/merchandise', [ShopController::class, 'merchandise'])->name('shop.merchandise');
 });
+
+Route::get('/audio/{filename}', [AudioController::class, 'streamAudio'])->name('audio.stream');
+
+
 // group admin
 Route::group([
     'prefix' => 'admin',
@@ -48,6 +53,7 @@ Route::group([
     Route::get('/users/{id}', [AdminController::class, 'user_detail'])->name('admin.users.show');
     Route::get('/newsletter', [AdminController::class, 'newsletter_list'])->name('admin.newsletter_list');
     Route::get('/newsletter/{id}/delete', [AdminController::class, 'delete_subscriber'])->name('admin.delete_subscriber');
+    Route::post('/newsletter-unsubscribe', [AdminController::class, 'unsubscribe_newsletter'])->name('admin.unsubscribe_newsletter');
 
     Route::get('/events', [AdminController::class, 'events_list'])->name('admin.events_list');
     Route::post('/create-event', [AdminController::class, 'create_event'])->name('admin.create_event');

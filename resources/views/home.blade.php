@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Home of Amazing Experiences')
 @section('content')
     <!--landing-page section-->
     <section class="landing-page">
@@ -24,8 +24,8 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <!-- <div class="lp-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                              <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -46,27 +46,70 @@
         <script src="{{ asset('js/cursor-trail.js') }}"></script>
 
     </section>
+    @php
+        use Carbon\Carbon;
 
-    <!--next-event section-->
+        $today = Carbon::today();
+        $event_date = Carbon::parse($coming_event->date_time);
+        $diffInDays = $event_date->diffInDays($today);
+        $diffInWeeks = ceil($diffInDays / 7); // Get the number of weeks
+        $dayOfWeek = $event_date->format('l'); // Get the day of the week e.g. 'Friday'
+        $eventMonthName = $event_date->format('F'); // Get event month name (e.g., "October")
+        $eventMonth = $event_date->format('n'); // Get event month as number (1-12)
+        $eventYear = $event_date->format('Y'); // Get the event year
+        $currentMonth = $today->format('n'); // Get current month as number (1-12)
+        $currentYear = $today->format('Y'); // Get the current year
+
+        // Define special holiday dates
+        $christmas = Carbon::parse("$currentYear-12-25");
+        $newYearsEve = Carbon::parse("$currentYear-12-31");
+
+        // Determine the heading text
+        if ($event_date->isSameDay($christmas)) {
+            $heading = 'CHRISTMAS';
+        } elseif ($event_date->isSameDay($newYearsEve)) {
+            $heading = 'NEW YEAR\'S EVE';
+        } elseif ($diffInDays === 0) {
+            $heading = 'TODAY';
+        } elseif ($diffInDays === 1) {
+            $heading = 'TOMORROW';
+        } elseif ($diffInDays <= 7) {
+            $heading = 'THIS ' . strtoupper($dayOfWeek);
+        } elseif ($diffInDays <= 14) {
+            $heading = 'NEXT ' . strtoupper($dayOfWeek);
+        } elseif ($diffInWeeks <= 4 && $eventMonth === $currentMonth) {
+            $heading = 'IN ' . $diffInWeeks . ' WEEKS'; // More than 2 weeks but same month
+        } elseif (
+            $eventMonth === $currentMonth + 1 ||
+            ($currentMonth === 12 && $eventMonth === 1 && $eventYear === $currentYear + 1)
+        ) {
+            $heading = 'NEXT MONTH';
+        } elseif ($eventYear > $currentYear) {
+            $heading = 'ON ' . strtoupper($eventMonthName) . ' ' . $eventYear;
+        } else {
+            $heading = 'THIS ' . strtoupper($eventMonthName);
+        }
+    @endphp
+
     <section class="next-event">
-        <h5>THIS FRIDAY</h5>
-        <h4>18TH JUL</h4>
+        <h5>{{ $heading }}</h5>
+        <h4>{{ $coming_event->date_time->format('d M') }}</h4>
 
         <div class="words">
             <div class="words-slide">
-                <p>MASSHOUSE LIVE</p>
+                <p>{{ $coming_event->title }}</p>
             </div>
             <div class="words-slide">
-                <p>MASSHOUSE LIVE</p>
+                <p>{{ $coming_event->title }}</p>
             </div>
             <div class="words-slide">
-                <p>MASSHOUSE LIVE</p>
+                <p>{{ $coming_event->title }}</p>
             </div>
         </div>
 
-        <h2>THE LIVE PARTY</h2>
-
+        <h2>{{ $coming_event->subtitle }}</h2>
     </section>
+
 
     <section class="shop-now" style="border-bottom: 1px solid #fff">
         <div class="row shn-wrapper">

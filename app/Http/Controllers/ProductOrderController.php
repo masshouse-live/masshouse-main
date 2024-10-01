@@ -6,7 +6,9 @@ use App\Models\Merchandise;
 use App\Models\Order;
 use App\Models\ProductOrder;
 use App\Models\OrderTrend;
-
+use App\Mail\OrderConfirmationMail;
+use App\Mail\AdminOrderNotificationMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class ProductOrderController extends Controller
@@ -79,6 +81,12 @@ class ProductOrderController extends Controller
         $order_trend->total_orders = $order_trend->total_orders + 1;
         $order_trend->total_revenue = $order_trend->total_revenue + $total;
         $order_trend->save();
+
+        // send email
+        Mail::to($request->email)->send(new OrderConfirmationMail($order));
+
+        // send email to admin (you can replace 'admin@example.com' with the actual admin email)
+        Mail::to(env('ADMIN_EMAIL'))->send(new AdminOrderNotificationMail($order));
 
         return redirect(route('orders_placed', ['order_id' => $order->id]));
     }

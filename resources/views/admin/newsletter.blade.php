@@ -80,7 +80,9 @@
                             {{ $subscriber->email }}
                         </a>
                         <div>
-                            <input type="checkbox" name="status" checked={{ $subscriber->subscribed == 1 }} />
+                            <input type="checkbox"
+                                onchange="unsubscribeNewsletter('{{ $subscriber->email }}',{{ $subscriber->subscribed == 1 ? 0 : 1 }})"
+                                name="status" {{ $subscriber->subscribed ? 'checked' : '' }} />
                         </div>
                         <div class="flex justify-end">
                             <a href="{{ route('admin.delete_subscriber', $subscriber->id) }}">

@@ -17,8 +17,9 @@ class TicketsController extends Controller
             }
             $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->get();
             $sponsors = Sponsor::all()->take(6);
+            $coming_events = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->take(2)->get();
 
-            return view('tickets', compact("events", "sponsors"));
+            return view('tickets', compact("events", "sponsors", "coming_events"));
         }
     }
 }

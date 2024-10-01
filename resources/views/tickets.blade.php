@@ -4,74 +4,32 @@
     <section class="event-ticket">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="ticket-landing">
-                        <img src="images/events/kansoul2.jpg" alt="image">
-                        <div class="ticket-name">
-                            <h2>MEJJA FT MADTRAXX</h2>
-                            <h4>Twenzetu Gengetone Rewind</h4>
+                @foreach ($coming_events as $coming_event)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <div class="ticket-landing">
+                            <img src="{{ asset($coming_event->banner) }}" alt="image">
+                            <div class="ticket-name">
+                                <h2>{{ $coming_event->title }}</h2>
+                                <h4>{{ $coming_event->subtitle }}</h4>
+                            </div>
+                        </div>
+                        <div class="button text-center">
+                            <a href="{{ $coming_event->tickets_link }}" class="button1"><span style="margin-left: 50px;">BUY
+                                    NOW</span>
+                                <svg style="margin-bottom: 5px; margin-right: 50px;" xmlns="http://www.w3.org/2000/svg"
+                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="ticket-details">
+                            <span>{{ $coming_event->date_time->format('d M') }} <br> FROM
+                                {{ $coming_event->date_time->format('Hi') }}HRS</span>
                         </div>
                     </div>
-                    <div class="button text-center">
-                        <a href="" class="button1"><span style="margin-left: 50px;">BUY NOW</span>
-                            <svg style="margin-bottom: 5px; margin-right: 50px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="ticket-details">
-                        <span>18 OCT <br> FROM 2000HRS</span>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="ticket-landing">
-                        <img src="images/events/khali.jpg" alt="image">
-                        <div class="ticket-name">
-                            <h2>MEJJA FT MADTRAXX</h2>
-                            <h4>Twenzetu Gengetone Rewind</h4>
-                        </div>
-                    </div>
-                    <div class="button text-center">
-                        <a href="" class="button1"><span style="margin-left: 50px;">BUY NOW</span>
-                            <svg style="margin-bottom: 5px; margin-right: 50px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="ticket-details">
-                        <span>18 OCT <br> FROM 2000HRS</span>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="ticket-landing">
-                        <img src="images/events/kansoul2.jpg" alt="image">
-                        <div class="ticket-name">
-                            <h2>MEJJA FT MADTRAXX</h2>
-                            <h4>Twenzetu Gengetone Rewind</h4>
-                        </div>
-                    </div>
-                    <div class="button text-center">
-                        <a href="" class="button1"><span style="margin-left: 50px;">BUY NOW</span>
-                            <svg style="margin-bottom: 5px; margin-right: 50px;" xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="ticket-details">
-                        <span>18 OCT <br> FROM 2000HRS</span>
-                    </div>
-                </div>
-
+                @endforeach
 
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
