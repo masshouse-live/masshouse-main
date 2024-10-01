@@ -7,10 +7,5 @@
     "css": [
       "assets/app-B9lZA4S_.css"
     ]
-  },
-  "resources/sass/app.scss": {
-    "file": "assets/app-DrKqg2nF.css",
-    "src": "resources/sass/app.scss",
-    "isEntry": true
   }
 }
