@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Playlist;
 use App\Models\ProductCategory;
+use App\Models\NewsletterSubscription;
 use App\Models\SiteSttings;
 use App\Models\Sponsor;
 
@@ -48,5 +49,23 @@ class HomeController extends Controller
         $settings =  SiteSttings::select('menu_path')->where('id', 1)->first();
         $menu = $settings->menu_path;
         return view('menu', compact('menu'));
+    }
+
+    // subscribe to newsletter
+    public function subscribe_newsletter(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => 'required|email',
+            ]);
+
+            $input = $request->all();
+            $input['subscribed'] = 1;
+            NewsletterSubscription::create($input);
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }

@@ -181,16 +181,17 @@
                         MASSHOUSE.
                     </p>
 
-                    <form method="post" action="">
+                    <form method="post" action="{{ route('subscribe_newsletter') }}">
+                        @csrf
                         <div class="form-outline f-outline2 d-flex justify-content-between">
-                            <input type="email" id="subscription_email" class="form-control f-input2"
-                                placeholder="Email*" autocomplete="off" required="required"
+                            <input type="email" id="subscription_email" name="email"
+                                class="form-control f-input2" placeholder="Email*" required="required"
                                 name="subscription_email" />
                         </div>
                         <br />
 
                         <div class="form-check agreement">
-                            <input class="form-check-input rounded-0" type="checkbox" id="agreement"
+                            <input required class="form-check-input rounded-0" type="checkbox" id="agreement"
                                 name="agreement" />
                             <label class="form-check-label" for="agreement">
                                 I have read and agree to MASSHOUSE’s Privacy Policy & I would

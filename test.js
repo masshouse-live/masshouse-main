@@ -1,14 +1,37 @@
+const randomTime = (moreThan = 0) => {
+    return new Date(
+        new Date().getTime() +
+            Math.floor(Math.random() * 60 * 60 * 24 * 1000) + // Random time in 24 hours
+            moreThan
+    );
+};
+
+const pad = (n) => (n < 10 ? "0" + n : n);
+
+const formatTime = (date, mins) => {
+    return pad(date.getHours()) + ":" + mins;
+};
+
+const fromDateTime = randomTime(); // Generate random start time
+
+// Add 1-2 hours to the fromDateTime
+const toDateTime = new Date(
+    fromDateTime.getTime() +
+        (Math.floor(Math.random() * 2) + 1) * 60 * 60 * 1000
+);
+
 const reservationData = {
     table_id: "1", // Assuming table ID is 1; adjust as needed
-    from_time: "15:00", // Start time
-    to_time: "19:59", // End time
+    from_time: formatTime(fromDateTime, "00"),
+    to_time: formatTime(toDateTime, "59"),
     date: new Date().toISOString().split("T")[0], // Today's date
-    customer_name: " Dwight Schrute", // Customer's name
+    customer_name: "Dwight Schrute", // Customer's name
     customer_email: "dwight@example.com", // Customer's email
     customer_phone: "123-456-7890", // Customer's phone
     customer_address:
-        "(925) 261-93962410 Willow Pass Rd Pittsburg, California(CA), 94565",
+        "(925) 261-9396, 2410 Willow Pass Rd, Pittsburg, California(CA), 94565",
 };
+console.log(reservationData);
 
 const headers = {
     "Content-Type": "application/json",

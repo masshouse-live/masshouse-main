@@ -12,6 +12,7 @@ use App\Models\Merchandise;
 use App\Models\SiteSttings;
 use App\Models\Contact;
 use App\Models\EventsVenue;
+use App\Models\NewsletterSubscription;
 use App\Models\Order;
 use App\Models\OrderTrend;
 use App\Models\ProductCategory;
@@ -116,6 +117,61 @@ class AdminController extends Controller
 
         return view('admin.user_details', compact('user'));
     }
+
+
+    public function newsletter_list(Request $request)
+    {
+
+        $search = $request->search ?? '';
+        $subscribed = $request->subscribed ?? '';
+        $from_date = $request->from_date ?? '';
+        $to_date = $request->to_date ?? '';
+
+
+        $subscribers = NewsletterSubscription::query();
+
+        if ($search) {
+            $subscribers->where('email', 'like', '%' . $search . '%');
+        }
+        // Apply active filter only if it's set (not an empty string)
+        if (Str::length($subscribed) > 0) {
+            if ($subscribed == '1') {
+                $subscribers->where('subscribed', true);
+            } else if ($subscribed == '0') {
+                $subscribers->where('subscribed', false);
+            }
+        }
+
+
+        if (!empty($from_date) && !empty($to_date)) {
+            $to_date = $to_date . " 23:59:59";
+            $subscribers->whereBetween('created_at', [$from_date, $to_date]);
+        }
+
+        if (!empty($from_date) && empty($to_date)) {
+            $subscribers->where('created_at', '>=', $from_date);
+        }
+
+
+        $subscribers = $subscribers->paginate(20);
+
+        return view('admin.newsletter', compact('subscribers'));
+    }
+
+
+    public function delete_subscriber(Request $request)
+    {
+
+        $id = $request->id;
+
+        $subscriber = NewsletterSubscription::find($id);
+        $subscriber->delete();
+
+
+        return redirect()->back()->with('success', 'Subscriber deleted successfully!');
+    }
+
+
     public function events_list(Request $request)
     {
         $search = $request->search ?? '';

@@ -21,6 +21,7 @@ Auth::routes(
 );
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/subscribe-newsletter', [HomeController::class, 'subscribe_newsletter'])->name('subscribe_newsletter');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
 Route::get('/news', [NewsController::class, 'news'])->name('news');
@@ -45,6 +46,8 @@ Route::group([
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/users', [AdminController::class, 'users_list'])->name('admin.users_list');
     Route::get('/users/{id}', [AdminController::class, 'user_detail'])->name('admin.users.show');
+    Route::get('/newsletter', [AdminController::class, 'newsletter_list'])->name('admin.newsletter_list');
+    Route::get('/newsletter/{id}/delete', [AdminController::class, 'delete_subscriber'])->name('admin.delete_subscriber');
 
     Route::get('/events', [AdminController::class, 'events_list'])->name('admin.events_list');
     Route::post('/create-event', [AdminController::class, 'create_event'])->name('admin.create_event');
