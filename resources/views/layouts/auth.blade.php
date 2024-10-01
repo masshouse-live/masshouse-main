@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
 
 <body class="dark text-textPrimary">
