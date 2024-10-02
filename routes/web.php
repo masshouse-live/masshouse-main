@@ -55,9 +55,11 @@ Route::group([
     Route::get('/newsletter/{id}/delete', [AdminController::class, 'delete_subscriber'])->name('admin.delete_subscriber');
     Route::post('/newsletter-unsubscribe', [AdminController::class, 'unsubscribe_newsletter'])->name('admin.unsubscribe_newsletter');
 
+    Route::get('/event-venues', [AdminController::class, 'event_venues'])->name('admin.event_venues');
     Route::get('/events', [AdminController::class, 'events_list'])->name('admin.events_list');
     Route::post('/create-event', [AdminController::class, 'create_event'])->name('admin.create_event');
     Route::post('/edit-event', [AdminController::class, 'edit_event'])->name('admin.edit_event');
+    Route::post('/edit-event-venue', [AdminController::class, 'edit_event_venue'])->name('admin.edit_event_venue');
     Route::post('/create-event-venue', [AdminController::class, 'create_event_venue'])->name('admin.create_event_venue');
     Route::get('/team', [AdminController::class, 'team_list'])->name('admin.team_list');
     Route::post('/add-member', [AdminController::class, 'add_member'])->name('admin.add_member');

@@ -193,6 +193,97 @@ class AdminController extends Controller
     }
 
 
+    public function event_venues(Request $request)
+    {
+
+        $event_venues = EventsVenue::with("images")->paginate(10);
+
+        return view('admin.event_venues', compact('event_venues'));
+    }
+
+
+    public function create_event_venue(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'location' => 'required',
+                'address' => 'required',
+                'cover_photo' => 'required',
+                'image1' => 'required',
+                'image2' => 'required',
+                'image3' => 'required',
+                'image4' => 'required',
+                'image5' => 'required',
+            ]);
+
+            // upload cover photo
+            $cover_photo = $this->upload_image($request->file('cover_photo'), 'upload/event_venues', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
+
+
+            $event_venue = new EventsVenue();
+            $event_venue->name = $request->location;
+            $event_venue->address = $request->address;
+            $event_venue->cover_photo = $cover_photo;
+            $event_venue->save();
+
+            // create venue images
+
+            $image1 = $this->upload_image($request->file('image1'), 'upload/event_venues', str_replace(' ', '', $request->file('image1')->getClientOriginalName()));
+            $image2 = $this->upload_image($request->file('image2'), 'upload/event_venues', str_replace(' ', '', $request->file('image2')->getClientOriginalName()));
+            $image3 = $this->upload_image($request->file('image3'), 'upload/event_venues', str_replace(' ', '', $request->file('image3')->getClientOriginalName()));
+            $image4 = $this->upload_image($request->file('image4'), 'upload/event_venues', str_replace(' ', '', $request->file('image4')->getClientOriginalName()));
+            $image5 = $this->upload_image($request->file('image5'), 'upload/event_venues', str_replace(' ', '', $request->file('image5')->getClientOriginalName()));
+
+            $event_venue->images()->createMany([
+                ['image' => $image1, 'event_venue_id' => $event_venue->id, 'index' => 1, "alt" => "Image 1"],
+                ['image' => $image2, 'event_venue_id' => $event_venue->id, 'index' => 2, "alt" => "Image 2"],
+                ['image' => $image3, 'event_venue_id' => $event_venue->id, 'index' => 3, "alt" => "Image 3"],
+                ['image' => $image4, 'event_venue_id' => $event_venue->id, 'index' => 4, "alt" => "Image 4"],
+                ['image' => $image5, 'event_venue_id' => $event_venue->id, 'index' => 5, "alt" => "Image 5"],
+            ]);
+
+
+            return redirect(route('admin.event_venues'));
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors());
+        }
+    }
+
+    public function edit_event_venue(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+        ]);
+
+        $event_venue = EventsVenue::with("images")->find($request->id);
+
+        // if cover photo is uploaded
+
+        if ($request->hasFile('cover_photo')) {
+            $image = $this->upload_image($request->file('cover_photo'), 'upload/event_venues', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
+            $event_venue->cover_photo = $image;
+        }
+
+
+        $event_venue->name = $request->name;
+        $event_venue->address = $request->address;
+        $event_venue->save();
+
+        for ($i = 1; $i <= 5; $i++) {
+            $imageKey = 'image' . $i;
+
+            if ($request->hasFile($imageKey)) {
+                $image = $this->upload_image($request->file($imageKey), 'upload/event_venues', str_replace(' ', '', $request->file($imageKey)->getClientOriginalName()));
+                $event_venue->images()->where('index', $i)->update(['image' => $image]);
+            }
+        }
+
+        return redirect(route('admin.event_venues'));
+    }
+
+
     public function events_list(Request $request)
     {
         $search = $request->search ?? '';
@@ -322,53 +413,6 @@ class AdminController extends Controller
 
 
 
-    public function create_event_venue(Request $request)
-    {
-        try {
-
-            $request->validate([
-                'location' => 'required',
-                'address' => 'required',
-                'cover_photo' => 'required',
-                'image1' => 'required',
-                'image2' => 'required',
-                'image3' => 'required',
-                'image4' => 'required',
-                'image5' => 'required',
-            ]);
-
-            // upload cover photo
-            $cover_photo = $this->upload_image($request->file('cover_photo'), 'upload/event_venues', str_replace(' ', '', $request->file('cover_photo')->getClientOriginalName()));
-
-
-            $event_venue = new EventsVenue();
-            $event_venue->name = $request->location;
-            $event_venue->address = $request->address;
-            $event_venue->cover_photo = $cover_photo;
-            $event_venue->save();
-
-            // create venue images
-
-            $image1 = $this->upload_image($request->file('image1'), 'upload/event_venues', str_replace(' ', '', $request->file('image1')->getClientOriginalName()));
-            $image2 = $this->upload_image($request->file('image2'), 'upload/event_venues', str_replace(' ', '', $request->file('image2')->getClientOriginalName()));
-            $image3 = $this->upload_image($request->file('image3'), 'upload/event_venues', str_replace(' ', '', $request->file('image3')->getClientOriginalName()));
-            $image4 = $this->upload_image($request->file('image4'), 'upload/event_venues', str_replace(' ', '', $request->file('image4')->getClientOriginalName()));
-            $image5 = $this->upload_image($request->file('image5'), 'upload/event_venues', str_replace(' ', '', $request->file('image5')->getClientOriginalName()));
-
-            $event_venue->images()->createMany([
-                ['image' => $image1, 'event_venue_id' => $event_venue->id, 'index' => 1, "alt" => "Image 1"],
-                ['image' => $image2, 'event_venue_id' => $event_venue->id, 'index' => 2, "alt" => "Image 2"],
-                ['image' => $image3, 'event_venue_id' => $event_venue->id, 'index' => 3, "alt" => "Image 3"],
-                ['image' => $image4, 'event_venue_id' => $event_venue->id, 'index' => 4, "alt" => "Image 4"],
-                ['image' => $image5, 'event_venue_id' => $event_venue->id, 'index' => 5, "alt" => "Image 5"],
-            ]);
-
-
-            return redirect(route('admin.events_list'));
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            dd($e->errors());
-        }
-    }
 
 
     public function team_list(Request $request)

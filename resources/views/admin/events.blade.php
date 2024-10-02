@@ -4,7 +4,6 @@
         <div class="pt-5 w-full flex py-2 px-4 justify-between items-center">
             <h2 class="font-extrabold text-2xl text-accent">Events Management</h2>
             <div class="flex space-x-2">
-                @include('forms.add-event-venue', ['id' => 'add-venue'])
                 @include('forms.add-event', ['id' => 'add-event'])
             </div>
         </div>

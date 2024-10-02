@@ -119,6 +119,16 @@ const openEditDialog = (id, data) => {
         });
         listednDrag();
     }
+
+    // if /admin/event-venues
+    if (window.location.pathname === "/admin/event-venues") {
+        // set bg image from label_image1 - label_image5
+        data["images"].forEach((image, index) => {
+            const label = `label_image${index + 1}`;
+            const labelImage = document.getElementById(label);
+            labelImage.style.backgroundImage = `url('/${image.image}')`;
+        });
+    }
 };
 
 $(document).ready(function () {

@@ -42,17 +42,42 @@
                         </span>
                         <span>Newsletter List</span>
                     </a>
-                    <a href="{{ route('admin.events_list') }}"
-                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
-                            </svg>
-                        </span>
-                        <span>Events</span>
-                    </a>
+                    <div>
+                        <li class="list-none">
+                            <a href="#"
+                                class="menu flex pl-1 2xl:px-2 py-2 space-x-1 2xl:space-x-1  items-center hover:text-accent not-active">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
+                                    </svg>
+                                </span>
+                                <span>Events & Venues</span>
+                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </span>
+                            </a>
+
+                            <ul class="pl-8">
+                                <li><a href="{{ route('admin.event_venues') }}"
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+
+                                        <span>Events Venues</span>
+                                    </a></li>
+                                <li><a href="{{ route('admin.events_list') }}"
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+
+                                        <span>Events</span>
+                                    </a></li>
+
+
+                            </ul>
+                        </li>
+                    </div>
                     <a href="{{ route('admin.team_list') }}"
                         class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
