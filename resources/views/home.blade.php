@@ -24,8 +24,8 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <!-- <div class="lp-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -93,7 +93,9 @@
 
     <section class="next-event">
         <h5>{{ $heading }}</h5>
-        <h4>{{ $coming_event->date_time->format('d M') ?? '' }}</h4>
+        @if ($coming_event && $coming_event->date_time)
+            <h4>{{ $coming_event->date_time->format('d M') ?? '' }}</h4>
+        @endif
 
         <div class="words">
             <div class="words-slide">
