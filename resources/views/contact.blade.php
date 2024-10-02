@@ -6,44 +6,57 @@
         <h2>GET IN TOUCH</h2>
         <!--contact form-->
         <div class="contact-form">
-            <form action="" method="POST" id="contact-form">
-                <input type="hidden" name="access_key" value="fd94dccf-5968-4655-bd4e-5f7c2a9128c7">
+            <form action="{{ route('send_message') }}" method="POST" id="contact-form">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @csrf
                 <div class="row">
                     <!-- first name field -->
                     <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
                         <input type="text" id="firstname" class="form-control grey" placeholder="FIRST NAME"
-                            autocomplete="off" required="required" name="name">
+                            autocomplete="off" required="required" name="firstname">
                     </div>
                     <!-- second name field -->
                     <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
                         <input type="text" id="secondname" class="form-control grey" placeholder="SECOND NAME"
-                            autocomplete="off" required="required" name="name">
+                            autocomplete="off" required="required" name="secondname">
                     </div>
                     <!-- email field -->
+
+                </div>
+
+                <div class="row">
                     <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
 
                         <input type="email" id="email" class="form-control grey" placeholder="EMAIL ADDRESS"
                             autocomplete="off" required="required" name="email">
                     </div>
-                </div>
-
-                <div class="row">
-                    <!-- phone field -->
                     <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
 
-                        <input type="tel" id="phone" class="form-control grey" placeholder="PHONE NUMBER"
+                        <input type="tel"id="phone" class="form-control grey" placeholder="PHONE NUMBER"
                             autocomplete="off" required="required" name="phone">
                     </div>
+                </div>
+                <div class="row">
+                    <!-- phone field -->
                     <!-- type of enquiry field -->
                     <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
 
-                        <select class='form-select'>
+                        <select name="category" class='form-select'>
                             <option>TYPE OF ENQUIRY</option>
                             <option>New Business Opportunity</option>
                             <option>Career Enquiry</option>
                             <option>Help</option>
                         </select>
 
+                    </div>
+                    <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
+
+                        <input type="text" name="subject" id="subject" class="form-control grey"
+                            placeholder="Message Subject" autocomplete="off" required="required" name="subject">
                     </div>
 
                 </div>
@@ -57,7 +70,7 @@
                 </div>
                 <!--checkbox-->
                 <div class="contact-agreement">
-                    <input class="form-check-input rounded-0" type="checkbox" id="exampleCheckbox">
+                    <input class="form-check-input rounded-0" required type="checkbox" id="exampleCheckbox">
                     <label class="form-check-label" for="exampleCheckbox">
                         I have read and agree to Masshouse’s privacy policy <br>
                         & i would like to receive email updates and news from Masshouse

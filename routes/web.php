@@ -25,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/subscribe-newsletter', [HomeController::class, 'subscribe_newsletter'])->name('subscribe_newsletter');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
+Route::post('/send-message', [ContactController::class, 'store'])->name('send_message');
 Route::get('/news', [NewsController::class, 'news'])->name('news');
 Route::get('/blogs-news/{slug}', [NewsController::class, 'news_detail'])->name('news_detail');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
