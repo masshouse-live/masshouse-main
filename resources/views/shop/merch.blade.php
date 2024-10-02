@@ -18,89 +18,94 @@
         <br>
         <br>
         <div class="row merchandise-wrapper">
-            <div class="popup" id="popup-1">
-                <div class="overlay"></div>
-                <div class="content">
-                    <div class="close-btn" onclick="togglePopup()">&times;</div>
-                    <section class="custom-merch">
-                        <!-- <div class="sub-heading">
-                                                                                                                                                                                <h3>CUSTOM MERCHANDISE</h3>
-                                                                                                                                                                            </div>
-                                                                                                                                                                            <br> -->
-                        <div class="row cm-wrapper">
-                            <div class="cm-left col-lg-6 col-md-6 col-sm-12">
-                                <img src="{{ asset('images/shop/poloshirt-white.png') }}" alt="image">
-                            </div>
-                            <div class="cm-right col-lg-6 col-md-6 col-sm-12">
-                                <h4>MASSHOUSE POLO SHIRT LIMITED EDITION</h4>
-                                <!-- <br> -->
-
-                                <div class="price">
-                                    <p>KES. 3,499.00</p>
-                                    <span>Taxes Included</span>
-                                </div>
-                                <br><br>
-                                <div class="size">
-                                    <p>SIZE:</p>
-                                    <ul>
-                                        <li>S</li>
-                                        <li>M</li>
-                                        <li>L</li>
-                                        <li>XL</li>
-                                        <li>2XL</li>
-                                        <li>3XL</li>
-                                    </ul>
-                                </div>
-                                <br>
-                                <img src="images/shop/dashes.PNG" alt="">
-                                <br><br>
-                                <div class="row descr">
-                                    <div class="col-lg-10 col-md-6 col-sm-12">
-                                        <p>
-                                            Declare your allegiance to Masshouse Live with this stylish polo shirt, perfect
-                                            for any
-                                            occasion. Made from premium cotton, it offers a comfortable and breathable fit
-                                            whether
-                                            you're attending an event or enjoying a casual day out. The sleek design
-                                            features an
-                                            embroidered MassHouse Live logo, making it clear at first glance where your
-                                            loyalty
-                                            lies.
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-12">
-                                        <span>Size Guide</span>
-                                    </div>
-                                </div>
-                                <ul class="list-unstyled list-inline description">
-                                    <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Regular Fit</li>
-                                    <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Ribbed Crew Neck
-                                    </li>
-                                    <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> 100% Cotton</li>
-                                    <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Embroided MassHouse
-                                        logo
-                                    </li>
-
-                                </ul>
-
-                                <div class="button">
-                                    <a href="" class="button2">SHOP NOW &nbsp;
-                                        <svg style="margin-left: 100px; margin-bottom: 5px;"
-                                            xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
-                                            viewBox="0 0 256 256">
-                                            <path fill="currentColor"
-                                                d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </section>
-                </div>
-            </div>
             @foreach ($merchandise as $merch)
-                <div onclick="togglePopup()" class="merchandise-box col-lg-3 col-md-6 col-sm-12">
+                <div class="popup" id="popup-{{ $merch->id }}">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup('popup-{{ $merch->id }}')">&times;</div>
+                        <section class="custom-merch">
+
+                            <div class="row cm-wrapper">
+                                <div class="cm-left col-lg-6 col-md-6 col-sm-12" style="background:black">
+                                    <img src="{{ asset($merch->image) }}" alt="image">
+                                </div>
+                                <div class="cm-right col-lg-6 col-md-6 col-sm-12">
+                                    <h4>{{ $merch->name }}</h4>
+
+                                    <div class="price">
+                                        <p>KES. {{ number_format($merch->price, 2, '.', ',') }}</p>
+                                        <span>Taxes Included</span>
+                                    </div>
+                                    <br>
+
+                                    <!-- Size Selection with Radio Buttons -->
+                                    <div class="size">
+                                        <p>SIZE:</p>
+                                        <div>
+                                            @foreach (explode(',', $merch->sizes) as $size)
+                                                <label class="size-label"
+                                                    style=" display: inline-block; padding: 1px 10px 1px 10px;  border: 1px solid black; color:black">{{ $size }}
+
+                                                    <input type="radio" style="display: none"
+                                                        name="size-{{ $merch->id }}" value="{{ $size }}"
+                                                        class="size-radio"
+                                                        onclick="selectSize('size-input-{{ $merch->id }}', this)">
+                                                    <span </span>
+                                                </label>
+                                            @endforeach
+                                            <input type="hidden" id="size-input-{{ $merch->id }}" name="size"
+                                                value="">
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <!-- Color Selection with Radio Buttons -->
+                                    <div class="color">
+                                        <p>COLOR:</p>
+                                        <div>
+                                            @foreach (explode(',', $merch->colors) as $color)
+                                                <label class="color-label"
+                                                    style="background: {{ $color }}; display: inline-block; height: 20px; width: 40px; border: 1px solid {{ $color }};">
+                                                    <input type="radio" style="display: none"
+                                                        name="color-{{ $merch->id }}" value="{{ $color }}"
+                                                        class="color-radio"
+                                                        onclick="selectColor('color-input-{{ $merch->id }}', this)">
+                                                </label>
+                                            @endforeach
+                                            <input type="hidden" id="color-input-{{ $merch->id }}" name="color"
+                                                value="">
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row descr">
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            {!! $merch->description !!}
+                                        </div>
+                                    </div>
+
+                                    <!-- Add to Cart Button -->
+                                    <div class="button">
+                                        <button onclick="addToCart({{ $merch->id }})" class="button2">
+                                            ADD TO CART &nbsp;
+                                            <svg style="margin-left: 100px; margin-bottom: 5px;"
+                                                xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                                viewBox="0 0 256 256">
+                                                <path fill="currentColor"
+                                                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            @endforeach
+
+            @foreach ($merchandise as $merch)
+                <div onclick="togglePopup('popup-{{ $merch->id }}')"
+                    class="merchandise-box col-lg-3 col-md-6 col-sm-12">
                     <div class="merch-image-wrapper">
                         <img src="{{ asset($merch->image) }}" alt="image">
                     </div>
@@ -115,74 +120,6 @@
         </div>
     </section>
 
-
-    <!--custom-merch section-->
-    <!-- <section class="custom-merch">
-                                                                                                                                                                <div class="sub-heading">
-                                                                                                                                                                    <h3>CUSTOM MERCHANDISE</h3>
-                                                                                                                                                                </div>
-                                                                                                                                                                <br>
-                                                                                                                                                                <div class="row cm-wrapper">
-                                                                                                                                                                    <div class="cm-left col-lg-6 col-md-6 col-sm-12">
-                                                                                                                                                                        <img src="images/shop/poloshirt-white.png" alt="image">
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="cm-right col-lg-6 col-md-6 col-sm-12">
-                                                                                                                                                                        <h4>MASSHOUSE POLO SHIRT LIMITED EDITION</h4>
-
-                                                                                                                                                                        <div class="price">
-                                                                                                                                                                            <p>KES. 3,499.00</p>
-                                                                                                                                                                            <span>Taxes Included</span>
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <div class="size">
-                                                                                                                                                                            <p>SIZE:</p>
-                                                                                                                                                                            <ul>
-                                                                                                                                                                                <li>S</li>
-                                                                                                                                                                                <li>M</li>
-                                                                                                                                                                                <li>L</li>
-                                                                                                                                                                                <li>XL</li>
-                                                                                                                                                                                <li>2XL</li>
-                                                                                                                                                                                <li>3XL</li>
-                                                                                                                                                                            </ul>
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <br>
-                                                                                                                                                                        <img src="images/shop/dashes.PNG" alt="">
-                                                                                                                                                                        <br><br>
-                                                                                                                                                                        <div class="row">
-                                                                                                                                                                            <div class="col-lg-10 col-md-6 col-sm-12">
-                                                                                                                                                                                <p>
-                                                                                                                                                                                    Declare your allegiance to Masshouse Live with this stylish polo shirt, perfect for any
-                                                                                                                                                                                    occasion. Made from premium cotton, it offers a comfortable and breathable fit whether
-                                                                                                                                                                                    you're attending an event or enjoying a casual day out. The sleek design features an
-                                                                                                                                                                                    embroidered MassHouse Live logo, making it clear at first glance where your loyalty lies.
-                                                                                                                                                                                </p>
-                                                                                                                                                                            </div>
-                                                                                                                                                                            <div class="col-lg-2 col-md-6 col-sm-12">
-                                                                                                                                                                                <span>Size Guide</span>
-                                                                                                                                                                            </div>
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <ul class="list-unstyled list-inline description">
-                                                                                                                                                                            <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Regular Fit</li>
-                                                                                                                                                                            <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Ribbed Crew Neck</li>
-                                                                                                                                                                            <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> 100% Cotton</li>
-                                                                                                                                                                            <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Embroided MassHouse logo</li>
-
-                                                                                                                                                                        </ul>
-
-                                                                                                                                                                        <div class="button">
-                                                                                                                                                                            <a href="" class="button2">SHOP NOW &nbsp;
-                                                                                                                                                                                <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                                                                                                                                                                    width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                                                                                                                                                                    <path fill="currentColor"
-                                                                                                                                                                                        d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                                                                                                                                                                </svg>
-                                                                                                                                                                            </a>
-                                                                                                                                                                        </div>
-                                                                                                                                                                    </div>
-
-                                                                                                                                                                </div>
-                                                                                                                                                            </section> -->
-
-    <!--extra-merch section-->
     <section class="extra-merch">
         <div class="row extram-wrapper">
             @foreach ($top_categories as $category)
@@ -209,7 +146,67 @@
 
         </div>
     </section>
+    <style>
+        .size-label.selected {
+
+            /* Highlight color for selected size */
+            border: 1px solid #333 !important;
+
+        }
+
+        .color-label.selected {
+            border: 2px solid #333 !important;
+        }
+    </style>
 
     @include('partials.partners', ['color' => 'white', 'partners' => $partners])
     <script src="{{ asset('js/modal-popup.js') }}"></script>
+    <script>
+        function selectSize(hiddenInputId, radio) {
+            const hiddenInput = document.getElementById(hiddenInputId);
+            hiddenInput.value = radio.value; // Set the hidden input value to the selected size
+
+            // Update the style of selected size
+            document.querySelectorAll(`.size-radio`).forEach(r => {
+                r.parentElement.classList.remove('selected');
+            });
+            radio.parentElement.classList.add('selected'); // Highlight the selected size
+        }
+
+        function selectColor(hiddenInputId, radio) {
+            const hiddenInput = document.getElementById(hiddenInputId);
+            hiddenInput.value = radio.value; // Set the hidden input value to the selected color
+
+            // Update the style of selected color
+            document.querySelectorAll(`.color-radio`).forEach(r => {
+                r.parentElement.classList.remove('selected');
+            });
+            radio.parentElement.classList.add('selected'); // Highlight the selected color
+        }
+
+        function addToCart(merchId) {
+            // Get the hidden inputs for sizes and colors
+            var size = document.getElementById('size-input-' + merchId).value;
+            var color = document.getElementById('color-input-' + merchId).value;
+
+            // Make an AJAX request to add to cart
+            $.ajax({
+                url: "{{ route('cart.add') }}", // Ensure this route exists
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: merchId,
+                    size: size,
+                    color: color
+                },
+                success: function(response) {
+                    alert('Product added to cart successfully!');
+                    // Optionally, you can update the cart UI without reloading the page
+                },
+                error: function(xhr) {
+                    alert('Something went wrong, please try again.');
+                }
+            });
+        }
+    </script>
 @endsection

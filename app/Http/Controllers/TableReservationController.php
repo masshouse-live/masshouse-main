@@ -31,12 +31,7 @@ class TableReservationController extends Controller
 
         // Convert to full datetime format
         $fromDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', "$date $fromTime");
-
-        // Set to_date to end at 59:59 of the booked hour
         $toDateTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i', "$date $toTime")->endOfHour();
-
-        Log::info("From DateTime: " . $fromDateTime);
-        Log::info("To DateTime: " . $toDateTime);
 
         // Fetch reservation settings (reservation_from and reservation_to)
         $settings = SiteSttings::select('reservation_from', 'reservation_to')
@@ -44,8 +39,8 @@ class TableReservationController extends Controller
             ->first();
 
         // Convert the settings to Carbon time instances
-        $reservationFromTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_from);
-        $reservationToTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_to)->endOfHour(); // Ensure it ends at the last second
+        $reservationFromTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_from)->setDate($fromDateTime->year, $fromDateTime->month, $fromDateTime->day);
+        $reservationToTime = \Carbon\Carbon::createFromFormat('H', $settings->reservation_to)->endOfHour()->setDate($fromDateTime->year, $fromDateTime->month, $fromDateTime->day);
 
         // Check if the requested time is within the allowed range
         if (
@@ -54,6 +49,7 @@ class TableReservationController extends Controller
         ) {
             return response()->json(['error' => 'Selected time is outside of allowed reservation hours.'], 400);
         }
+
 
         // Get the total number of tables from the Table model
         $table = Table::find($request->table_id);

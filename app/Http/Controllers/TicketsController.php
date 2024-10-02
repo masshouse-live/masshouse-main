@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Sponsor;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
@@ -18,8 +19,8 @@ class TicketsController extends Controller
             $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->get();
             $sponsors = Sponsor::all()->take(6);
             $coming_events = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->take(2)->get();
-
-            return view('tickets', compact("events", "sponsors", "coming_events"));
+            $tables = Table::all();
+            return view('tickets', compact("events", "sponsors", "coming_events", "tables"));
         }
     }
 }

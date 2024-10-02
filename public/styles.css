@@ -2421,14 +2421,70 @@ section.book-table {
     text-align: center;
     color: #fff;
 }
+
+.bt-wrapper {
+    padding: 0 150px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.bt-outline select,
+.bt-outline input {
+    width: 350px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+.bt-outline input.grey {
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+.bt-outline input.calendar {
+    background-color: #eee;
+}
+
+.bt-outline input::placeholder,
+.bt-outline select,
+option {
+    text-align: center !important;
+    text-transform: uppercase !important;
+    color: #ccc !important;
+    font-family: "Arian LT Demi", sans-serif;
+    font-size: 22px;
+}
+
+.bt-outline input.grey::placeholder {
+    color: #ccc !important;
+    font-family: "Arian LT Demi", sans-serif;
+}
+.bt-outline input.calendar::placeholder {
+    text-align: center !important;
+    text-transform: uppercase !important;
+    color: #ccc !important;
+    font-family: "Arian LT Demi", sans-serif;
+}
+.bt-outline .form-select option i {
+    color: #fff !important;
+    font-size: 22px;
+}
 .lower-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #fff;
 }
+.lower-wrapper .lw-left,
+.lower-wrapper .lw-right {
+    font-size: 20px;
+}
 .lw-center {
     text-align: center;
+}
+.lw-center p {
+    font-family: "Arian LT Light", sans-serif;
 }
 .lw-right span {
     float: right;
@@ -2494,6 +2550,10 @@ section.music-player2.tickets {
     .ticket-details span {
         font-size: 50px;
     }
+
+    .lw-right span {
+        float: none;
+    }
     section.more-info {
         padding: 20px;
         padding-top: 400px;
@@ -2507,6 +2567,15 @@ section.music-player2.tickets {
     .mi-right span {
         float: none;
         font-size: 21px;
+    }
+    section.book-table {
+        padding: 100px 20px;
+    }
+    .book-table h2 {
+        font-size: 50px;
+    }
+    .bt-wrapper {
+        padding: 0 20px;
     }
     section.music-player2.tickets {
         padding: 50px 20px;
@@ -3119,7 +3188,7 @@ section.checkout {
 }
 .form-outline select,
 option {
-    color: #000 !important;
+    color: #ffff !important;
     font-size: 14px;
 }
 .mpesa-check {

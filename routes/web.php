@@ -46,7 +46,7 @@ Route::group(
         'prefix' => 'cart'
     ],
     function () {
-        Route::get('/', [CartController::class, 'viewCart'])->name('cart.view');
+        Route::get('/', [CartController::class, 'viewCart'])->name('cart.checkout');
         Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
         Route::get('/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
         Route::post('/increment', [CartController::class, 'incrementQuantity'])->name('cart.increment');

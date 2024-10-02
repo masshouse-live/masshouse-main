@@ -78,7 +78,20 @@
                     Description
                 </label>
                 <textarea name="description" id="" rows="10" class="editor border-2 border-accent/20  bg-primary rounded "
-                    placeholder="Description"></textarea>
+                    placeholder="Description">
+                    <ul class="list-unstyled list-inline description">
+                        <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Regular Fit</li>
+                        <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Ribbed Crew Neck
+                        </li>
+                        <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> 100% Cotton</li>
+                        <li class="list-inline-item mx-2"><i class="fa-solid fa-check"></i> Embroided
+                            MassHouse
+                            logo
+                        </li>
+
+                    </ul>
+
+                </textarea>
             </div>
             {{-- images --}}
 

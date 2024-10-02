@@ -7,50 +7,65 @@
                 <h4>SHOPPING CART</h4>
                 <br>
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr class='text-center'>
+                    <table style="background: black !important; color:white !important; width:100%;">
+                        <thead style="padding:24px;">
+                            <tr class='text-center' style="padding:24px !important; background: black !important;">
                                 <th class="bg-dark text-light">PRODUCT</th>
                                 <th class="bg-dark text-light">SIZE</th>
+                                <th class="bg-dark text-light">COLOR</th>
                                 <th class="bg-dark text-light">QUANTITY</th>
                                 <th class="bg-dark text-light">TOTAL PRICE</th>
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="background: black; color: white; padding: 24px;">
                             @foreach ($cart as $item)
-                                <tr class="cart-item text-center">
-                                    <td><img class="product-img" src="{{ asset($item['image']) }}" alt="product"></td>
+                                <tr class="cart-item text-center" style="background: black; color: white;">
+                                    <td style="padding: 10px;">
+                                        <img style="width: 30px; height: 30px; border: 1px solid white;" class="product-img"
+                                            src="{{ asset($item['image']) }}" alt="product">
+                                        <span style="margin-left: 10px;">{{ $item['name'] }}</span>
+                                    </td>
                                     <td>
-                                        <select name="size">
+                                        <select name="size"
+                                            style="background: black; color: white; border: 1px solid white; padding: 5px; border-radius: 5px;">
+                                            <option>-- Select --</option>
                                             <!-- Size options -->
                                         </select>
                                     </td>
                                     <td>
-                                        <div class="d-flex">
-                                            <i class="fa-solid fa-minus" data-id="{{ $item['id'] }}"></i>
-                                            <span id="quantity-{{ $item['id'] }}"
-                                                class="item-quantity">{{ $item['quantity'] }}</span>
-                                            <i class="fa-solid fa-plus" data-id="{{ $item['id'] }}"></i>
-                                        </div>
-                                    </td>
-                                    <td id="total-{{ $item['id'] }}" class="item-price" data-price="{{ $item['price'] }}">
-                                        KSH. {{ $item['quantity'] * $item['price'] }}
+                                        <select name="color"
+                                            style="background: black; color: white; border: 1px solid white; padding: 5px; border-radius: 5px;">
+                                            <!-- Color options -->
+                                            <option>-- Select --</option>
+                                        </select>
                                     </td>
                                     <td>
-                                        <a href=""><i class="fa-solid fa-trash text-dark"></i></a>
+                                        <div class="d-flex justify-content-center align-items-center" style="gap: 10px;">
+                                            <i class="fa-solid fa-minus" data-id="{{ $item['name'] }}"
+                                                style="cursor: pointer;"></i>
+                                            <span id="quantity-{{ $item['name'] }}"
+                                                class="item-quantity">{{ $item['quantity'] }}</span>
+                                            <i class="fa-solid fa-plus" data-id="{{ $item['name'] }}"
+                                                style="cursor: pointer;"></i>
+                                        </div>
+                                    </td>
+                                    <td id="total-{{ $item['name'] }}" class="item-price" data-price="{{ $item['price'] }}">
+                                        KSH. {{ number_format($item['quantity'] * $item['price'], 2, '.', ',') }}
+                                    </td>
+                                    <td>
+                                        <a href="" style="color: white;"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
 
-
-
                 <br><br><br><br>
                 <div class="subtotal">
-                    <p>Subtotal: &nbsp;<span>KSH. 2,600</span></p>
+                    <p>Subtotal: &nbsp;<span>KSH. {{}}</span></p>
                     <p>Shipping: &nbsp;<span>Free</span></p>
                 </div>
                 <br><br><br><br><br>
@@ -124,6 +139,47 @@
             border: 1px solid white;
             border-radius: 0px;
             padding: 5px 30px 5px 30px;
+        }
+
+        .cart-item {
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background-color: #333;
+            /* Darker background on hover */
+        }
+
+        select {
+            appearance: none;
+            /* Remove default dropdown arrow */
+            background: black;
+            color: white;
+            border: 1px solid white;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            /* Remove default outline */
+            border-color: #007bff;
+            /* Change border color on focus */
+        }
+
+        .fa-minus,
+        .fa-plus {
+            font-size: 20px;
+            /* Icon size */
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .fa-minus:hover,
+        .fa-plus:hover {
+            color: #007bff;
+            /* Change color on hover */
         }
     </style>
     <script>

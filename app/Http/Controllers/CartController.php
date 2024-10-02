@@ -11,24 +11,34 @@ class CartController extends Controller
     {
         $cart = session()->get('cart', []);
 
-        $product_id = $request->input('product_id');
-        $quantity = $request->input('quantity', 1);
+        $productId = $request->input('product_id');
+        $size = $request->input('size');
+        $color = $request->input('color');
 
-        if (isset($cart[$product_id])) {
-            $cart[$product_id]['quantity'] += $quantity;
+        // Check if the product is already in the cart
+        if (isset($cart[$productId])) {
+            // Update quantity or any other logic you want
+            $cart[$productId]['quantity'] += 1;
         } else {
-            $product = Merchandise::find($product_id);
-
-            $cart[$product_id] = [
+            $product = Merchandise::find($productId);
+            // Add product to cart
+            $cart[$productId] = [
                 'name' => $product->name,
+                "id" => $product->id,
                 'price' => $product->price,
-                'quantity' => $quantity,
-                'image' => $product->image,
+                'quantity' => 1,
+                'size' => $size,
+                'color' => $color,
+                "sizes" => $product->sizes,
+                "colors" => $product->colors,
+                'image' => $product->image
             ];
         }
 
+        // Save updated cart to session
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart!');
+
+        return response()->json(['success' => true, 'message' => 'Product added to cart']);
     }
 
     public function viewCart()
