@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductOrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\AudioController;
+use App\Http\Controllers\CartController;
 
 // redirect to '/' if not logged in
 Auth::routes(
@@ -40,6 +41,18 @@ Route::group([
     Route::get('/', [ShopController::class, 'index'])->name('shop.shop');
     Route::get('/merchandise', [ShopController::class, 'merchandise'])->name('shop.merchandise');
 });
+Route::group(
+    [
+        'prefix' => 'cart'
+    ],
+    function () {
+        Route::get('/', [CartController::class, 'viewCart'])->name('cart.view');
+        Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+        Route::get('/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+        Route::post('/increment', [CartController::class, 'incrementQuantity'])->name('cart.increment');
+        Route::post('/decrement', [CartController::class, 'decrementQuantity'])->name('cart.decrement');
+    }
+);
 
 Route::get('/audio/{filename}', [AudioController::class, 'streamAudio'])->name('audio.stream');
 

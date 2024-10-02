@@ -2406,14 +2406,42 @@ section.more-info::before {
     color: #fff;
     font-family: "Arian LT Demi", sans-serif;
 }
+/*-------------book-table----------------*/
+section.book-table {
+    padding: 100px 50px;
+    background-color: #000;
+    min-height: 500px;
+}
+.book-table h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 100px;
+}
+.book-table h4 {
+    text-align: center;
+    color: #fff;
+}
+.lower-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+}
+.lw-center {
+    text-align: center;
+}
+.lw-right span {
+    float: right;
+}
+
 /*-------------vip-giftcard----------------*/
-section.vip-giftcard {
+/* section.vip-giftcard{
     padding: 100px 30px;
-    background-image: url("images/4.jpg");
+    background-image: url('images/4.jpg');
     background-size: cover;
     background-position: center;
 }
-.giftcard-wrapper {
+.giftcard-wrapper{
     background-color: #000;
     min-height: 500px;
     display: flex;
@@ -2421,29 +2449,29 @@ section.vip-giftcard {
     justify-content: center;
     align-items: center;
 }
-.giftcard {
+.giftcard{
     padding: 50px 200px;
     color: #fff;
     border: 1px solid #999;
     border-top: none;
     text-align: center;
 }
-.giftcard h2 {
+.giftcard h2{
     font-size: 100px;
 }
-.giftcard h4 {
+.giftcard h4{
     font-size: 50px;
 }
 
-.giftcard-wrapper .button {
+.giftcard-wrapper .button{
     margin-top: 50px;
     margin-bottom: 30px;
 }
-.giftcard-wrapper span {
+.giftcard-wrapper span{
     color: #999;
     font-size: 20px;
     text-align: center;
-}
+} */
 
 /*-------------music-player2----------------*/
 section.music-player2.tickets {
@@ -3027,5 +3055,130 @@ section.related-news {
     } */
     section.related-news {
         padding: 50px 20px;
+    }
+}
+
+/* 
+---------------------------------------------
+CHECKOUT PAGE
+-------------------------------------- ------- 
+*/
+section.checkout {
+    min-height: 900px;
+}
+.checkout-wrapper {
+    padding: 20px;
+    padding-top: 200px;
+}
+.check-left {
+    padding: 20px 50px;
+    /* padding-top: 50px; */
+}
+
+.table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    /* Adds momentum scrolling for iOS devices */
+}
+
+.table {
+    width: 100% !important;
+    min-width: 600px !important;
+}
+.table thead tr th {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+.check-right {
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 5px;
+    height: 500px;
+}
+.check-right label {
+    font-family: "Mundial Light", sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.check-right img {
+    width: 100px;
+    height: 50px;
+    margin-top: -10px;
+}
+.check-right .form-outline input {
+    height: 50px;
+    background-color: #fff;
+    border-radius: 0 !important;
+    border: none;
+    /* border: 1px solid #999 !important; */
+}
+.check-right .form-outline input::placeholder {
+    font-family: "Mundial Light", sans-serif;
+    font-size: 14px;
+    color: #999 !important;
+}
+.form-outline select,
+option {
+    color: #000 !important;
+    font-size: 14px;
+}
+.mpesa-check {
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+.check-right a {
+    padding: 10px 25px;
+    background-color: #000;
+    color: #fff;
+    transition: 1s ease;
+}
+.check-right a:hover {
+    padding: 10px 25px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    letter-spacing: 2px;
+}
+.product-img {
+    width: 200px;
+    height: 100px;
+}
+.subtotal {
+    float: right;
+}
+
+.check-left tbody tr td div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.check-left tbody tr td div i {
+    cursor: pointer;
+}
+
+.tt-left a {
+    text-decoration: none;
+    color: #000;
+    transition: 1s ease;
+}
+.tt-left a:hover {
+    letter-spacing: 2px;
+}
+.tt-right p {
+    float: right;
+}
+
+/*  CHECKOUT MEDIA QUERY*/
+@media screen and (max-width: 500px) {
+    .check-right {
+        margin: 0 20px;
+    }
+
+    .total-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .tt-right p {
+        padding-bottom: 30px !important;
     }
 }
