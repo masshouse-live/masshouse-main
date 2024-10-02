@@ -9,7 +9,7 @@
 
                     <div class="w-full border-t px-2"></div>
                     <a href="{{ route('admin.index') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" view-box="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -20,7 +20,7 @@
                         <span>Dashboard</span>
                     </a>
                     <a href="{{ route('admin.users_list') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -31,7 +31,7 @@
                         <span>Users</span>
                     </a>
                     <a href="{{ route('admin.newsletter_list') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -43,7 +43,7 @@
                         <span>Newsletter List</span>
                     </a>
                     <a href="{{ route('admin.events_list') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -54,7 +54,7 @@
                         <span>Events</span>
                     </a>
                     <a href="{{ route('admin.team_list') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -65,7 +65,7 @@
                         <span>Team Mambers</span>
                     </a>
                     <a href="{{ route('admin.professionals_list') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -76,7 +76,7 @@
                         <span>Professionals</span>
                     </a>
                     <a href="{{ route('admin.playlist') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -87,7 +87,7 @@
                         <span>Playlist & Media</span>
                     </a>
                     <a href="{{ route('admin.sponsors') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -99,7 +99,7 @@
                         <span>Sponsors</span>
                     </a>
                     <a href="{{ route('admin.news') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -110,7 +110,7 @@
                         <span>News & Blogs</span>
                     </a>
                     <a href="{{ route('admin.tables') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -122,7 +122,7 @@
                     <div>
                         <li class="list-none">
                             <a href="#"
-                                class="menu flex pl-1 2xl:px-3 py-2 space-x-1 2xl:space-x-1  items-center hover:text-accent not-active">
+                                class="menu flex pl-1 2xl:px-2 py-2 space-x-1 2xl:space-x-1  items-center hover:text-accent not-active">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -141,18 +141,18 @@
 
                             <ul class="pl-8">
                                 <li><a href="{{ route('admin.merchandise_categories') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Merch Categories</span>
                                     </a></li>
                                 <li><a href="{{ route('admin.merchandise') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Merchandise</span>
                                     </a></li>
 
                                 <li><a href="{{ route('admin.merch_orders') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Merch Orders</span>
                                     </a></li>
@@ -160,7 +160,7 @@
                         </li>
                     </div>
                     <a href="{{ route('admin.contact') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -172,7 +172,7 @@
                         <span>Contact & Support</span>
                     </a>
                     <a href="{{ route('admin.settings') }}"
-                        class="flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                        class="flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -185,7 +185,7 @@
                     <div>
                         <li class="list-none">
                             <a href="#"
-                                class="menu flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent not-active">
+                                class="menu flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent not-active">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -205,22 +205,22 @@
 
                             <ul class="pl-8">
                                 <li><a href="{{ route('admin.privacy-policy') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Privacy Policy</span>
                                     </a></li>
                                 <li><a href="{{ route('admin.terms-and-conditions') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Terms & Conditions</span>
                                     </a></li>
                                 <li><a href="{{ route('admin.delivery-policy') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Delivery Policy</span>
                                     </a></li>
                                 <li><a href="{{ route('admin.return-policy') }}"
-                                        class=" flex px-1 2xl:px-3 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 
                                         <span>Return Policy</span>
                                     </a></li>
@@ -230,7 +230,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button
-                            class="border-transparent border-l-8 hover:text-accent flex 2xl:px-3 py-2 space-x-2
+                            class="border-transparent border-l-8 hover:text-accent flex 2xl:px-2 py-2 space-x-2
                         items-center">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" view-box="0 0 24 24"

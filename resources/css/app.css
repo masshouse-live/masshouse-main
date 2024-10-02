@@ -9,63 +9,63 @@
 /*Helios */
 @font-face {
     font-family: "Helios";
-    src: url("fonts/Helios\ Regular.otf") format("opentype");
+    src: url("/fonts/Helios\ Regular.otf") format("opentype");
 }
 
 /*Arian LT */
 @font-face {
     font-family: "Arian LT Bold";
-    src: url("fonts/Arian\ LT\ Bold.ttf") format("truetype");
+    src: url("/fonts/Arian\ LT\ Bold.ttf") format("truetype");
 }
 @font-face {
     font-family: "Arian LT Demi";
-    src: url("fonts/Arian\ LT\ Demi.ttf") format("truetype");
+    src: url("/fonts/Arian\ LT\ Demi.ttf") format("truetype");
 }
 @font-face {
     font-family: "Arian LT Heavy";
-    src: url("fonts/Arian\ LT\ Heavy.ttf") format("truetype");
+    src: url("/fonts/Arian\ LT\ Heavy.ttf") format("truetype");
 }
 @font-face {
     font-family: "Arian LT Light";
-    src: url("fonts/Arian\ LT\ Light.ttf") format("truetype");
+    src: url("/fonts/Arian\ LT\ Light.ttf") format("truetype");
 }
 
 /*Gadugi */
 @font-face {
     font-family: "Gadugi Bold";
-    src: url("fonts/gadugib.ttf") format("truetype");
+    src: url("/fonts/gadugib.ttf") format("truetype");
 }
 @font-face {
     font-family: "Gadugi Regular";
-    src: url("fonts/gadugi.ttf") format("truetype");
+    src: url("/fonts/gadugi.ttf") format("truetype");
 }
 
 /*Myriad Pro */
 @font-face {
     font-family: "Myriad Pro";
-    src: url("fonts/Myriad\ Pro\ Regular.ttf") format("truetype");
+    src: url("/fonts/Myriad\ Pro\ Regular.ttf") format("truetype");
 }
 
 /*Mundial */
 @font-face {
     font-family: "Mundial Bold";
-    src: url("fonts/MundialBold.otf") format("opentype");
+    src: url("/fonts/MundialBold.otf") format("opentype");
 }
 @font-face {
     font-family: "Mundial Regular";
-    src: url("fonts/MundialRegular.otf") format("opentype");
+    src: url("/fonts/MundialRegular.otf") format("opentype");
 }
 @font-face {
     font-family: "Mundial Hair";
-    src: url("fonts/MundialHair.otf") format("opentype");
+    src: url("/fonts/MundialHair.otf") format("opentype");
 }
 @font-face {
     font-family: "Mundial Light";
-    src: url("fonts/MundialLight.otf") format("opentype");
+    src: url("/fonts/MundialLight.otf") format("opentype");
 }
 @font-face {
     font-family: "Mundial Thin";
-    src: url("fonts/MundialThin.otf") format("opentype");
+    src: url("/fonts/MundialThin.otf") format("opentype");
 }
 
 * {
