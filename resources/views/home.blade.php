@@ -24,8 +24,8 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <!-- <div class="lp-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -50,7 +50,7 @@
         use Carbon\Carbon;
 
         $today = Carbon::today();
-        $event_date = Carbon::parse($coming_event->date_time);
+        $event_date = Carbon::parse($coming_event->date_time ?? Carbon::now());
         $diffInDays = $event_date->diffInDays($today);
         $diffInWeeks = ceil($diffInDays / 7); // Get the number of weeks
         $dayOfWeek = $event_date->format('l'); // Get the day of the week e.g. 'Friday'
@@ -93,21 +93,21 @@
 
     <section class="next-event">
         <h5>{{ $heading }}</h5>
-        <h4>{{ $coming_event->date_time->format('d M') }}</h4>
+        <h4>{{ $coming_event->date_time->format('d M') ?? '' }}</h4>
 
         <div class="words">
             <div class="words-slide">
-                <p>{{ $coming_event->title }}</p>
+                <p>{{ $coming_event->title ?? '' }}</p>
             </div>
             <div class="words-slide">
-                <p>{{ $coming_event->title }}</p>
+                <p>{{ $coming_event->title ?? '' }}</p>
             </div>
             <div class="words-slide">
-                <p>{{ $coming_event->title }}</p>
+                <p>{{ $coming_event->title ?? '' }}</p>
             </div>
         </div>
 
-        <h2>{{ $coming_event->subtitle }}</h2>
+        <h2>{{ $coming_event->subtitle ?? '' }}</h2>
     </section>
 
 
