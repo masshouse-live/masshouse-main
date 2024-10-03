@@ -33,7 +33,6 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
 Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
 Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
-Route::post('/create-order', [ProductOrderController::class, 'create_order'])->name('create_order');
 Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_placed'])->name('orders_placed');
 Route::group([
     'prefix' => 'shop'
@@ -47,10 +46,13 @@ Route::group(
     ],
     function () {
         Route::get('/', [CartController::class, 'viewCart'])->name('cart.checkout');
+        Route::post('/place-order', [CartController::class, 'create_order'])->name('cart.create_order');
         Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
         Route::get('/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
         Route::post('/increment', [CartController::class, 'incrementQuantity'])->name('cart.increment');
         Route::post('/decrement', [CartController::class, 'decrementQuantity'])->name('cart.decrement');
+        Route::post('/color-change', [CartController::class, 'changeColor'])->name('cart.color-change');
+        Route::post('/size-change', [CartController::class, 'changeSize'])->name('cart.size-change');
     }
 );
 

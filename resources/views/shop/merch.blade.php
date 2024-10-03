@@ -9,14 +9,24 @@
         $category = Request::get('category');
         $category = implode(' ', explode('-', $category));
     @endphp
-
+    <section class="shop-now">
+        <div class="row shn-wrapper">
+            <div class="shn-left col-lg-8 col-md-6 col-sm-12">
+                <p style="text-transform:uppercase">HOME / SHOP / MERCHANDISE / {{ $category }}</p>
+                <span>{{ $merchandise->total() }} Result{{ $merchandise->total() == 1 ? '' : 's' }}</span>
+            </div>
+            <div class="shn-right col-lg-4 col-md-6 col-sm-12">
+                <div class="d-flex justify-content-between">
+                    <span></span>
+                    <a style="color:white" href="{{ route('cart.checkout') }}">CHECK OUT</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--merchandise section-->
     <section class="merchandise">
-        <p style="text-transform:uppercase">HOME / SHOP / MERCHANDISE / {{ $category }}</p>
-        <span>{{ $merchandise->total() }} Result{{ $merchandise->total() == 1 ? '' : 's' }}</span>
-        <br>
-        <br>
+
         <div class="row merchandise-wrapper">
             @foreach ($merchandise as $merch)
                 <div class="popup" id="popup-{{ $merch->id }}">

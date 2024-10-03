@@ -580,8 +580,8 @@ $(document).ready(function () {
     const orderData = $("#orders-data-container").data("orders");
 
     // Extract data for the chart
-    const orders_labels = orderData.map((d) => d.date); // X-axis labels (dates)
-    const totalOrders = orderData.map((d) => d.total_orders); // Y-axis data (total_orders)
+    let orders_labels = orderData.map((d) => d.date); // X-axis labels (dates)
+    let totalOrders = orderData.map((d) => d.total_orders); // Y-axis data (total_orders)
 
     // Replace with zero for dates with no data
     const minOrderDate = moment(d3.min(orderData, (d) => d.date));
@@ -589,7 +589,6 @@ $(document).ready(function () {
 
     const orderdate = minOrderDate.clone(); // Clone the minDate to avoid mutating it
     const existingOrderDates = new Set(orders_labels); // Create a Set for fast look-up
-    console.log(existingOrderDates);
 
     while (orderdate.isSameOrBefore(maxOrderDate)) {
         const formattedDate = orderdate.format("YYYY-MM-DD"); // Format the date only once
@@ -599,6 +598,19 @@ $(document).ready(function () {
         }
         orderdate.add(1, "day");
     }
+
+    // Combine orders_labels and totalOrders into an array of objects
+    let combinedData = orders_labels.map((label, index) => ({
+        date: label,
+        totalOrders: totalOrders[index],
+    }));
+
+    // Sort combined data by date
+    combinedData.sort((a, b) => moment(a.date).diff(moment(b.date)));
+
+    // Split them back into orders_labels and totalOrders
+    orders_labels = combinedData.map((d) => d.date);
+    totalOrders = combinedData.map((d) => d.totalOrders);
 
     // Create the chart
     const ctx_orders = document.getElementById("orders-chart").getContext("2d");
