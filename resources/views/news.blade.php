@@ -38,7 +38,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                                    class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                                                                class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                                             d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                     </svg>
                                     <!-- <i style="margin-left: 30px;"
-                                                                                                                                                                                                                                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                                        class="text-dark fa-solid fa-up-right-from-square"></i> -->
                                 </a>
                             </div>
                         </div>
@@ -243,7 +243,7 @@
             <div class="music-box2 text-center">
                 <div class=" mpr-wrapper d-flex">
                     <div class="mpr-left col-lg-10 col-md-6 col-sm-12">
-                        <h3 class="text-center">LISTEN TO THE BEAT OF THE MONTH</h3>
+                        <h3 class="text-center">LISTEN {{ $playlist->title }}</h3>
                         <br><br>
                         <div id="progress-indicator"
                             style="background-color: #777; width: 100%; height: 4px; position:relative">
@@ -270,17 +270,24 @@
 
                         </ul>
                         <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item mx-3">SPOTIFY</li>
-                            <li class="list-inline-item mx-3">SOUNDCLOUD</li>
-                            <li class="list-inline-item mx-3">YOUTUBE</li>
-                            <li class="list-inline-item mx-3">APPLEMUSIC</li>
+                            <li class="list-inline-item mx-3">
+                                <a href="{{ $playlist->spotify_link }}">SPOTIFY</a>
+                            </li>
+                            <li class="list-inline-item mx-3">
+                                <a href="{{ $playlist->souncloud_link }}">SOUNDCLOUD</a>
+                            </li>
+                            <li class="list-inline-item mx-3">
+                                <a href="{{ $playlist->youtube_link }}">YOUTUBE</a>
+                            </li>
+                            <li class="list-inline-item mx-3">
+                                <a href="{{ $playlist->applemusic_link }}">APPLE MUSIC</a>
+                            </li>
 
                         </ul>
                     </div>
 
                     <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
-                        <audio id="music-player"
-                            src="https://upcdn.io/FW25c2f/raw/uploads/2024/05/25/4kbAqbHE12-Are%20Sinners%20Raptured%20First.%20mp3.mp3"></audio>
+                        <audio id="music-player" src="{{ asset($playlist->audio) }}" type="audio/mpeg"></audio>
 
                         <div class="music-icons">
 

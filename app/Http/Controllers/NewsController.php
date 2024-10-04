@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sponsor;
 use App\Models\News;
 use App\Models\Event;
+use App\Models\Playlist;
 
 use Illuminate\Http\Request;
 
@@ -31,10 +32,11 @@ class NewsController extends Controller
         $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->take(4)->get();
         // latest 10 top 3
         $latestNews = News::latest()->take(10)->get();
+        $playlist = Playlist::orderBy('created_at', 'desc')->first();
 
         $trending = $latestNews->sortByDesc('views')->take(3);
         $blogs = News::where('category', 'blog')->orderBy('created_at', 'desc')->take(3)->get();
-        return view('news', compact('news', "trending", "blogs", "sponsors", "events"));
+        return view('news', compact('news',"playlist", "trending", "blogs", "sponsors", "events"));
     }
 
     public function news_detail(Request $request)
