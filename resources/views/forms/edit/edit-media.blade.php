@@ -25,7 +25,29 @@
                         <input type="text" name="title" id="title" value=""
                             class="edit-input border-2 border-accent/20  bg-primary rounded " placeholder="Title" />
                     </div>
+                    <div class="flex flex-col space-y-1 px-4">
+                        <label class="font-bold" for="artist">
+                            Artist
+                        </label>
+                        <input type="text" name="artist" id="artist" value=""
+                            class="edit-input border-2 border-accent/20  bg-primary rounded " placeholder="Artist" />
+                    </div>
+                    <div class="flex flex-col space-y-1 px-4">
+                        <label class="font-bold" for="event">
+                            Event
+                        </label>
+                        <input type="text" name="event" id="event" value=""
+                            class="edit-input border-2 border-accent/20  bg-primary rounded " placeholder="event" />
+                    </div>
+                    <div class="flex flex-col space-y-1 px-4">
+                        <label class="font-bold" for="audio">
+                            Audio Track
+                        </label>
+                        <input type="file" name="audio" accept="audio/*" id="audio" value=""
+                            class="edit-input border-2 border-accent/20  bg-primary rounded " placeholder="audio" />
+                        <small id="file_audio" class="text-accent"></small>
 
+                    </div>
                     <div class="flex flex-col space-y-2 px-4">
                         <label class="font-bold" for="image">
                             Cover Image

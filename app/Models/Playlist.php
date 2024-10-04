@@ -16,5 +16,8 @@ class Playlist extends Model
         "souncloud_link",
         "applemusic_link",
         "image",
+        "audio",
+        "artist",
+        "event"
     ];
 }

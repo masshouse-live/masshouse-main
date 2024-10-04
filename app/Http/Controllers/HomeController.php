@@ -39,7 +39,7 @@ class HomeController extends Controller
         $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->get();
         $sponsors = Sponsor::all();
         $coming_event = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->first();
-        $playlist = Playlist::orderBy('created_at', 'desc')->take(6)->get();
+        $playlist = Playlist::orderBy('created_at', 'desc')->first();
         $merchandise_categories = ProductCategory::query();
         $merchandise_categories = $merchandise_categories->orderBy('id', 'desc')->paginate(10);
         return view('home', compact("events", "coming_event", "sponsors", "playlist", "merchandise_categories"));

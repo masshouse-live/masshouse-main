@@ -2,20 +2,40 @@
 
 @section('form')
     <div class="h-full w-full mx-auto bg-primary max-w-screen-lg border-2 overflow-auto border-accent/20 rounded shadow">
-        <form action="{{ route('admin.add_media') }}" method="POST" enctype="multipart/form-data">
+        <form class="gap-2 flex flex-col" action="{{ route('admin.add_media') }}" method="POST" enctype="multipart/form-data">
             <div class="flex justify-center items-center py-4">
                 <h2 class="text-2xl font-bold">Add Media</h2>
             </div>
             @csrf
-            <div class="flex flex-col space-y-2 px-4">
+            <div class="flex flex-col space-y-1 px-4">
                 <label class="font-bold" for="title">
                     Title
                 </label>
                 <input type="text" name="title" id="title" value=""
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Title" />
             </div>
-
-            <div class="flex flex-col space-y-2 px-4">
+            <div class="flex flex-col space-y-1 px-4">
+                <label class="font-bold" for="artist">
+                    Artist
+                </label>
+                <input type="text" name="artist" id="artist" value=""
+                    class="border-2 border-accent/20  bg-primary rounded " placeholder="Artist" />
+            </div>
+            <div class="flex flex-col space-y-1 px-4">
+                <label class="font-bold" for="event">
+                    Event
+                </label>
+                <input type="text" name="event" id="event" value=""
+                    class="border-2 border-accent/20  bg-primary rounded " placeholder="event" />
+            </div>
+            <div class="flex flex-col space-y-1 px-4">
+                <label class="font-bold" for="audio">
+                    Audio Track
+                </label>
+                <input type="file" name="audio" accept="audio/*" id="audio" value=""
+                    class="border-2 border-accent/20  bg-primary rounded " placeholder="audio" />
+            </div>
+            <div class="flex flex-col space-y-1 px-4">
                 <label class="font-bold" for="image">
                     Cover Image
                 </label>
@@ -23,7 +43,7 @@
                     class="border-2 border-accent/20  bg-primary rounded " placeholder="Image" />
             </div>
 
-            <div class="flex flex-col space-y-2 px-4">
+            <div class="flex flex-col space-y-1 px-4">
                 <label class="font-bold" for="spotify_link">
                     Spotify Link
                 </label>
@@ -32,7 +52,7 @@
 
             </div>
 
-            <div class="flex flex-col space-y-2 px-4">
+            <div class="flex flex-col space-y-1 px-4">
                 <label class="font-bold" for="youtube_link">
                     Youtube Link
                 </label>
@@ -41,7 +61,7 @@
 
             </div>
 
-            <div class="flex flex-col space-y-2 px-4">
+            <div class="flex flex-col space-y-1 px-4">
                 <label class="font-bold" for="souncloud_link">
                     Souncloud Link
                 </label>
@@ -50,7 +70,7 @@
 
             </div>
 
-            <div class="flex flex-col space-y-2 px-4">
+            <div class="flex flex-col space-y-1 px-4">
                 <label class="font-bold" for="applemusic_link">
                     Apple Music Link
                 </label>

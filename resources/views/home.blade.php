@@ -24,8 +24,8 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <!-- <div class="lp-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -158,5 +158,5 @@
     </section>
 
     <!--music-player section-->
-    @include('partials.music-player')
+    @include('partials.music-player', ['playlist' => $playlist])
 @endsection

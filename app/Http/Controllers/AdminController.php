@@ -602,6 +602,9 @@ class AdminController extends Controller
         try {
             $request->validate([
                 'title' => 'required',
+                'artist' => 'required',
+                'event' => 'required',
+                'audio' => 'required|mimes:mp3',
                 'image' => 'required',
                 "spotify_link" => "required",
                 "youtube_link" => "required",
@@ -611,7 +614,7 @@ class AdminController extends Controller
 
 
             $image = $this->upload_image($request->file('image'), 'upload/playlist', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
-
+            $audio = $this->upload_image($request->file('audio'), 'upload/audios', str_replace(' ', '', $request->file('audio')->getClientOriginalName()));
 
             $playlist = new Playlist();
 
@@ -622,6 +625,9 @@ class AdminController extends Controller
             $playlist->youtube_link = $request->youtube_link;
             $playlist->souncloud_link = $request->souncloud_link;
             $playlist->applemusic_link = $request->applemusic_link;
+            $playlist->artist = $request->artist;
+            $playlist->event = $request->event;
+            $playlist->audio = $audio;
 
 
             $playlist->save();
@@ -637,6 +643,8 @@ class AdminController extends Controller
 
         $request->validate([
             'title' => 'required',
+            'artist' => 'required',
+            'event' => 'required',
             "spotify_link" => "required",
             "youtube_link" => "required",
             "souncloud_link" => "required",
@@ -645,11 +653,16 @@ class AdminController extends Controller
 
 
         $playlist = Playlist::find($request->id);
-        $image = $playlist->image;
 
 
         if ($request->hasFile('image')) {
             $image = $this->upload_image($request->file('image'), 'upload/playlist', str_replace(' ', '', $request->file('image')->getClientOriginalName()));
+            $playlist->image = $image;
+        }
+
+        if ($request->hasFile('audio')) {
+            $audio = $this->upload_image($request->file('audio'), 'upload/audios', str_replace(' ', '', $request->file('audio')->getClientOriginalName()));
+            $playlist->audio = $audio;
         }
 
 

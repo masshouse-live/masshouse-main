@@ -34,6 +34,7 @@ Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
 Route::get('/table-available-times/{id}', [TableReservationController::class, 'available_times'])->name('available_times');
 Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
 Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_placed'])->name('orders_placed');
+Route::get('/audio/{filename}', [AudioController::class, 'streamAudio'])->name('audio.stream');
 Route::group([
     'prefix' => 'shop'
 ], function () {
@@ -56,7 +57,6 @@ Route::group(
     }
 );
 
-Route::get('/audio/{filename}', [AudioController::class, 'streamAudio'])->name('audio.stream');
 
 
 // group admin

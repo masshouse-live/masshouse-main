@@ -17,23 +17,31 @@
             </p>
 
             <ul class="list-unstyled list-inline">
-                <li class="list-inline-item mx-3">SPOTIFY</li>
-                <li class="list-inline-item mx-3">SOUNDCLOUD</li>
-                <li class="list-inline-item mx-3">YOUTUBE</li>
-                <li class="list-inline-item mx-3">APPLEMUSIC</li>
+                <li class="list-inline-item mx-3">
+                    <a href="{{ $playlist->spotify_link }}">SPOTIFY</a>
+                </li>
+                <li class="list-inline-item mx-3">
+                    <a href="{{ $playlist->souncloud_link }}">SOUNDCLOUD</a>
+                </li>
+                <li class="list-inline-item mx-3">
+                    <a href="{{ $playlist->youtube_link }}">YOUTUBE</a>
+                </li>
+                <li class="list-inline-item mx-3">
+                    <a href="{{ $playlist->applemusic_link }}">APPLE MUSIC</a>
+                </li>
             </ul>
         </div>
         <div class="mp-right two col-lg-6 col-md-6 col-sm-12">
             <div class="music-box text-center">
                 <div class="mpr-wrapper d-flex">
                     <div class="mpr-left col-lg-10 col-md-6 col-sm-12">
-                        <img src="{{ asset('images/johnie walker.png') }}" alt="image" />
+                        <img src="{{ asset($playlist->image) }}" alt="image" />
                         <p>
-                            JOHNIE WALKER <br />
-                            THROW BACK THURSDAYS
+                            {{ $playlist->title }} <br />
+                            {{ $playlist->event }}
                         </p>
                         <!-- <br> -->
-                        <h2>DJ KNEE-BREAKER</h2>
+                        <h2>{{ $playlist->artist }}</h2>
                         <span>LIVE AT THE MASSHOUSE LIVE</span>
                         <br /><br />
                         <div id="progress-indicator"
@@ -61,7 +69,7 @@
                     </div>
                     <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
                         <audio id="music-player">
-                            <source src="{{ route('audio.stream', 'test.mp3') }}" type="audio/mpeg">
+                            <source src="{{ asset($playlist->audio) }}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                         <div class="music-icons">
