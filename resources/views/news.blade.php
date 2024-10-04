@@ -38,7 +38,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                                                                    class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                                        class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                                                                    class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                                        class="text-dark fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>
@@ -134,73 +134,77 @@
                 <h3>TRENDING NOW</h3>
             </div>
             <br>
-            <div class="row trend-wrapper">
-                <div class="trend-left col-lg-5 col-md-6 col-sm-12">
-                    <img src="{{ asset($trending[0]->image) }}" alt="image">
+            @if (count($trending) > 0)
+                <div class="row trend-wrapper">
+                    <div class="trend-left col-lg-5 col-md-6 col-sm-12">
+                        <img src="{{ asset($trending[0]->image) }}" alt="image">
 
-                    <h3>
-                        {{ $trending[0]->title }}
-                    </h3>
-                    <p>
-                        {{ $trending[0]->short_description }}
-                    </p>
-                </div>
-                <div class="trend-right col-lg-7 col-md-6 col-sm-12">
-                    <div class="row tr-wrapper one">
-                        <div class="tr-left col-lg-6 col-md-6 col-sm-12">
-                            <h5>
-                                {{ $trending[1]->title }}
-                            </h5>
-                            <p>
-                                {{ $trending[1]->short_description }}
-                            </p>
-                            <div class="button">
-                                <a href="{{ route('news_detail', $trending[1]->slug) }}" class="button1"
-                                    style="padding: 5px 10px;">READ MORE &nbsp;
-                                    <svg style="margin-left: 30px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                    <!-- <i style="margin-left: 30px;"
-                                                                                                                                                                                                                                                                        class="text-dark fa-solid fa-up-right-from-square"></i> -->
-                                </a>
+                        <h3>
+                            {{ $trending[0]->title }}
+                        </h3>
+                        <p>
+                            {{ $trending[0]->short_description }}
+                        </p>
+                    </div>
+                    <div class="trend-right col-lg-7 col-md-6 col-sm-12">
+                        <div class="row tr-wrapper one">
+                            <div class="tr-left col-lg-6 col-md-6 col-sm-12">
+                                <h5>
+                                    {{ $trending[1]->title }}
+                                </h5>
+                                <p>
+                                    {{ $trending[1]->short_description }}
+                                </p>
+                                <div class="button">
+                                    <a href="{{ route('news_detail', $trending[1]->slug) }}" class="button1"
+                                        style="padding: 5px 10px;">READ MORE &nbsp;
+                                        <svg style="margin-left: 30px; margin-bottom: 5px;"
+                                            xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                            viewBox="0 0 256 256">
+                                            <path fill="currentColor"
+                                                d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                        </svg>
+                                        <!-- <i style="margin-left: 30px;"
+                                                                                                                                                                                                                                                                            class="text-dark fa-solid fa-up-right-from-square"></i> -->
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tr-right col-lg-6 col-md-6 col-sm-12">
+                                <img src="{{ asset($trending[1]->image) }}" alt="image">
                             </div>
                         </div>
-                        <div class="tr-right col-lg-6 col-md-6 col-sm-12">
-                            <img src="{{ asset($trending[1]->image) }}" alt="image">
-                        </div>
-                    </div>
 
-                    <div class="row tr-wrapper">
-                        <div class="tr-left col-lg-6 col-md-6 col-sm-12">
-                            <br>
-                            <h5>
-                                {{ $trending[2]->title }}
-                            </h5>
-                            <p>
-                                {{ $trending[2]->short_description }}
-                            </p>
-                            <div class="button">
-                                <a href="{{ route('news_detail', $trending[2]->slug) }}" class="button1"
-                                    style="padding: 5px 10px;">READ MORE &nbsp;
-                                    <svg style="margin-left: 30px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg"
-                                        width="1.5em" height="1.5em" viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
-                                    </svg>
-                                </a>
+                        <div class="row tr-wrapper">
+                            <div class="tr-left col-lg-6 col-md-6 col-sm-12">
+                                <br>
+                                <h5>
+                                    {{ $trending[2]->title }}
+                                </h5>
+                                <p>
+                                    {{ $trending[2]->short_description }}
+                                </p>
+                                <div class="button">
+                                    <a href="{{ route('news_detail', $trending[2]->slug) }}" class="button1"
+                                        style="padding: 5px 10px;">READ MORE &nbsp;
+                                        <svg style="margin-left: 30px; margin-bottom: 5px;"
+                                            xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                            viewBox="0 0 256 256">
+                                            <path fill="currentColor"
+                                                d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tr-right col-lg-6 col-md-6 col-sm-12">
+                                <br>
+                                <img src="{{ asset($trending[2]->image) }}" alt="image">
                             </div>
                         </div>
-                        <div class="tr-right col-lg-6 col-md-6 col-sm-12">
-                            <br>
-                            <img src="{{ asset($trending[2]->image) }}" alt="image">
-                        </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
+            @endif
         </section>
 
         <!--partners-n-sponsors section-->
