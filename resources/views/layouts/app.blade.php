@@ -62,14 +62,18 @@
 </head>
 
 <body class="dark">
+    @php
+        // fetch site settings
+        $settings = App\Models\SiteSttings::first();
+    @endphp
     <!--transparent navbar-->
     <nav class="navbar sticky home main" id="transparentNavbar">
         <div class="nav-wrapper">
             <div class="nav1">
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/news">Media</a></li>
-                    <li><a href="/news">Whats Up!</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('news') }}">Media</a></li>
+                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -80,9 +84,9 @@
             <div class="nav2">
                 <ul>
                     <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-                    <li><a href="/tickets">Tickets</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="/contact" class="nav-button">Contact Us</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('contact') }}" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
             <a class="burger-nav"></a>
@@ -97,9 +101,9 @@
 
             <div class="nav1">
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/news">Media</a></li>
-                    <li><a href="/news">Whats Up!</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('news') }}">Media</a></li>
+                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -109,9 +113,9 @@
             </div>
             <div class="nav2">
                 <ul>
-                    <li><a href="/tickets">Tickets</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="/contact" class="nav-button">Contact Us</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('contact') }}" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -130,12 +134,12 @@
 
             <div class="nav-list">
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/news">Media</a></li>
-                    <li><a href="/news">Whats Up!</a></li>
-                    <li><a href="/tickets">Tickets</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('news') }}">Media</a></li>
+                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
             </div>
@@ -152,12 +156,12 @@
 
             <div class="nav-list">
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/news">Media</a></li>
-                    <li><a href="/news">Whats Up!</a></li>
-                    <li><a href="/tickets">Tickets</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('news') }}">Media</a></li>
+                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
             </div>
@@ -219,23 +223,28 @@
 
                     <ul>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;MHL</a>
                         </li>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('tickets') }}" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;Ticketing</a>
                         </li>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;About Us</a>
                         </li>
                         <li>
-                            <a href="/news" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('news') }}" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;News & Blogs</a>
                         </li>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;All about MHL</a>
                         </li>
                     </ul>
@@ -252,19 +261,23 @@
 
                     <ul>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}#venues" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;Nairobi</a>
                         </li>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}#venues" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;Kisumu</a>
                         </li>
                         <li>
-                            <a href="/about" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}#venues" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;Naivasha</a>
                         </li>
                         <li>
-                            <a href="/news" class="footer-link text-white" style="text-decoration: none">
+                            <a href="{{ route('about') }}#venues" class="footer-link text-white"
+                                style="text-decoration: none">
                                 >&nbsp;Mombasa</a>
                         </li>
                     </ul>
@@ -280,31 +293,31 @@
                 " />
                     <ul>
                         <li>
-                            <a href="https://www.facebook.com/MASSHOUSEUK/" target="_blank"><i
+                            <a href="{{ $settings->facebook }}" target="_blank"><i
                                     class="fa-brands fa-facebook-f"></i></a>
                         </li>
                         <li>
-                            <a href="https://x.com/masshouse_ke" target="_blank"><i
+                            <a href="{{ $settings->twitter }}" target="_blank"><i
                                     class="fa-brands fa-x-twitter"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/masshouse_live/" target="_blank"><i
+                            <a href="{{ $settings->instagram }}" target="_blank"><i
                                     class="fa-brands fa-instagram"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.tiktok.com/masshouse_live" target="_blank"><i
+                            <a href="{{ $settings->tiktok }}" target="_blank"><i
                                     class="fa-brands fa-tiktok"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/masshouse_live" target="_blank"><i
+                            <a href="{{ $settings->youtube }}" target="_blank"><i
                                     class="fa-brands fa-youtube"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.threads.com/masshouse_live" target="_blank"><i
+                            <a href="{{ $settings->threads }}" target="_blank"><i
                                     class="fa-brands fa-threads"></i></a>
                         </li>
                         <li>
-                            <a href="https://www.snapchat.com/masshouse_live" target="_blank"><i
+                            <a href="{{ $settings->snapchat }}" target="_blank"><i
                                     class="fa-brands fa-snapchat"></i></a>
                         </li>
                     </ul>
@@ -322,9 +335,12 @@
                 </p>
 
                 <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item mx-1">Terms & Conditions</li>
-                    <li class="list-inline-item mx-1">Code of Ethics</li>
-                    <li class="list-inline-item mx-1">Report an Incident</li>
+                    <li class="list-inline-item mx-1">
+                        <a href="{{ route('terms-and-conditions') }}" class="">Terms & Conditions</a>
+                    </li>
+                    <li class="list-inline-item mx-1">
+                        <a href="{{ route('contact') }}" class="">Report an Incident</a>
+                    </li>
                 </ul>
             </div>
 
@@ -341,13 +357,21 @@
                 <!-- <p>Powered by : <a href="https://drenla.com" style="text-decoration: none; color:#CEA673;"><strong>DRENLA</strong>
         </p> -->
                 <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item mx-1">Privacy Policy</li>
-                    <li class="list-inline-item mx-1">Cookie Policy</li>
-                    <li class="list-inline-item mx-1">Slavery Policy</li>
+                    <li class="list-inline-item mx-1">
+                        <a href="{{ route('privacy-policy') }}" class="">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item mx-1">
+                        <a href="{{ route('cookies-policy') }}" class="">Cookie Policy</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </footer>
+    <style>
+        .list-inline-item a {
+            color: #ffff;
+        }
+    </style>
 </body>
 <script src="{{ asset('js/menu.js') }}"></script>
 

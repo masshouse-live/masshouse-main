@@ -1423,6 +1423,27 @@ class AdminController extends Controller
 
         return redirect(route('admin.return-policy'));
     }
+    public function cookies_policy()
+    {
+        $settings =  SiteSttings::select('cookies_policy')->where('id', 1)->get()->first();
+        $cookies_policy = $settings->cookies_policy;
+        return view('admin.cookie-policy', compact('cookies_policy'));
+    }
+
+    public function update_cookies_policy(Request $request)
+    {
+        $request->validate([
+            'cookies_policy' => 'required',
+        ]);
+
+        $settings = SiteSttings::where('id', 1)->first();
+
+        $settings->cookies_policy = $request->cookies_policy;
+
+        $settings->save();
+
+        return redirect(route('admin.cookies-policy'));
+    }
 
     public function tables()
     {

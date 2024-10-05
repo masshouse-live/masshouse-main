@@ -3,7 +3,7 @@
 @section('content')
     <section class="about-landing">
         <!-- <p class="white">HOME OF AMAZING EXPERIENCES</p>
-                                                                                                                                                                                                                    <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
+                                                                                                                                                                                                                        <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
         <div class="words">
             <div class="words-slide">
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
@@ -53,7 +53,7 @@
         </section>
 
         <!--venue section-->
-        <section class="venue-click">
+        <section class="venue-click" id="venues">
             <div class="sub-heading">
                 <h3>UNLIMITED ENTERTAINMENT AT OUR SELECTED VENUES</h3>
             </div>
@@ -167,7 +167,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                                            class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>

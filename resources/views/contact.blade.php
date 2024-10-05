@@ -3,6 +3,10 @@
 @section('content')
     <!--contact-landing section-->
     <section class="contact-landing">
+        @php
+            // fetch site settings
+            $settings = App\Models\SiteSttings::first();
+        @endphp
         <h2>GET IN TOUCH</h2>
         <!--contact form-->
         <div class="contact-form">
@@ -46,10 +50,10 @@
                     <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
 
                         <select name="category" class='form-select'>
-                            <option>TYPE OF ENQUIRY</option>
-                            <option>New Business Opportunity</option>
-                            <option>Career Enquiry</option>
-                            <option>Help</option>
+                            <option style="text-align: start !important">TYPE OF ENQUIRY</option>
+                            <option style="text-align: start !important">New Business Opportunity</option>
+                            <option style="text-align: start !important">Career Enquiry</option>
+                            <option style="text-align: start !important">Help</option>
                         </select>
 
                     </div>
@@ -96,17 +100,19 @@
             <div class="lctn-right col-lg-6 col-md-6 col-sm-12">
                 <div class="row lctnr-wrapper">
                     <div class="lctnr-left col-lg-6 col-md-6 col-sm-12">
-                        <p>PHYSICAL <br> ADDRESS</p>
-                        <p>NGONG RACE <br> COURSE</p>
-                        <p>NAIROBI, <br> KENYA</p>
+                        <p>PHYSICAL ADDRESS</p>
+                        <p>{{ $settings->address }}</p>
+                        <p>{{ $settings->email ?? 'Nairobi' }}<br>
+                            {{ $settings->country ?? 'Kenya' }}
+                        </p>
                         <br><br>
                         <a href="">ACCESS IN MAPS</a>
                     </div>
                     <div class="lctnr-right col-lg-6 col-md-6 col-sm-12">
-                        <p>PHONE <br> +254 712 234 567</p>
-                        <p>General Enquiries <br> www.masshouse.live</p>
+                        <p>PHONE <br> {{ $settings->phone }}</p>
+                        <p>General Enquiries <br> {{ route('contact') }}</p>
                         <p>Media & PR <br> @masshouse_live</p>
-                        <p>CORPORATE ENQUIRIES <br> info@masshouse.live</p>
+                        <p>CORPORATE ENQUIRIES <br> {{ $settings->email }}</p>
                     </div>
                 </div>
             </div>

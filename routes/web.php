@@ -13,6 +13,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\AudioController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PoliciesController;
 
 // redirect to '/' if not logged in
 Auth::routes(
@@ -35,6 +36,12 @@ Route::get('/table-available-times/{id}', [TableReservationController::class, 'a
 Route::post('/reserve-table', [TableReservationController::class, 'reserve_table'])->name('reserve_table');
 Route::get('/order-place/{order_id}', [ProductOrderController::class, 'orders_placed'])->name('orders_placed');
 Route::get('/audio/{filename}', [AudioController::class, 'streamAudio'])->name('audio.stream');
+Route::get('/privacy-policy', [PoliciesController::class, 'privacy_policy'])->name('privacy-policy');
+Route::get('/terms-and-conditions', [PoliciesController::class, 'terms_and_conditions'])->name('terms-and-conditions');
+Route::get('/delivery-policy', [PoliciesController::class, 'delivery_policy'])->name('delivery-policy');
+Route::get('/cookies-policy', [PoliciesController::class, 'cookies_policy'])->name('cookies-policy');
+Route::get('/return-policy', [PoliciesController::class, 'return_policy'])->name('return-policy');
+
 Route::group([
     'prefix' => 'shop'
 ], function () {
@@ -110,11 +117,13 @@ Route::group([
     Route::get('/table-details/{id}', [AdminController::class, 'table_details'])->name('admin.table-details');
 
     Route::get('/privacy-policy', [AdminController::class, 'privacy_policy'])->name('admin.privacy-policy');
-    Route::post('/update-privacy-policy', [AdminController::class, 'update_privacy_policy'])->name('admin.update-privacy-policy');
     Route::get('/terms-and-conditions', [AdminController::class, 'terms_and_conditions'])->name('admin.terms-and-conditions');
-    Route::post('/update-terms-and-conditions', [AdminController::class, 'update_terms_and_conditions'])->name('admin.update-terms-and-conditions');
     Route::get('/delivery-policy', [AdminController::class, 'delivery_policy'])->name('admin.delivery-policy');
-    Route::post('/update-delivery-policy', [AdminController::class, 'update_delivery_policy'])->name('admin.update-delivery-policy');
+    Route::get('/cookies-policy', [AdminController::class, 'cookies_policy'])->name('admin.cookies-policy');
     Route::get('/return-policy', [AdminController::class, 'return_policy'])->name('admin.return-policy');
+    Route::post('/update-privacy-policy', [AdminController::class, 'update_privacy_policy'])->name('admin.update-privacy-policy');
+    Route::post('/update-terms-and-conditions', [AdminController::class, 'update_terms_and_conditions'])->name('admin.update-terms-and-conditions');
+    Route::post('/update-delivery-policy', [AdminController::class, 'update_delivery_policy'])->name('admin.update-delivery-policy');
     Route::post('/update-return-policy', [AdminController::class, 'update_return_policy'])->name('admin.update-return-policy');
+    Route::post('/update-cookies-policy', [AdminController::class, 'update_cookies_policy'])->name('admin.update-cookies-policy');
 });

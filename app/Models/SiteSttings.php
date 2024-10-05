@@ -21,5 +21,12 @@ class SiteSttings extends Model
         "menu_path",
         "reservation_from",
         "reservation_to",
+        "facebook",
+        "twitter",
+        "youtube",
+        "instagram",
+        "snapchat",
+        "tiktok",
+        "threads",
     ];
 }

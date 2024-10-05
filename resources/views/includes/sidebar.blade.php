@@ -239,6 +239,11 @@
 
                                         <span>Terms & Conditions</span>
                                     </a></li>
+                                <li><a href="{{ route('admin.cookies-policy') }}"
+                                        class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
+
+                                        <span>Cookies Policy</span>
+                                    </a></li>
                                 <li><a href="{{ route('admin.delivery-policy') }}"
                                         class=" flex px-1 2xl:px-2 py-2 space-x-1 2xl:space-x-2  items-center hover:text-accent sidebar-link not-active">
 

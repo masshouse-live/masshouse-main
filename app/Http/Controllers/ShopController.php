@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sponsor;
 use App\Models\Merchandise;
+use App\Models\Playlist;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class ShopController extends Controller
         $alpha_merch = ProductCategory::where('type', 'alpha')->get();
         $categories = ProductCategory::where('type', null)->get();
         $higligted_category = ProductCategory::where('highlight', true)->get()->first();
-        return view('shop.index', compact('partners', 'alpha_merch', 'categories', "higligted_category"));
+        $playlist = Playlist::orderBy('created_at', 'desc')->first();
+
+        return view('shop.index', compact('partners', 'alpha_merch', 'categories', "higligted_category", "playlist"));
     }
 
     public function merchandise(Request $request)
