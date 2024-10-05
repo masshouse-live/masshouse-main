@@ -175,7 +175,14 @@
                         <input type="tel" id="payment-phone" class="form-control grey" placeholder="Mpesa Number"
                             autocomplete="off" required="required" name="payment_phone">
                     </div>
-
+                    <br><br>
+                    <div class="form-outline mb-4 col-lg-6 col-md-6 col-md-12">
+                        <input type="checkbox" id="terms" name="terms">
+                        <label for="terms">I agree to the
+                            <a href="{{ route('delivery-policy') }}">delivery policy</a> and
+                            <a href="{{ route('return-policy') }}">return policy</a>
+                        </label>
+                    </div>
                     <br><br>
                     <button class="button1" type="submit">CHECKOUT</button>
                 </div>
