@@ -23,9 +23,6 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="circle"></div>
-        <!-- <div class="lp-wrapper">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
         <div class="maincontainer">
             <div class="thecard">
                 <div class="thefront">
@@ -69,7 +66,7 @@
             $heading = 'CHRISTMAS';
         } elseif ($event_date->isSameDay($newYearsEve)) {
             $heading = 'NEW YEAR\'S EVE';
-        } elseif ($diffInDays === 0) {
+        } elseif ($diffInDays < 1) {
             $heading = 'TODAY';
         } elseif ($diffInDays === 1) {
             $heading = 'TOMORROW';
@@ -117,7 +114,7 @@
         <div class="row shn-wrapper">
             <div class="shn-left col-lg-8 col-md-6 col-sm-12">
                 <div class="button">
-                    <a href="merch.html" class="button1">GET TICKETS &nbsp;
+                    <a href="{{$coming_event->tickets_link??""}}" class="button1">GET TICKETS &nbsp;
                         <svg style="margin-left: 100px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
                             width="1.5em" height="1.5em" viewBox="0 0 256 256">
                             <path fill="currentColor"
@@ -128,8 +125,8 @@
             </div>
             <div class="shn-right col-lg-4 col-md-6 col-sm-12">
                 <div class="d-flex justify-content-between">
-                    <span style="font-family: 'Arian LT Demi', sans-serif">VIP TABLES</span>
-                    <span style="font-family: 'Arian LT Demi', sans-serif">BOOK NOW</span>
+                    <a href="{{route('tickets')}}" style="color:#ffff;font-family: 'Arian LT Demi', sans-serif">VIP TABLES</span>
+                    <a href="{{route('tickets')}}" style="color:#ffff;font-family: 'Arian LT Demi', sans-serif">BOOK NOW</span>
                 </div>
             </div>
         </div>
