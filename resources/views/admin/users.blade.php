@@ -96,7 +96,8 @@
                     <div class="grid grid-cols-7 items-center text-end">
                         <a href="{{ route('admin.users.show', $user->id) }}"
                             class="text-start font-bold capitalize whitespace-nowrap flex items-center gap-1">
-                            <img src="{{ asset($user->profile_photo_path) }}" alt="" class="w-10 h-10 rounded-full">
+                            <img src="{{ asset($user->profile_photo_path) }}" alt=""
+                                class="w-10 h-10 object-cover object-center overflow-hidden rounded-full">
                             {{ $user->name }}
                         </a>
                         <span>{{ $user->id_number }}</span>
