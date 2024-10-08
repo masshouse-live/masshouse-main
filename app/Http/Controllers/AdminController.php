@@ -708,7 +708,6 @@ class AdminController extends Controller
 
 
         $playlist->title = $request->title;
-        $playlist->image = $image;
         $playlist->spotify_link = $request->spotify_link;
         $playlist->youtube_link = $request->youtube_link;
         $playlist->souncloud_link = $request->souncloud_link;
