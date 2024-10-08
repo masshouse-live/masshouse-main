@@ -39,7 +39,6 @@ const closeDialog = (id) => {
 };
 
 const openEditDialog = (id, data) => {
-    console.log(data);
     // get next and add "flex" class
     const this_el = document.getElementById(id);
     $(this_el).addClass("flex");
@@ -70,7 +69,6 @@ const openEditDialog = (id, data) => {
                 input.value = date;
             } else if (inputName === "event_time") {
                 const time = data["date_time"].split("T")[1].split(".")[0];
-                console.log(time);
                 input.value = time;
             } else if (inputName === "event_time") {
                 const time = data["date_time"].split(" ")[1];
