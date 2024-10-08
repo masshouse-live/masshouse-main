@@ -96,9 +96,14 @@
                     <div class="grid grid-cols-7 items-center text-end">
                         <a href="{{ route('admin.users.show', $user->id) }}"
                             class="text-start font-bold capitalize whitespace-nowrap flex items-center gap-1">
-                            <img src="{{ asset($user->profile_photo_path) }}" alt=""
-                                class="w-10 h-10 object-cover object-center overflow-hidden rounded-full">
+                            @if ($user->profile_photo_path)
+                                <img src="{{ asset($user->profile_photo_path) }}" alt=""
+                                    class="w-10 h-10 object-cover object-center overflow-hidden rounded-full">
+                            @else
+                                <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center"></div>
+                            @endif
                             {{ $user->name }}
+
                         </a>
                         <span>{{ $user->id_number }}</span>
                         <span>{{ $user->email }}</span>
