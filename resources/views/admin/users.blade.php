@@ -102,7 +102,6 @@
                                 <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center"></div>
                             @endif
                             {{ $user->name }}
-
                         </div>
                         <span>{{ $user->id_number }}</span>
                         <span>{{ $user->email }}</span>

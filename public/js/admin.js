@@ -60,7 +60,7 @@ const openEditDialog = (id, data) => {
             const span = document.getElementById(`file_${inputName}`);
             span.innerHTML = data[input.name];
         } else if (input.type === "checkbox") {
-            if (data[inputName] === 1) {
+            if (data[inputName] == 1) {
                 input.checked = true;
             }
         } else {
