@@ -120,6 +120,42 @@ class AdminController extends Controller
         return view('admin.user_details', compact('user'));
     }
 
+    public function user_delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('admin.users_list')->with('success', 'User deleted successfully');
+    }
+
+    public function user_update(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->is_admin = $request->is_admin == "on" ? 1 : 0;
+        $user->phone = $request->phone;
+        $user->id_number = $request->id_number;
+        $user->address = $request->address;
+        $user->is_verified = $request->is_verified == "on" ? 1 : 0;
+
+
+        if ($request->hasFile('profile_photo_path')) {
+            $image = $this->upload_image($request->file('profile_photo_path'), 'upload/users', str_replace(' ', '', $request->file('profile_photo_path')->getClientOriginalName()));
+            $user->profile_photo_path = $image;
+        }
+
+        if ($user->is_verified == 1) {
+            $user->email_verified_at = now();
+        } else {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.users_list')->with('success', 'User updated successfully');
+    }
+
 
     public function newsletter_list(Request $request)
     {

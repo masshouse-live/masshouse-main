@@ -74,6 +74,8 @@ Route::group([
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/users', [AdminController::class, 'users_list'])->name('admin.users_list');
     Route::get('/users/{id}', [AdminController::class, 'user_detail'])->name('admin.users.show');
+    Route::post('/update-user', [AdminController::class, 'user_update'])->name('admin.user-update');
+    Route::post('/delete-user/{id}', [AdminController::class, 'user_delete'])->name('admin.user-delete');
     Route::get('/newsletter', [AdminController::class, 'newsletter_list'])->name('admin.newsletter_list');
     Route::get('/newsletter/{id}/delete', [AdminController::class, 'delete_subscriber'])->name('admin.delete_subscriber');
     Route::post('/newsletter-unsubscribe', [AdminController::class, 'unsubscribe_newsletter'])->name('admin.unsubscribe_newsletter');

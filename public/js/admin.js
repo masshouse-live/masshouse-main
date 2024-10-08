@@ -60,8 +60,11 @@ const openEditDialog = (id, data) => {
         if (input.type === "file") {
             const span = document.getElementById(`file_${inputName}`);
             span.innerHTML = data[input.name];
+        } else if (input.type === "checkbox") {
+            if (data[inputName] === 1) {
+                input.checked = true;
+            }
         } else {
-            // if event_date spklit by " " and set date and time seprately
             if (inputName === "event_date") {
                 const date = data["date_time"].split("T")[0];
                 input.value = date;

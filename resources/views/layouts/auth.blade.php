@@ -15,9 +15,9 @@
     @vite(['resources/js/app.js', 'resources/js/editor.js'])
 </head>
 
-<body class="dark text-textPrimary">
-    <div class="w-full flex flex-col h-full justify-center items-center bg-accent">
-        <div class="w-full flex h-full justify-center items-center overflow-auto">
+<body class="dark text-textPrimary h-full">
+    <div class="w-full flex flex-col h-full justify-center items-center bg-blue-400">
+        <div class="w-full flex h-full justify-center items-center overflow-auto ">
             <div
                 class="flex flex-col max-w-md bg-primary  mx-auto w-full border-2 border-accent rounded shadow py-20 px-5">
                 <div class="w-full justify-center flex">
