@@ -94,8 +94,7 @@
                 {{-- loop through users --}}
                 @foreach ($users as $user)
                     <div class="grid grid-cols-7 items-center text-end">
-                        <a href="{{ route('admin.users.show', $user->id) }}"
-                            class="text-start font-bold capitalize whitespace-nowrap flex items-center gap-1">
+                        <div class="text-start font-bold capitalize whitespace-nowrap flex items-center gap-1">
                             @if ($user->profile_photo_path)
                                 <img src="{{ asset($user->profile_photo_path) }}" alt=""
                                     class="w-10 h-10 object-cover object-center overflow-hidden rounded-full">
@@ -104,7 +103,7 @@
                             @endif
                             {{ $user->name }}
 
-                        </a>
+                        </div>
                         <span>{{ $user->id_number }}</span>
                         <span>{{ $user->email }}</span>
                         <span>{{ $user->phone }}</span>
