@@ -28,6 +28,15 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('site_settings', function (Blueprint $table) {
+            $table->dropColumn('cookies_policy');
+            $table->dropColumn('facebook');
+            $table->dropColumn('twitter');
+            $table->dropColumn('youtube');
+            $table->dropColumn('instagram');
+            $table->dropColumn('snapchat');
+            $table->dropColumn('tiktok');
+            $table->dropColumn('threads');
+        });
     }
 };

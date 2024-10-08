@@ -116,11 +116,11 @@
 
                     {{-- spanchat --}}
                     <div class="flex flex-col space-y-2 px-4">
-                        <label class="font-bold" for="spanchat">
-                            Spanchat
+                        <label class="font-bold" for="snapchat">
+                            Snapchat
                         </label>
-                        <input type="text" name="spanchat" id="spanchat" value="{{ $settings->spanchat ?? '' }}"
-                            class="border-2 border-accent/20  bg-primary rounded " placeholder="Spanchat" />
+                        <input type="text" name="snapchat" id="snapchat" value="{{ $settings->snapchat ?? '' }}"
+                            class="border-2 border-accent/20  bg-primary rounded " placeholder="Snapchat" />
                     </div>
                     {{-- thraeds --}}
                     <div class="flex flex-col space-y-2 px-4">

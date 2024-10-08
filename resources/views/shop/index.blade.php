@@ -57,7 +57,7 @@
             </div>
             <div class="shn-right col-lg-4 col-md-6 col-sm-12">
                 <div class="d-flex justify-content-between">
-                    <span>GO TO CATALOGUE</span>
+                    <a href="{{ route('shop.merchandise') }}" style="color:white">GO TO CATALOGUE</a>
                     <a style="color:white" href="{{ route('cart.checkout') }}">CHECK OUT</a>
                 </div>
             </div>

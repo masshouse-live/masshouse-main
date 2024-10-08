@@ -24,6 +24,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('playlists', function (Blueprint $table) {
+            $table->dropColumn('audio');
+            $table->dropColumn('artist');
+            $table->dropColumn('event');
+        });
     }
 };

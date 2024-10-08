@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArtistEvent;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Professional;
@@ -244,7 +245,7 @@ class AdminController extends Controller
             ]);
 
 
-            return redirect(route('admin.event_venues'));
+            return redirect(route('admin.event_venues'))->with('success', 'Event Venue created successfully!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e->errors());
         }
@@ -280,7 +281,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect(route('admin.event_venues'));
+        return redirect(route('admin.event_venues'))->with('success', 'Event Venue updated successfully!');
     }
 
 
@@ -405,7 +406,7 @@ class AdminController extends Controller
             $event->save();
 
 
-            return redirect(route('admin.events_list'));
+            return redirect(route('admin.events_list'))->with('success', 'Event updated successfully');
         } catch (\Exception $e) {
             dd($e);
         }
@@ -482,7 +483,7 @@ class AdminController extends Controller
             $member->save();
 
 
-            return redirect(route('admin.team_list'));
+            return redirect(route('admin.team_list'))->with('success', 'Member updated successfully');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e->errors());
         }
@@ -528,10 +529,8 @@ class AdminController extends Controller
 
         $professional->save();
 
-        return redirect(route('admin.professionals_list'));
+        return redirect(route('admin.professionals_list'))->with('success', 'Professional added successfully');
     }
-
-
 
     public function edit_professional(Request $request)
     {
@@ -556,7 +555,49 @@ class AdminController extends Controller
         $professional->save();
 
 
-        return redirect(route('admin.professionals_list'));
+        return redirect(route('admin.professionals_list'))->with('success', 'Professional updated successfully');
+    }
+
+    public function professional_events(Request $request)
+    {
+        $all_events = Event::orderBy('date_time', 'desc')->get();
+        $events = ArtistEvent::with('event')->where('artist_id', $request->id)->paginate(15);
+        $professional = Professional::find($request->id);
+        return view('admin.professional-events', compact('events', 'professional', "all_events"));
+    }
+
+    public function create_professional_event(Request $request,)
+    {
+
+        $request->validate([
+            'event_id' => 'required',
+            'id' => 'required',
+        ]);
+
+        // should not exist
+
+        $event = ArtistEvent::where('event_id', $request->event_id)->where('artist_id', $request->id)->first();
+        if (!empty($event)) {
+            return redirect()->back()->with('error', 'Event for this professional already added');
+        }
+
+        $event = new ArtistEvent();
+
+        $event->event_id = $request->event_id;
+        $event->artist_id = $request->id;
+        $event->save();
+
+        // with success message
+        return redirect()->back()->with('success', 'Event created successfully');
+    }
+
+
+    public function delete_professional_event(Request $request)
+    {
+        $id = $request->id;
+        $event = ArtistEvent::find($id);
+        $event->delete();
+        return redirect()->back()->with('success', 'Event deleted successfully!');
     }
 
 
@@ -632,7 +673,7 @@ class AdminController extends Controller
 
             $playlist->save();
 
-            return redirect(route('admin.playlist'));
+            return redirect(route('admin.playlist'))->with('success', 'Playlist created successfully');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e->errors());
         }
@@ -677,7 +718,7 @@ class AdminController extends Controller
         $playlist->save();
 
 
-        return redirect(route('admin.playlist'));
+        return redirect(route('admin.playlist'))->with('success', 'Playlist updated successfully');
     }
 
     public function sponsors(Request $request)
@@ -760,7 +801,7 @@ class AdminController extends Controller
         $sponsor->url = $request->url;
         $sponsor->rank = Sponsor::all()->count() + 1;
         $sponsor->save();
-        return redirect(route('admin.sponsors'));
+        return redirect(route('admin.sponsors'))->with('success', 'Sponsor added successfully');
     }
 
     public function edit_sponsor(Request $request)
@@ -790,7 +831,7 @@ class AdminController extends Controller
             $sponsor->save();
 
 
-            return redirect(route('admin.sponsors'));
+            return redirect(route('admin.sponsors'))->with('success', 'Sponsor updated successfully');
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e->errors());
         }
@@ -904,7 +945,7 @@ class AdminController extends Controller
 
 
         $news->save();
-        return redirect(route('admin.news'));
+        return redirect(route('admin.news'))->with('success', 'News updated successfully');
     }
 
     public function merchandise_categories(Request $request)
@@ -942,7 +983,7 @@ class AdminController extends Controller
             $merchandise_category->tags = $request->tags ?? '';
             $merchandise_category->price_from = $request->price_from;
             $merchandise_category->save();
-            return redirect(route('admin.merchandise_categories'));
+            return redirect(route('admin.merchandise_categories'))->with('success', 'Category created successfully');
         } catch (\Exception $e) {
             dd($e);
         }
@@ -978,7 +1019,7 @@ class AdminController extends Controller
         $merchandise_category->tags = $request->tags ?? '';
         $merchandise_category->price_from = $request->price_from;
         $merchandise_category->save();
-        return redirect(route('admin.merchandise_categories'));
+        return redirect(route('admin.merchandise_categories'))->with('success', 'Category updated successfully');
     }
 
     public function highlight_category(Request $request)
@@ -993,7 +1034,7 @@ class AdminController extends Controller
         $category->highlight = true; // Ensure this category is now highlighted
         $category->save();
 
-        return redirect(route('admin.merchandise_categories'));
+        return redirect(route('admin.merchandise_categories'))->with('success', 'Category highlighted successfully');
     }
 
 
@@ -1154,7 +1195,7 @@ class AdminController extends Controller
                 }
             }
 
-            return redirect(route('admin.merchandise'));
+            return redirect(route('admin.merchandise'))->with('success', 'Product created successfully');
         } catch (\Exception $e) {
             dd($e);
         }
@@ -1219,7 +1260,7 @@ class AdminController extends Controller
             }
 
 
-            return redirect(route('admin.merchandise'));
+            return redirect(route('admin.merchandise'))->with('success', 'Product updated successfully');
         } catch (\Exception $e) {
             dd($e);
         }
@@ -1256,7 +1297,14 @@ class AdminController extends Controller
             'reservation_to',
             'contact_phone',
             'contact_address',
-            'menu_path'
+            'menu_path',
+            "facebook",
+            "twitter",
+            "instagram",
+            "threads",
+            "snapchat",
+            "youtube",
+            "tiktok",
         )->where('id', 1)->get();
         // get only the first record
         // if length is 0, return null
@@ -1276,6 +1324,7 @@ class AdminController extends Controller
             'contact_address' => 'required',
             'reservation_from' => 'required',
             'reservation_to' => 'required',
+
         ]);
 
         $settings = SiteSttings::where('id', 1)->first();
@@ -1298,6 +1347,13 @@ class AdminController extends Controller
             $settings->reservation_from = $request->reservation_from;
             $settings->reservation_to = $request->reservation_to;
             $settings->contact_address = $request->contact_address;
+            $settings->facebook = $request->facebook ?? "";
+            $settings->twitter = $request->twitter ?? "";
+            $settings->instagram = $request->instagram ?? "";
+            $settings->threads = $request->threads ?? "";
+            $settings->snapchat = $request->snapchat ?? "";
+            $settings->youtube = $request->youtube ?? "";
+            $settings->tiktok = $request->tiktok ?? "";
             $settings->menu_path = $menu_path;
             $settings->save();
         } else {
@@ -1328,11 +1384,18 @@ class AdminController extends Controller
                 'contact_address' => $request->contact_address,
                 'menu_path' => $menu_path,
                 'reservation_from' => $reservation_from,
-                'reservation_to' => $reservation_to
+                'reservation_to' => $reservation_to,
+                'facebook' => $request->facebook ?? "",
+                'twitter' => $request->twitter ?? "",
+                'instagram' => $request->instagram ?? "",
+                'threads' => $request->threads ?? "",
+                'snapchat' => $request->snapchat ?? "",
+                'youtube' => $request->youtube ?? "",
+                'tiktok' => $request->tiktok ?? "",
             ]);
         }
 
-        return redirect(route('admin.settings'));
+        return redirect(route('admin.settings'))->with('success', 'Settings updated successfully');
     }
 
     public function privacy_policy()
@@ -1354,7 +1417,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect('/admin/privacy-policy');
+        return redirect('/admin/privacy-policy')->with('success', 'Settings updated successfully');
     }
 
     public function terms_and_conditions()
@@ -1377,7 +1440,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect(route('admin.terms-and-conditions'));
+        return redirect(route('admin.terms-and-conditions'))->with('success', 'Settings updated successfully');
     }
 
     public function delivery_policy()
@@ -1421,7 +1484,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect(route('admin.return-policy'));
+        return redirect(route('admin.return-policy'))->with('success', 'Settings updated successfully');
     }
     public function cookies_policy()
     {
@@ -1442,7 +1505,7 @@ class AdminController extends Controller
 
         $settings->save();
 
-        return redirect(route('admin.cookies-policy'));
+        return redirect(route('admin.cookies-policy'))->with('success', 'Settings updated successfully');
     }
 
     public function tables()
@@ -1469,7 +1532,7 @@ class AdminController extends Controller
         $table->amount = $request->amount;
         $table->status = "available";
         $table->save();
-        return redirect(route('admin.tables'));
+        return redirect(route('admin.tables'))->with('success', 'Table added successfully');
     }
 
     public function table_details(Request $request)

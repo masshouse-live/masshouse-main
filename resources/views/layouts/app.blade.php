@@ -73,7 +73,7 @@
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
+                    <li><a href="{{ route('news') }}">Tickets</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -84,8 +84,9 @@
             <div class="nav2">
                 <ul>
                     <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i> </a>
+                    </li>
                     <li><a href="{{ route('contact') }}" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
@@ -103,7 +104,7 @@
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
+                    <li><a href="{{ route('news') }}">Tickets</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -113,8 +114,12 @@
             </div>
             <div class="nav2">
                 <ul>
-                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
+                            <sup>0</sup>
+                        </a>
+                    </li>
                     <li><a href="{{ route('contact') }}" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
@@ -136,9 +141,13 @@
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
-                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('news') }}">Tickets</a></li>
+
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
+                            <sup>0</sup>
+                        </a>
+                    </li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
@@ -158,9 +167,13 @@
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Whats Up!</a></li>
-                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('news') }}">Tickets</a></li>
+
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
+                            <sup>0</sup>
+                        </a>
+                    </li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
                 </ul>
@@ -293,31 +306,31 @@
                 " />
                     <ul>
                         <li>
-                            <a href="{{ $settings->facebook }}" target="_blank"><i
+                            <a href="{{ $settings->facebook ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-facebook-f"></i></a>
                         </li>
                         <li>
-                            <a href="{{ $settings->twitter }}" target="_blank"><i
+                            <a href="{{ $settings->twitter ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-x-twitter"></i></a>
                         </li>
                         <li>
-                            <a href="{{ $settings->instagram }}" target="_blank"><i
+                            <a href="{{ $settings->instagram ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-instagram"></i></a>
                         </li>
                         <li>
-                            <a href="{{ $settings->tiktok }}" target="_blank"><i
+                            <a href="{{ $settings->tiktok ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-tiktok"></i></a>
                         </li>
                         <li>
-                            <a href="{{ $settings->youtube }}" target="_blank"><i
+                            <a href="{{ $settings->youtube ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-youtube"></i></a>
                         </li>
                         <li>
-                            <a href="{{ $settings->threads }}" target="_blank"><i
+                            <a href="{{ $settings->threads ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-threads"></i></a>
                         </li>
                         <li>
-                            <a href="{{ $settings->snapchat }}" target="_blank"><i
+                            <a href="{{ $settings->snapchat ?? '' }}" target="_blank"><i
                                     class="fa-brands fa-snapchat"></i></a>
                         </li>
                     </ul>
@@ -325,14 +338,8 @@
             </div>
         </div>
         <hr class="mb-2" />
-
-        <!-- bottom part -->
         <div class="row row-foot-bot align-items-center">
-            <div class="foot-bot col-lg-4 col-md-6 col-sm-12">
-                <p>
-                    @MASSHOUSE 2024. All Rights Reserved | powered by
-                    <a href="https://drenla.com/">Drenla</a>
-                </p>
+            <div class="foot-bot col-lg-6 col-md-6 col-sm-12 left">
 
                 <ul class="list-unstyled list-inline">
                     <li class="list-inline-item mx-1">
@@ -342,30 +349,35 @@
                         <a href="{{ route('contact') }}" class="">Report an Incident</a>
                     </li>
                 </ul>
+
+                <p>&copy MASSHOUSE LIVE 2024. All Rights Reserved</p>
+
             </div>
 
-            <div class="foot-bot col-lg-4 col-md-6 col-sm-12">
-                <br />
-                <hr
-                    style="
-                border: none !important;
-                border-top: 2px solid #fff !important;
-                background-color: #fff;
-              " />
-            </div>
-            <div class="foot-bot col-lg-4 col-md-6 col-sm-12">
-                <!-- <p>Powered by : <a href="https://drenla.com" style="text-decoration: none; color:#CEA673;"><strong>DRENLA</strong>
-        </p> -->
-                <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item mx-1">
-                        <a href="{{ route('privacy-policy') }}" class="">Privacy Policy</a>
-                    </li>
-                    <li class="list-inline-item mx-1">
-                        <a href="{{ route('cookies-policy') }}" class="">Cookie Policy</a>
-                    </li>
-                </ul>
-            </div>
+            <div class="foot-bot col-lg-6 col-md-6 col-sm-12 right">
+                <div>
+                    <ul class="list-unstyled list-inline">
+                        <li class="list-inline-item mx-1">
+                            <a href="{{ route('privacy-policy') }}" class="">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item mx-1">
+                            <a href="{{ route('cookies-policy') }}" class="">Cookie Policy</a>
+                        </li>
+                    </ul>
+
+                    <p style="letter-spacing: 2px; font-family: 'Arian LT Demi', sans-serif;">&nbsp;Powered by : <a
+                            href="https://drenla.com"
+                            style="text-decoration: none; color:#ccc; font-size: 22px;"><strong>DRENLA</strong>
+                        </a></p><a href="https://drenla.com"
+                        style="text-decoration: none; color:#ccc; font-size: 22px;">
+                    </a>
+                </div><a href="https://drenla.com" style="text-decoration: none; color:#ccc; font-size: 22px;">
+                </a>
+            </div><a href="https://drenla.com" style="text-decoration: none; color:#ccc; font-size: 22px;">
+
+            </a>
         </div>
+
     </footer>
     <style>
         .list-inline-item a {

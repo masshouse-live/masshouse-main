@@ -88,6 +88,9 @@ Route::group([
     Route::post('/add-member', [AdminController::class, 'add_member'])->name('admin.add_member');
     Route::post('/edit-member', [AdminController::class, 'edit_member'])->name('admin.edit_member');
     Route::get('/professionals', [AdminController::class, 'professionals_list'])->name('admin.professionals_list');
+    Route::get('/professional-events/{id}', [AdminController::class, 'professional_events'])->name('admin.professional-events');
+    Route::post('/create-professional-event/{id}', [AdminController::class, 'create_professional_event'])->name('admin.create-professional-event');
+    Route::post('/delete-professional-event/{id}', [AdminController::class, 'delete_professional_event'])->name('admin.delete-professional-event');
     Route::post('/add-professional', [AdminController::class, 'add_professional'])->name('admin.add_professional');
     Route::post('/edit-professional', [AdminController::class, 'edit_professional'])->name('admin.edit_professional');
     Route::get('/playlist', [AdminController::class, 'playlist'])->name('admin.playlist');

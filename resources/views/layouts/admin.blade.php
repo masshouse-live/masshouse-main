@@ -17,7 +17,7 @@
 </head>
 
 <body class="dark w-full bg-primary text-textPrimary h-screen max-h-screen overflow-auto ">
-    <main class="w-full grid 2xl:grid-cols-8 grid-cols-12">
+    <main class="w-full grid 2xl:grid-cols-8 grid-cols-12 relative">
         @include('includes.sidebar')
         <div class="
             2xl:col-span-7 col-span-10
@@ -27,6 +27,21 @@
             </div>
         </div>
     </main>
+    @if (session('success'))
+        <div id="success" class="w-full flex justify-center items-center  rounded  text-center absolute top-2 ">
+            <div class="bg-green-200 text-green-500  mx-auto max-w-screen-sm  w-full rounded py-2 px-4">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+    @if (session('error'))
+        <div id="error" class="w-full flex justify-center items-center  rounded  text-center absolute top-2 ">
+            <div class="bg-red-200 text-red-500  mx-auto max-w-screen-sm  w-full rounded py-2 px-4">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
+
 </body>
 {{-- load js --}}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,5 +56,18 @@
 
 {{-- load admin.js --}}
 <script src="{{ asset('js/admin.js') }}"></script>
+{{-- hide message after 5 seconds --}}
+<script>
+    setTimeout(function() {
+        const successDiv = document.getElementById('success')
+        const errorDiv = document.getElementById('error')
+        if (successDiv) {
+            successDiv.classList.add('hidden')
+        }
+        if (errorDiv) {
+            errorDiv.classList.add('hidden')
+        }
+    }, 3000);
+</script>
 
 </html>

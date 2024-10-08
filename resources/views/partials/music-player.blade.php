@@ -2,8 +2,8 @@
     <div class="row mp-wrapper">
         <div class="mp-left one col-lg-6 col-md-6 col-sm-12">
             <h2>
-                OFFICIAL <br />
-                PLAYLIST <br />
+                official <br />
+                playlist <br />
                 2025
             </h2>
 
@@ -18,16 +18,16 @@
 
             <ul class="list-unstyled list-inline">
                 <li class="list-inline-item mx-3">
-                    <a href="{{ $playlist->spotify_link }}">SPOTIFY</a>
+                    <a href="{{ $playlist->spotify_link ?? '' }}">SPOTIFY</a>
                 </li>
                 <li class="list-inline-item mx-3">
-                    <a href="{{ $playlist->souncloud_link }}">SOUNDCLOUD</a>
+                    <a href="{{ $playlist->souncloud_link ?? '' }}">SOUNDCLOUD</a>
                 </li>
                 <li class="list-inline-item mx-3">
-                    <a href="{{ $playlist->youtube_link }}">YOUTUBE</a>
+                    <a href="{{ $playlist->youtube_link ?? '' }}">YOUTUBE</a>
                 </li>
                 <li class="list-inline-item mx-3">
-                    <a href="{{ $playlist->applemusic_link }}">APPLE MUSIC</a>
+                    <a href="{{ $playlist->applemusic_link ?? '' }}">APPLE MUSIC</a>
                 </li>
             </ul>
         </div>
@@ -35,13 +35,13 @@
             <div class="music-box text-center">
                 <div class="mpr-wrapper d-flex">
                     <div class="mpr-left col-lg-10 col-md-6 col-sm-12">
-                        <img src="{{ asset($playlist->image) }}" alt="image" />
+                        <img src="{{ asset($playlist->image ?? '') }}" alt="image" />
                         <p>
-                            {{ $playlist->title }} <br />
-                            {{ $playlist->event }}
+                            {{ $playlist->title ?? '' }} <br />
+                            {{ $playlist->event ?? '' }}
                         </p>
                         <!-- <br> -->
-                        <h2>{{ $playlist->artist }}</h2>
+                        <h2>{{ $playlist->artist ?? '' }}</h2>
                         <span>LIVE AT THE MASSHOUSE LIVE</span>
                         <br /><br />
                         <div id="progress-indicator"
@@ -69,7 +69,7 @@
                     </div>
                     <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
                         <audio id="music-player">
-                            <source src="{{ asset($playlist->audio) }}" type="audio/mpeg">
+                            <source src="{{ asset($playlist->audio ?? '') }}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                         <div class="music-icons">
