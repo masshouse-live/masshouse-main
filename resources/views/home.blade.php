@@ -41,7 +41,7 @@
             </div>
         </div>
         <script src="{{ asset('js/cursor-trail.js') }}"></script>
-
+</section>
     @php
     use Carbon\Carbon;
 
