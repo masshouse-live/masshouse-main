@@ -68,13 +68,13 @@
         $heading = 'CHRISTMAS';
     } elseif ($event_date->isSameDay($newYearsEve)) {
         $heading = 'NEW YEAR\'S EVE';
-    } elseif ($event_date->isToday()) { // Use isToday() method for clarity
+    } elseif ($event_date->isToday()) { // Check if the event date is today
         $heading = 'TODAY';
-    } elseif ($diffInDays === 1) {
+    } elseif ($event_date->isTomorrow()) { // Check if the event date is tomorrow
         $heading = 'TOMORROW';
-    } elseif ($diffInDays <= 7) {
+    } elseif ($event_date->isFuture() && $event_date->isCurrentWeek()) { // Check if the event date is in the current week
         $heading = 'THIS ' . strtoupper($dayOfWeek);
-    } elseif ($diffInDays <= 14) {
+    } elseif ($diffInDays <= 14 && $event_date->isFuture()) { // Check if the event is next week
         $heading = 'NEXT ' . strtoupper($dayOfWeek);
     } elseif ($diffInWeeks <= 4 && $eventMonth === $currentMonth) {
         $heading = 'IN ' . $diffInWeeks . ' WEEKS'; // More than 2 weeks but same month
@@ -89,6 +89,7 @@
         $heading = 'THIS ' . strtoupper($eventMonthName);
     }
 @endphp
+
 
 
     <section class="next-event">
