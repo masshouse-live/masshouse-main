@@ -42,51 +42,53 @@
         </div>
         <script src="{{ asset('js/cursor-trail.js') }}"></script>
 
-    </section>
     @php
-        use Carbon\Carbon;
+    use Carbon\Carbon;
 
-        $today = Carbon::today();
-        $event_date = Carbon::parse($coming_event->date_time ?? Carbon::now());
-        $diffInDays = $event_date->diffInDays($today);
-        $diffInWeeks = ceil($diffInDays / 7); // Get the number of weeks
-        $dayOfWeek = $event_date->format('l'); // Get the day of the week e.g. 'Friday'
-        $eventMonthName = $event_date->format('F'); // Get event month name (e.g., "October")
-        $eventMonth = $event_date->format('n'); // Get event month as number (1-12)
-        $eventYear = $event_date->format('Y'); // Get the event year
-        $currentMonth = $today->format('n'); // Get current month as number (1-12)
-        $currentYear = $today->format('Y'); // Get the current year
+    // Define special holiday dates
+    $currentYear = Carbon::now()->format('Y');
+    $christmas = Carbon::parse("$currentYear-12-25");
+    $newYearsEve = Carbon::parse("$currentYear-12-31");
 
-        // Define special holiday dates
-        $christmas = Carbon::parse("$currentYear-12-25");
-        $newYearsEve = Carbon::parse("$currentYear-12-31");
+    // This will ensure the current date is captured at the time of execution
+    $today = Carbon::today();
+    $event_date = Carbon::parse($coming_event->date_time ?? Carbon::now());
 
-        // Determine the heading text
-        if ($event_date->isSameDay($christmas)) {
-            $heading = 'CHRISTMAS';
-        } elseif ($event_date->isSameDay($newYearsEve)) {
-            $heading = 'NEW YEAR\'S EVE';
-        } elseif ($diffInDays < 1) {
-            $heading = 'TODAY';
-        } elseif ($diffInDays === 1) {
-            $heading = 'TOMORROW';
-        } elseif ($diffInDays <= 7) {
-            $heading = 'THIS ' . strtoupper($dayOfWeek);
-        } elseif ($diffInDays <= 14) {
-            $heading = 'NEXT ' . strtoupper($dayOfWeek);
-        } elseif ($diffInWeeks <= 4 && $eventMonth === $currentMonth) {
-            $heading = 'IN ' . $diffInWeeks . ' WEEKS'; // More than 2 weeks but same month
-        } elseif (
-            $eventMonth === $currentMonth + 1 ||
-            ($currentMonth === 12 && $eventMonth === 1 && $eventYear === $currentYear + 1)
-        ) {
-            $heading = 'NEXT MONTH';
-        } elseif ($eventYear > $currentYear) {
-            $heading = 'ON ' . strtoupper($eventMonthName) . ' ' . $eventYear;
-        } else {
-            $heading = 'THIS ' . strtoupper($eventMonthName);
-        }
-    @endphp
+    $diffInDays = $event_date->diffInDays($today);
+    $diffInWeeks = ceil($diffInDays / 7); // Get the number of weeks
+    $dayOfWeek = $event_date->format('l'); // Get the day of the week e.g. 'Friday'
+    $eventMonthName = $event_date->format('F'); // Get event month name (e.g., "October")
+    $eventMonth = $event_date->format('n'); // Get event month as number (1-12)
+    $eventYear = $event_date->format('Y'); // Get the event year
+    $currentMonth = $today->format('n'); // Get current month as number (1-12)
+
+    // Determine the heading text
+    if ($event_date->isSameDay($christmas)) {
+        $heading = 'CHRISTMAS';
+    } elseif ($event_date->isSameDay($newYearsEve)) {
+        $heading = 'NEW YEAR\'S EVE';
+    } elseif ($diffInDays < 1) {
+        $heading = 'TODAY';
+    } elseif ($diffInDays === 1) {
+        $heading = 'TOMORROW';
+    } elseif ($diffInDays <= 7) {
+        $heading = 'THIS ' . strtoupper($dayOfWeek);
+    } elseif ($diffInDays <= 14) {
+        $heading = 'NEXT ' . strtoupper($dayOfWeek);
+    } elseif ($diffInWeeks <= 4 && $eventMonth === $currentMonth) {
+        $heading = 'IN ' . $diffInWeeks . ' WEEKS'; // More than 2 weeks but same month
+    } elseif (
+        $eventMonth === $currentMonth + 1 ||
+        ($currentMonth === 12 && $eventMonth === 1 && $eventYear === $currentYear + 1)
+    ) {
+        $heading = 'NEXT MONTH';
+    } elseif ($eventYear > $currentYear) {
+        $heading = 'ON ' . strtoupper($eventMonthName) . ' ' . $eventYear;
+    } else {
+        $heading = 'THIS ' . strtoupper($eventMonthName);
+    }
+@endphp
+
 
     <section class="next-event">
         <h5>{{ $heading }}</h5>
