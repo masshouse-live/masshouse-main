@@ -92,7 +92,7 @@
 
 
     <section class="next-event">
-        <h5>{{ $heading }} {{$coming_event->date_time }} {{$event_date}}</h5>
+        <h5>{{ $heading }} </h5>
         @if ($coming_event && $coming_event->date_time)
             <h4>{{ $coming_event->date_time->format('d M') ?? '' }}</h4>
         @endif
