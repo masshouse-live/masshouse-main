@@ -51,8 +51,8 @@
     $christmas = Carbon::parse("$currentYear-12-25");
     $newYearsEve = Carbon::parse("$currentYear-12-31");
 
-    // This will ensure the current date is captured at the time of execution
-    $today = Carbon::today();
+    // Get current date and time
+    $today = Carbon::now(); // Use now() instead of today()
     $event_date = Carbon::parse($coming_event->date_time ?? Carbon::now());
 
     $diffInDays = $event_date->diffInDays($today);
@@ -68,7 +68,7 @@
         $heading = 'CHRISTMAS';
     } elseif ($event_date->isSameDay($newYearsEve)) {
         $heading = 'NEW YEAR\'S EVE';
-    } elseif ($diffInDays < 1) {
+    } elseif ($event_date->isToday()) { // Use isToday() method for clarity
         $heading = 'TODAY';
     } elseif ($diffInDays === 1) {
         $heading = 'TOMORROW';
@@ -89,6 +89,7 @@
         $heading = 'THIS ' . strtoupper($eventMonthName);
     }
 @endphp
+
 
     <section class="next-event">
         <h5>{{ $heading }} {{$coming_event->date_time }}</h5>
