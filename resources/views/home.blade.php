@@ -41,7 +41,8 @@
             </div>
         </div>
         <script src="{{ asset('js/cursor-trail.js') }}"></script>
-</section>
+
+    </section>
     @php
     use Carbon\Carbon;
 
@@ -89,9 +90,8 @@
     }
 @endphp
 
-
     <section class="next-event">
-        <h5>{{ $heading }}</h5>
+        <h5>{{ $heading }} {{$coming_event->date_time }}</h5>
         @if ($coming_event && $coming_event->date_time)
             <h4>{{ $coming_event->date_time->format('d M') ?? '' }}</h4>
         @endif
