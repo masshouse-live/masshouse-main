@@ -351,24 +351,13 @@ nav.navbar.mobile ul li a {
     nav.navbar.mobile .nav-wrapper{
         width: 100%;
         position: relative;
-        /* display: flex!important;
-            align-items: center!important;
-            justify-content: center!important; */
         transition: 1s ease !important;
     }
-        nav.navbar.mobile .logo {
-            /* margin-top: -30px; */
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            /* margin-left: 100px; */
-            /* display: flex!important;
-            align-items: center!important;
-            justify-content: center!important; */
-        }
-
-
-    
+    nav.navbar.mobile .logo {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
         .burger-nav {
             position: absolute;
             display: block;
@@ -438,6 +427,14 @@ nav.navbar.mobile ul li a {
         nav.navbar.mobile ul li a:hover {
             color: #fff;
         }
+}
+@media screen and (max-width: 500px) {
+    nav.navbar.mobile .logo {
+        margin-top: -80px;
+        position: absolute;
+        left: 0;
+        transform: none;
+    }
 }
 
 
@@ -937,7 +934,7 @@ section.merchandise-alert {
 /*-------------music-player---------------------*/
 section.music-player {
     padding: 100px;
-    background-image: url('images/emptystage-scene.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url('images/emptystage-scene.png');
     background-size: cover;
     background-position: center;
     min-height: 755px;
@@ -959,8 +956,12 @@ section.music-player {
     color: #ccc;
     padding-bottom: 150px;
 }
-.mp-right .music-box{
+.mp-right{
+    width: auto;
     position: relative;
+}
+.mp-right .music-box{
+    /* position: relative; */
     padding: 30px;
     color: #fff;
     width: 100%;
@@ -988,6 +989,11 @@ section.music-player {
     font-size: 28px;
     color: #fff;
     cursor: pointer;
+}
+.mpr-left,
+.mpr-right{
+    width:auto;
+    position: relative;
 }
 .mpr-right .music-icons i{
     font-size: 24px;
@@ -1241,6 +1247,11 @@ footer .f-outline2 input::placeholder{
     /*------music-player-------*/
     section.music-player{
         padding: 50px 20px;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('images/emptystage-scene.png');
+    }
+    .mp-right .music-box {
+        padding: 0;
+        padding-right: 30px;
     }
     /*footer*/
     footer {
@@ -1249,14 +1260,41 @@ footer .f-outline2 input::placeholder{
     .foot{
         margin-bottom: 30px;
     }
-        .foot.two,
-        .foot.three,
-        .foot.four {
-            padding: 0 20px;
-        }
+    .foot.two,
+    .foot.three,
+    .foot.four {
+        padding: 0 20px;
+    }
+    .foot.one{
+        display: none;
+    }
 
 }
+@media screen and (max-width: 450px) {
+    /*------music-player-------*/
+    section.music-player {
+        padding: 50px 20px;
+    }
+    .mp-right .music-box {
+        /* text-align: left!important; */
+        padding: 20px;
+        padding-right: 0;
+    }
+    .mpr-left{
+        width: 75%!important;
+    }
+    .mpr-right{
+        width: 25%!important;
+    }
+    .music-box img{
+        position: relative;
+        /* width: 250px;
+        height: 300px; */
+        width: auto;
+        height: auto;
+    }
 
+}
 
 
 
@@ -2457,9 +2495,7 @@ section.event-ticket button{
 .event-ticket .button{
     padding: 20px;
 }
-/* .event-ticket .button .button1{
-    width: 100%!important;
-} */
+
 .ticket-details {
     background-color: #000;
     color: #fff;
@@ -3094,7 +3130,7 @@ section.artist-profile{
     border-bottom: 1px solid #fff;
 }
 section.artist-profile button {
-    margin-top: -220px;
+    margin-top: -450px;
 }
 .artist-landing {
     position: relative;
@@ -3150,26 +3186,33 @@ section.artist-profile button {
     font-size: 50px;
 }
 
-
 .upcoming-shows{
-    min-height: 400px;
-    padding: 100px 0;
+    padding: 100px 100px;
     background-color: #000;
 }
 .upsh-box{
-    width: 300px;
-    height: 300px;
+    width: 400px;
     padding: 0 20px;
+    padding-left: 50px;
     color: #fff;
+    border-right: 1px solid #fff;
 }
 .upsh-box h3{
+    font-family: 'Arian LT Demi', sans-serif;
+    font-size: 50px;
+}
+.upsh-box h2{
     font-family: 'Arian LT Bold', sans-serif;
+    font-size: 70px;
 }
 .upsh-box h4{
     font-family: 'Arian LT Bold', sans-serif;
+    font-size: 30px;
 }
 .upsh-box span{
-    font-family: 'Arian LT Bold', sans-serif;
+    font-family: 'Arian LT Light', sans-serif;
+    font-size: 21px;
+    /* margin-bottom: 20px; */
 }
 .ps-wrapper {
     padding: 0 100px;
@@ -3201,13 +3244,36 @@ section.artist-profile button {
     .artist-landing h2 {
         font-size: 50px;
     }
-
     .artist-landing h4 {
         font-size: 25px;
     }
-
     .artist-details span {
         font-size: 50px;
+    }
+    .upcoming-shows {
+        padding: 100px 20px;
+    }
+    .upsh-box{
+        width: 100%;
+        padding: 20px 20px;
+        padding-left: 20px;
+        border-right: none;
+        border-bottom: 1px solid #fff;
+    }
+
+    .ps-wrapper{
+        padding: 0 20px;
+        /* padding-top: 30px; */
+        padding-bottom: 30px;
+        flex-direction: column;
+        justify-content: center!important;
+        align-items: center;
+    }
+    .ps-right li {
+        font-size: 21px;
+    }
+    .ps-right span {
+        font-size: 21px;
     }
 
 }
