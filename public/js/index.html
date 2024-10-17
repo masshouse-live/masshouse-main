@@ -1,0 +1,1002 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+	<title>MassHouse</title>
+  <!--icon-->
+  <link rel="icon" href="images/logo-white.png" type="image/x-icon">
+
+  <!--bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+  <!--animate-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!--iconify cdn-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.min.js"
+    integrity="sha512-lYMiwcB608+RcqJmP93CMe7b4i9G9QK1RbixsNu4PzMRJMsqr/bUrkXUuFzCNsRUo3IXNUr5hz98lINURv5CNA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!--font awesome links-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css"
+    integrity="sha512-d0olNN35C6VLiulAobxYHZiXJmq+vl+BGIgAxQtD5+kqudro/xNMvv2yIHAciGHpExsIbKX3iLg+0B6d0k4+ZA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- font awesome offline links -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+
+  <!------ css file ------------->
+     <link rel="stylesheet" type="text/css" href="styles.css">
+    
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    
+    
+  <!--sticky navbar-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+  <script src="js/sticky-navbar.js"></script>
+
+  <style>
+    body{
+      background-color: #000;
+      cursor: none!important;
+    }
+  </style>
+
+
+ 
+
+</head>
+
+<body>
+  <!--transparent navbar-->
+  <nav class="navbar sticky home main" id="transparentNavbar">
+    <div class="nav-wrapper">
+      
+    
+      <div class="nav1">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">Media</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+        </ul>
+      </div>
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-white.png">
+        </a>  
+      </div>
+      <div class="nav2">
+        <ul>
+          <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="checkout.html">Cart <i class="fa-solid fa-cart-shopping"></i><sup>0</sup></a></li>
+          <li><a href="contact.html" class="nav-button">Contact Us</a></li>
+        </ul>
+      </div>
+      <a class="burger-nav"></a>
+      <input type="radio" name="slider" id="close-btn">
+    </div>
+  </nav>
+
+  <!--alternative navbar-->
+  <nav class="navbar sticky alternative-navbar main" id="alternativeNavbar">
+    <div class="nav-wrapper">
+      <a class="burger-nav"></a>
+    
+      <div class="nav1">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">Media</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+        </ul>
+      </div>
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-white.png">
+        </a>  
+      </div>
+      <div class="nav2">
+        <ul>
+          <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="checkout.html">Cart <i class="fa-solid fa-cart-shopping"></i><sup>0</sup></a></li>
+          <li><a href="contact.html" class="nav-button">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <script src="js/alternative-navbar.js"></script>
+
+  <!--mobile transparent navbar -->
+  <nav class="navbar mobile sticky home" id="transparentNavbar">
+    <div class="nav-wrapper ">
+      
+  
+      <div class="logo">
+        <a href="index.html"><img src="images/logo-white.png" alt="logo"></a>
+      </div>
+  
+      <div class="nav-list">
+  
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">Media</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="checkout.html">Cart <i class="fa-solid fa-cart-shopping"></i><sup>0</sup></a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        
+        </ul>
+      </div>
+      <a class="burger-nav"></a>
+  
+    </div>
+  </nav>
+  
+  <!--mobile alternative navbar-->
+  <nav class="navbar mobile sticky mobile alternative-navbar" id="alternativeNavbar">
+    <div class="nav-wrapper ">
+      
+  
+      <div class="logo">
+        <a href="index.html"><img src="images/logo-white.png" alt="logo"></a>
+      </div>
+  
+      <div class="nav-list">
+  
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">Media</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="checkout.html">Cart <i class="fa-solid fa-cart-shopping"></i><sup>0</sup></a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        
+        </ul>
+      </div>
+      <a class="burger-nav"></a>
+  
+    </div>
+  </nav>
+  
+  <script src="js/mobile-alternative-navbar.js"></script>
+
+  
+<!--landing-page section-->
+<section class="landing-page">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  <!-- <div class="lp-wrapper">
+    <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+  </div> -->
+  <div class="maincontainer">
+    <div class="thecard">
+  
+      <div class="thefront">
+        <h1>HOME <br> OF</h1>
+      </div>
+  
+      <div class="theback">
+        <h1>AMAZING <br> EXPERIENCES</h1>
+      </div>
+  
+    </div>
+  </div>
+
+  <script src="js/cursor-trail.js"></script>
+  
+</section>
+
+<!--next-event section-->
+<section class="next-event">
+  <h5>THIS FRIDAY</h5>
+  <h4>18TH JUL</h4>
+  
+  <div class="words">
+    <div class="words-slide">
+      <p>MASSHOUSE LIVE</p>
+    </div>
+    <div class="words-slide">
+      <p>MASSHOUSE LIVE</p>
+    </div>
+    <div class="words-slide">
+      <p>MASSHOUSE LIVE</p>
+    </div>
+  </div>
+  
+  
+  <h2>THE LIVE PARTY</h2>
+
+  <script>
+    var copy = document.querySelector(".word-slide").cloneNode(true);
+    document.querySelector(".words").appendChild(copy);
+  </script>  <!--infinite loop script-->
+
+  
+</section>
+
+<section class="shop-now" style="border-bottom: 1px solid #fff;">
+  <div class="row shn-wrapper">
+    <div class="shn-left col-lg-8 col-md-6 col-sm-12">
+      <div class="button">
+        <a href="merch.html" class="button1">GET TICKETS &nbsp;
+          <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em"
+            height="1.5em" viewBox="0 0 256 256">
+            <path fill="currentColor"
+              d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="shn-right col-lg-4 col-md-6 col-sm-12">
+      <div class="d-flex justify-content-between">
+        <span style="font-family: 'Arian LT Demi', sans-serif;">VIP TABLES</span>
+        <span style="font-family: 'Arian LT Demi', sans-serif;">BOOK NOW</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--upcoming-events section-->
+<section class="upcoming-events">
+  <div class="sub-heading">
+    <h3>UPCOMING EVENTS</h3>
+  </div>
+  <div class="swiper-filter">
+    <ul>
+      <li><a href="#">DAYTIME</a></li>
+      <li><a href="#" class="active">NIGHTLIFE</a></li>
+      <li><a href="#">EXCLUSIVE</a></li>
+    </ul>
+  </div>
+  
+
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper case-studies">
+    <div class="swiper-wrapper">
+      
+        <div class="swiper-slide work-box one">
+          <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
+          <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
+        
+          <h6>AUG 24TH 2024</h6>
+          <p>1800 HRS</p>
+          <!-- <br> -->
+          <p>Masshouse Live*</p>
+          <br><br>
+        
+          <h6>FRIDAY</h6>
+          <!-- <br> -->
+          <h2>24 AUG</h2>
+          <!-- <br> -->
+          <h6>GOOD VIBES & GOOD TIMES</h6>
+          <p>THE LIVE PARTY</p>
+
+          <br>
+
+          <div class="button">
+            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
+              <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                viewBox="0 0 256 256">
+                <path fill="currentColor"
+                  d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+              </svg>
+              
+            </a>
+          </div>
+          <br>
+
+          <div class="uc-cta d-flex justify-content-between">
+            <div>
+              <h6>VIP TABLES</h6>
+            </div>
+            <div>
+              <h6>BOOK NOW</h6>
+            </div>
+          </div>
+        
+        </div>
+      
+      
+  
+      <div class="swiper-slide work-box">
+        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
+          <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
+        
+          <h6>AUG 24TH 2024</h6>
+          <p>1800 HRS</p>
+          <!-- <br> -->
+          <p>Masshouse Live*</p>
+          <br><br>
+        
+          <h6>FRIDAY</h6>
+          <!-- <br> -->
+          <h2>24 AUG</h2>
+          <!-- <br> -->
+          <h6>GOOD VIBES & GOOD TIMES</h6>
+          <p>THE LIVE PARTY</p>
+
+          <br>
+
+          <div class="button">
+            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
+              <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                viewBox="0 0 256 256">
+                <path fill="currentColor"
+                  d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+              </svg>
+            </a>
+          </div>
+          <br>
+
+          <div class="uc-cta d-flex justify-content-between">
+            <div>
+              <h6>VIP TABLES</h6>
+            </div>
+            <div>
+              <h6>BOOK NOW</h6>
+            </div>
+          </div>
+      </div>
+  
+      <div class="swiper-slide work-box">
+        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
+          <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
+        
+          <h6>AUG 24TH 2024</h6>
+          <p>1800 HRS</p>
+          <!-- <br> -->
+          <p>Masshouse Live*</p>
+          <br><br>
+        
+          <h6>FRIDAY</h6>
+          <!-- <br> -->
+          <h2>24 AUG</h2>
+          <!-- <br> -->
+          <h6>GOOD VIBES & GOOD TIMES</h6>
+          <p>THE LIVE PARTY</p>
+
+          <br>
+
+          <div class="button">
+            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
+              <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                viewBox="0 0 256 256">
+                <path fill="currentColor"
+                  d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+              </svg>
+            </a>
+          </div>
+          <br>
+
+          <div class="uc-cta d-flex justify-content-between">
+            <div>
+              <h6>VIP TABLES</h6>
+            </div>
+            <div>
+              <h6>BOOK NOW</h6>
+            </div>
+          </div>
+      </div>
+  
+      <div class="swiper-slide work-box">
+        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
+          <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
+        
+          <h6>AUG 24TH 2024</h6>
+          <p>1800 HRS</p>
+          <!-- <br> -->
+          <p>Masshouse Live*</p>
+          <br><br>
+        
+          <h6>FRIDAY</h6>
+          <!-- <br> -->
+          <h2>24 AUG</h2>
+          <!-- <br> -->
+          <h6>GOOD VIBES & GOOD TIMES</h6>
+          <p>THE LIVE PARTY</p>
+
+          <br>
+
+          <div class="button">
+            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
+              <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                viewBox="0 0 256 256">
+                <path fill="currentColor"
+                  d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+              </svg>
+            </a>
+          </div>
+          <br>
+
+          <div class="uc-cta d-flex justify-content-between">
+            <div>
+              <h6>VIP TABLES</h6>
+            </div>
+            <div>
+              <h6>BOOK NOW</h6>
+            </div>
+          </div>
+      </div>
+  
+      <div class="swiper-slide work-box">
+        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
+          <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
+        
+          <h6>AUG 24TH 2024</h6>
+          <p>1800 HRS</p>
+          <!-- <br> -->
+          <p>Masshouse Live*</p>
+          <br><br>
+        
+          <h6>FRIDAY</h6>
+          <!-- <br> -->
+          <h2>24 AUG</h2>
+          <!-- <br> -->
+          <h6>GOOD VIBES & GOOD TIMES</h6>
+          <p>THE LIVE PARTY</p>
+
+          <br>
+
+          <div class="button">
+            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
+              <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                viewBox="0 0 256 256">
+                <path fill="currentColor"
+                  d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+              </svg>
+            </a>
+          </div>
+          <br>
+
+          <div class="uc-cta d-flex justify-content-between">
+            <div>
+              <h6>VIP TABLES</h6>
+            </div>
+            <div>
+              <h6>BOOK NOW</h6>
+            </div>
+          </div>
+      </div>
+  
+      <div class="swiper-slide work-box one">
+        <img class="logo-white" src="images/logo-white-removebg-preview.png" alt="logo">
+          <img class="logo-black" src="images/logo-black-removebg-preview.png" alt="logo">
+        
+          <h6>AUG 24TH 2024</h6>
+          <p>1800 HRS</p>
+          <!-- <br> -->
+          <p>Masshouse Live*</p>
+          <br><br>
+        
+          <h6>FRIDAY</h6>
+          <!-- <br> -->
+          <h2>24 AUG</h2>
+          <!-- <br> -->
+          <h6>GOOD VIBES & GOOD TIMES</h6>
+          <p>THE LIVE PARTY</p>
+
+          <br>
+
+          <div class="button">
+            <a href="tickets.html" class="button1">GET TICKETS &nbsp;
+              <svg style="margin-left: 100px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                viewBox="0 0 256 256">
+                <path fill="currentColor"
+                  d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+              </svg>
+            </a>
+          </div>
+          <br>
+
+          <div class="uc-cta d-flex justify-content-between">
+            <div>
+              <h6>VIP TABLES</h6>
+            </div>
+            <div>
+              <h6>BOOK NOW</h6>
+            </div>
+          </div>
+      </div>
+  
+  
+    </div>
+  
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <!-- <div class="swiper-pagination"></div> -->
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  
+  <!-- Initialize Swiper -->
+  <script src="js/upcomingevents-swiper.js"> </script>
+
+</section>
+
+<!--partners-n-sponsors section-->
+<section class="partners-n-sponsors">
+  <div class="logos">
+    <div class="logos-slide">
+      <img src="images/sponsors/eabl.png" />
+      <img src="images/sponsors/donjulio.png" />
+      <img src="images/sponsors/tanqueray.png"/>
+      <img src="images/sponsors/kbl.png" />
+      <img src="images/sponsors/singleton.png" />
+      <img src="images/sponsors/safaricom.png" />
+      <img src="images/sponsors/drenla.png" />
+
+    </div>
+  </div>
+  
+  
+  <script>
+    var copy = document.querySelector(".logos-slide").cloneNode(true);
+    document.querySelector(".logos").appendChild(copy);
+  </script> <!--infinite loop script-->
+</section>
+
+<!--merchandise-alert section-->
+<section class="merchandise-alert">
+  <div class="sub-heading">
+    <h3>MERCHANDISE ALERT</h3>
+  </div>
+  <div class="swiper-filter">
+    <ul>
+      <li><a href="#">ALL</a></li>
+      <li><a href="#" class="active">ACCESSORIES</a></li>
+      <li><a href="#">EXCLUSIVE</a></li>
+    </ul>
+  </div>
+  
+  
+  
+  <!-- Swiper -->
+  <div class="swiper mySwiper case-studies">
+    <div class="swiper-wrapper">
+  
+      <div class="swiper-slide merch-box">
+        <img src="images/shop/poloshirt-black.png" alt="image">
+        <div class="merch-details">
+          <h5>MASSHOUSE SIGNATURE POLO</h5>
+          <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="button">
+              <a href="merch.html" class="button1">SHOP NOW &nbsp;
+                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                  viewBox="0 0 256 256">
+                  <path fill="currentColor"
+                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                </svg>
+          
+              </a>
+            </div>
+            <div><br><p style="font-size: 12px; font-family: 'Arian LT Bold';">KES <br> 2,699.00</p></div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="swiper-slide merch-box">
+        <img src="images/shop/front-hoodie.png" alt="image">
+        <div class="merch-details">
+          <h5>MASSHOUSE SOCIETY HOODIE</h5>
+          <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="button">
+              <a href="merch.html" class="button1">SHOP NOW &nbsp;
+                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                  viewBox="0 0 256 256">
+                  <path fill="currentColor"
+                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                </svg>
+              </a>
+            </div>
+            <div><br><p style="font-size: 12px; font-family: 'Arian LT Bold';">KES <br> 3,499.00</p></div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="swiper-slide merch-box">
+        <img src="images/shop/headphone-masshouse.png" alt="image">
+        <div class="merch-details">
+          <h5>MASSHOUSE X ORAIMO</h5>
+          <p>COLOR FINISH</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="button">
+              <a href="merch.html" class="button1">SHOP NOW &nbsp;
+                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                  viewBox="0 0 256 256">
+                  <path fill="currentColor"
+                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                </svg>
+              </a>
+            </div>
+            <div><br><p style="font-size: 12px; font-family: 'Arian LT Bold';">KES <br> 2,699.00</p></div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="swiper-slide merch-box">
+        <img src="images/shop/poloshirt-black.png" alt="image">
+        <div class="merch-details">
+          <h5>MASSHOUSE SIGNATURE POLO</h5>
+          <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="button">
+              <a href="merch.html" class="button1">SHOP NOW &nbsp;
+                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                  viewBox="0 0 256 256">
+                  <path fill="currentColor"
+                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                </svg>
+              </a>
+            </div>
+            <div><br><p style="font-size: 12px; font-family: 'Arian LT Bold';">KES <br> 2,699.00</p></div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="swiper-slide merch-box">
+        <img src="images/shop/front-hoodie.png" alt="image">
+        <div class="merch-details">
+          <h5>MASSHOUSE SOCIETY HOODIE</h5>
+          <p>S &nbsp;M &nbsp;L &nbsp;XL &nbsp;XXL</p>
+        
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="button">
+              <a href="merch.html" class="button1">SHOP NOW &nbsp;
+                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                  viewBox="0 0 256 256">
+                  <path fill="currentColor"
+                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                </svg>
+              </a>
+            </div>
+            <div><br>
+              <p style="font-size: 12px; font-family: 'Arian LT Bold';">KES <br> 3,499.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="swiper-slide merch-box">
+        <img src="images/shop/headphone-masshouse.png" alt="image">
+        <div class="merch-details">
+          <h5>MASSHOUSE X ORAIMO</h5>
+          <p>COLOR FINISH</p>
+        
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="button">
+              <a href="merch.html" class="button1">SHOP NOW &nbsp;
+                <svg style="margin-left: 120px; margin-bottom: 5px;" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                  viewBox="0 0 256 256">
+                  <path fill="currentColor"
+                    d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
+                </svg>
+              </a>
+            </div>
+            <div><br>
+              <p style="font-size: 12px; font-family: 'Arian LT Bold';">KES <br> 2,699.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+    </div>
+  
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <!-- <div class="swiper-pagination"></div> -->
+  </div>
+  
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  
+  <!-- Initialize Swiper -->
+  <script src="js/upcomingevents-swiper.js"> </script>
+</section>
+
+<!--music-player section-->
+<section class="music-player">
+  <div class="row mp-wrapper">
+    <div class="mp-left one col-lg-6 col-md-6 col-sm-12">
+      <h2>OFFICIAL <br> PLAYLIST <br> 2025</h2>
+
+      <p>
+        Experience the best of Masshouse Live®, Wherever you are, <br>
+        Whenever you can, in the world. Whether you're looking for <br>
+        illusive track IDs from your time on our dancefloor, or simply <br>
+        reflecting on a memory for a re-connect, Tune in below to <br>
+        <span style="font-family:'Mundial Regular', sans serif; color: #fff;">Experience Amazing™</span>
+        
+      </p>
+
+      <ul class="list-unstyled list-inline">
+        <li class="list-inline-item mx-3">SPOTIFY</li>
+        <li class="list-inline-item mx-3">SOUNDCLOUD</li>
+        <li class="list-inline-item mx-3">YOUTUBE</li>
+        <li class="list-inline-item mx-3">APPLEMUSIC</li>
+        
+      </ul>
+
+    </div>
+    <div class="mp-right two col-lg-6 col-md-6 col-sm-12">
+      
+      <div class="music-box text-center">
+        <div class=" mpr-wrapper d-flex">
+          <div class="mpr-left col-lg-10 col-md-6 col-sm-12">
+            <img src="images/johnie walker.png" alt="image">
+            <p>JOHNIE WALKER <br>
+              THROW BACK THURSDAYS
+            </p>
+            <!-- <br> -->
+            <h2>DJ KNEE-BREAKER</h2>
+            <span>LIVE AT THE MASSHOUSE LIVE</span>
+            <br><br>
+            <hr style="border: 2px soild #fff!important;">
+            <br>
+            <ul class="music-icons list-unstyled list-inline">
+              <li class="list-inline-item mx-3">
+                <i class="fa-solid fa-backward-step"></i>
+              </li>
+              <li class="list-inline-item mx-3">
+                <i class="fa-solid fa-play"></i>
+              </li>
+              <li class="list-inline-item mx-3">
+                <i class="fa-solid fa-stop"></i>
+              </li>
+              <li class="list-inline-item mx-3">
+                <i class="fa-solid fa-forward-step"></i>
+              </li>
+          
+            </ul>
+          </div>
+          <div class="mpr-right col-lg-2 col-md-6 col-sm-12">
+            <div class="music-icons">
+              <i class="fa-solid fa-share-nodes"></i>
+              <br>
+              <i class="fa-solid fa-list"></i>
+              <br>
+              <i class="fa-solid fa-minus"></i>
+              <br>
+              <div class="volume-bar">
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus" style="color: #777;"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <i class="fa-solid fa-plus"></i>
+              <br>
+              <i class="fa-solid fa-volume-high"></i>
+            </div>
+            
+          </div>
+        </div>
+
+        
+        
+
+        
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!--footer section-->
+<footer>
+  <div>
+    <div class="row foot-wrapper">
+      <div class="col-lg-3 col-md-6 col-sm-12 foot one">
+        <h5 class="mb-4 font-weight-bold">REGISTER TO HEAR FROM US</h5>
+        <p>Sign up to hear about the latest news,
+        events and offers at MASSHOUSE.</p>
+
+        <form method="post" action="">
+          <div class="form-outline f-outline2 d-flex justify-content-between">
+            <input type="email" id="subscription_email" class="form-control f-input2" placeholder="Email*"
+              autocomplete="off" required="required" name="subscription_email">
+            
+          </div>
+          <br>
+        
+          <div class="form-check agreement">
+
+            <input class="form-check-input rounded-0" type="checkbox" id="agreement" name="agreement">
+            <label class="form-check-label" for="agreement">
+              I have read and agree to MASSHOUSE’s Privacy Policy & I would like to receive email updates and news from MASSHOUSE
+            </label>
+          </div>
+
+          <br>
+
+          <div>
+            <input class="btn btn-success sign-up" type="submit" value="SUBMIT" aria-label="Search" name="sign_up">
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12 foot two">
+          <h5 class=" font-weight-bold ">MASSHOUSE</h5>
+          <hr style="border: none!important; border-top: 1px solid #fff!important; background-color: #fff;">
+
+          <ul>
+            <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;MHL</a></li>
+            <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;Ticketing</a></li>
+            <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;About Us</a></li>
+            <li><a href="news.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;News & Blogs</a></li>
+            <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;All about MHL</a></li>
+          </ul>
+        
+      </div>
+      
+
+      <div class="col-lg-3 col-md-6 col-sm-12 foot three">
+        <h5 class=" font-weight-bold ">VENUES</h5>
+        <hr style="border: none!important; border-top: 1px solid #fff!important; background-color: #fff;">
+        
+        <ul>
+          <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;Nairobi</a></li>
+          <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;Kisumu</a></li>
+          <li><a href="about.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;Naivasha</a></li>
+          <li><a href="news.html" class="footer-link text-white" style="text-decoration: none;"> >&nbsp;Mombasa</a></li>
+        
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-12 foot four">
+        <h5 class=" font-weight-bold">CONNECT WITH US</h5>
+        <hr style="border: none!important; border-top: 1px solid #fff!important; background-color: #fff;">
+        <ul>
+          <li><a href="https://www.facebook.com/MASSHOUSEUK/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a href="https://x.com/masshouse_ke" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a href="https://www.instagram.com/masshouse_live/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://www.tiktok.com/masshouse_live" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li><a href="https://www.youtube.com/masshouse_live" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a href="https://www.threads.com/masshouse_live" target="_blank"><i class="fa-brands fa-threads"></i></a></li>
+          <li><a href="https://www.snapchat.com/masshouse_live" target="_blank"><i class="fa-brands fa-snapchat"></i></a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+  <hr class="mb-2">
+
+  <!-- bottom part -->
+  <div class="row row-foot-bot align-items-center">
+    <div class="foot-bot col-lg-6 col-md-6 col-sm-12 left">
+
+      <ul class="list-unstyled list-inline">
+        <li class="list-inline-item mx-1">Terms & Conditions</li>
+        <li class="list-inline-item mx-1">Code of Ethics</li>
+        <li class="list-inline-item mx-1">Report an Incident</li>
+      </ul>
+
+      <p>@MASSHOUSE 2024. All Rights Reserved</p>
+
+    </div>
+
+    <div class="foot-bot col-lg-6 col-md-6 col-sm-12 right">
+      <div>
+      <ul class="list-unstyled list-inline">
+        <li class="list-inline-item mx-1">Privacy Policy</li>
+        <li class="list-inline-item mx-1">Cookie Policy</li>
+        <li class="list-inline-item mx-1">Slavery Policy</li>
+      </ul>
+      
+        <p style="letter-spacing: 2px; font-family: 'Arian LT Demi', sans-serif;">&nbsp;Powered by : <a href="https://drenla.com"
+            style="text-decoration: none; color:#ccc; font-size: 22px;"><strong>DRENLA</strong>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  
+  
+</footer>
+
+
+
+
+<!-----   menu navbar js link  ------->
+<script src="js/menu.js"></script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -73,7 +73,7 @@
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -94,7 +94,6 @@
             <input type="radio" name="slider" id="close-btn" />
         </div>
     </nav>
-
     <!--alternative navbar-->
     <nav class="navbar sticky alternative-navbar main" id="alternativeNavbar">
         <div class="nav-wrapper">
@@ -104,7 +103,7 @@
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -114,7 +113,6 @@
             </div>
             <div class="nav2">
                 <ul>
-
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
                     <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
                             <sup>0</sup>
@@ -125,9 +123,7 @@
             </div>
         </div>
     </nav>
-
     <script src="{{ asset('js/alternative-navbar.js') }}"></script>
-
     <!--mobile transparent navbar -->
     <nav class="navbar sticky mobile home" id="transparentNavbar">
         <div class="nav-wrapper">
@@ -136,12 +132,11 @@
                     <img src="{{ asset('images/logo-white.png') }}" alt="logo" />
                 </a>
             </div>
-
             <div class="nav-list">
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
 
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
                     <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
@@ -155,19 +150,17 @@
             <a class="burger-nav"></a>
         </div>
     </nav>
-
     <!--mobile alternative navbar-->
     <nav class="navbar sticky mobile alternative-navbar" id="alternativeNavbar">
         <div class="nav-wrapper">
             <div class="logo">
                 <a href="/"><img src="{{ asset('images/logo-white.png') }}" alt="logo" /></a>
             </div>
-
             <div class="nav-list">
                 <ul>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
-                    <li><a href="{{ route('news') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets') }}">Tickets</a></li>
 
                     <li><a href="{{ route('shop.shop') }}">Shop</a></li>
                     <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
@@ -183,11 +176,9 @@
     </nav>
 
     <script src="{{ asset('js/mobile-alternative-navbar.js') }}"></script>
-
     @yield('content')
     <script src="{{ asset('js/upcomingevents-swiper.js') }}"></script>
     <script src="{{ asset('js/player.js') }}"></script>
-
     <footer>
         <div>
             <div class="row foot-wrapper">
@@ -197,7 +188,6 @@
                         Sign up to hear about the latest news, events and offers at
                         MASSHOUSE.
                     </p>
-
                     <form method="post" action="{{ route('subscribe_newsletter') }}">
                         @csrf
                         <div class="form-outline f-outline2 d-flex justify-content-between">

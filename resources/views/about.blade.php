@@ -3,7 +3,7 @@
 @section('content')
     <section class="about-landing">
         <!-- <p class="white">HOME OF AMAZING EXPERIENCES</p>
-                                                                                                                                                                                                                        <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
+                                                                                                                                                                                                                            <p class="black">HOME OF AMAZING EXPERIENCES</p> -->
         <div class="words">
             <div class="words-slide">
                 <p class="white">HOME OF AMAZING EXPERIENCES</p>
@@ -111,38 +111,7 @@
             </section>
         @endforeach
         <!--team section-->
-        <section class="team">
-            <div class="sub-heading">
-                <h3>THE MASSHOUSE TEAM</h3>
-                <br>
-                <p>Get to know the talented individuals who will put a touch of class on your events.</p>
-            </div>
 
-
-
-            <!-- Swiper -->
-            <div class="swiper mySwiper case-studies">
-                <div class="swiper-wrapper">
-                    @foreach ($team_members as $member)
-                        <div class="swiper-slide team-box">
-                            <div class="team-box-img">
-                                <img src="{{ asset($member->image) }}" alt="">
-                            </div>
-                            <div class="team-details">
-                                <h5>{{ $member->name }}</h5>
-                                <p>{{ $member->title }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-
-
-                </div>
-
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-
-        </section>
 
         <!--pro-corner section-->
         <section class="pro-corner">
@@ -167,7 +136,7 @@
                                         d="M204 64v104a12 12 0 0 1-24 0V93L72.49 200.49a12 12 0 0 1-17-17L163 76H88a12 12 0 0 1 0-24h104a12 12 0 0 1 12 12" />
                                 </svg>
                                 <!-- <i style="margin-left: 50px;"
-                                                                                                                                                                                                                                                class="text-white fa-solid fa-up-right-from-square"></i> -->
+                                                                                                                                                                                                                                                    class="text-white fa-solid fa-up-right-from-square"></i> -->
                             </a>
                         </div>
                     </div>

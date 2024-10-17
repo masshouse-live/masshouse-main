@@ -23,81 +23,80 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="circle"></div>
+        <!-- <div class="lp-wrapper">
+            <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+          </div> -->
         <div class="maincontainer">
             <div class="thecard">
+
                 <div class="thefront">
-                    <h1>
-                        HOME <br />
-                        OF
-                    </h1>
+                    <h1>HOME <br> OF</h1>
                 </div>
 
                 <div class="theback">
-                    <h1>
-                        AMAZING <br />
-                        EXPERIENCES
-                    </h1>
+                    <h1>AMAZING <br> EXPERIENCES</h1>
                 </div>
+
             </div>
         </div>
         <script src="{{ asset('js/cursor-trail.js') }}"></script>
 
     </section>
     @php
-    use Carbon\Carbon;
+        use Carbon\Carbon;
 
-    // Define special holiday dates
-    $currentYear = Carbon::now()->format('Y');
-    $christmas = Carbon::parse("$currentYear-12-25");
-    $newYearsEve = Carbon::parse("$currentYear-12-31");
+        // Define special holiday dates
+        $currentYear = Carbon::now()->format('Y');
+        $christmas = Carbon::parse("$currentYear-12-25");
+        $newYearsEve = Carbon::parse("$currentYear-12-31");
 
-    // Get current date and time
-    $today = Carbon::now(); // Use now() instead of today()
-    $event_date = Carbon::parse($coming_event->date_time ?? Carbon::now());
+        // Get current date and time
+        $today = Carbon::now(); // Use now() instead of today()
+        $event_date = Carbon::parse($coming_event->date_time ?? Carbon::now());
 
-    $diffInDays = $event_date->diffInDays($today);
-    $diffInWeeks = ceil($diffInDays / 7); // Get the number of weeks
-    $dayOfWeek = $event_date->format('l'); // Get the day of the week e.g. 'Friday'
-    $eventMonthName = $event_date->format('F'); // Get event month name (e.g., "October")
-    $eventMonth = $event_date->format('n'); // Get event month as number (1-12)
-    $eventYear = $event_date->format('Y'); // Get the event year
-    $currentMonth = $today->format('n'); // Get current month as number (1-12)
+        $diffInDays = $event_date->diffInDays($today);
+        $diffInWeeks = ceil($diffInDays / 7); // Get the number of weeks
+        $dayOfWeek = $event_date->format('l'); // Get the day of the week e.g. 'Friday'
+        $eventMonthName = $event_date->format('F'); // Get event month name (e.g., "October")
+        $eventMonth = $event_date->format('n'); // Get event month as number (1-12)
+        $eventYear = $event_date->format('Y'); // Get the event year
+        $currentMonth = $today->format('n'); // Get current month as number (1-12)
 
-    // Determine the heading text
-    if ($event_date->isSameDay($christmas)) {
-        $heading = 'CHRISTMAS';
-    } elseif ($event_date->isSameDay($newYearsEve)) {
-        $heading = 'NEW YEAR\'S EVE';
-    } elseif ($event_date->isToday()) { // Check if the event date is today
-        $heading = 'TODAY';
-    } elseif ($event_date->isTomorrow()) { // Check if the event date is tomorrow
-        $heading = 'TOMORROW';
-    } elseif ($event_date->isFuture() && $event_date->isCurrentWeek()) { // Check if the event date is in the current week
-        $heading = 'THIS ' . strtoupper($dayOfWeek);
-    } elseif ($diffInDays <= 14 && $event_date->isFuture()) { // Check if the event is next week
-        $heading = 'NEXT ' . strtoupper($dayOfWeek);
-    } elseif ($diffInWeeks <= 4 && $eventMonth === $currentMonth) {
-        $heading = 'IN ' . $diffInWeeks . ' WEEKS'; // More than 2 weeks but same month
-    } elseif (
-        $eventMonth === $currentMonth + 1 ||
-        ($currentMonth === 12 && $eventMonth === 1 && $eventYear === $currentYear + 1)
-    ) {
-        $heading = 'NEXT MONTH';
-    } elseif ($eventYear > $currentYear) {
-        $heading = 'ON ' . strtoupper($eventMonthName) . ' ' . $eventYear;
-    } else {
-        $heading = 'THIS ' . strtoupper($eventMonthName);
-    }
-@endphp
-
-
-
+        // Determine the heading text
+        if ($event_date->isSameDay($christmas)) {
+            $heading = 'CHRISTMAS';
+        } elseif ($event_date->isSameDay($newYearsEve)) {
+            $heading = 'NEW YEAR\'S EVE';
+        } elseif ($event_date->isToday()) {
+            // Check if the event date is today
+            $heading = 'TODAY';
+        } elseif ($event_date->isTomorrow()) {
+            // Check if the event date is tomorrow
+            $heading = 'TOMORROW';
+        } elseif ($event_date->isFuture() && $event_date->isCurrentWeek()) {
+            // Check if the event date is in the current week
+            $heading = 'THIS ' . strtoupper($dayOfWeek);
+        } elseif ($diffInDays <= 14 && $event_date->isFuture()) {
+            // Check if the event is next week
+            $heading = 'NEXT ' . strtoupper($dayOfWeek);
+        } elseif ($diffInWeeks <= 4 && $eventMonth === $currentMonth) {
+            $heading = 'IN ' . $diffInWeeks . ' WEEKS'; // More than 2 weeks but same month
+        } elseif (
+            $eventMonth === $currentMonth + 1 ||
+            ($currentMonth === 12 && $eventMonth === 1 && $eventYear === $currentYear + 1)
+        ) {
+            $heading = 'NEXT MONTH';
+        } elseif ($eventYear > $currentYear) {
+            $heading = 'ON ' . strtoupper($eventMonthName) . ' ' . $eventYear;
+        } else {
+            $heading = 'THIS ' . strtoupper($eventMonthName);
+        }
+    @endphp
     <section class="next-event">
         <h5>{{ $heading }} </h5>
         @if ($coming_event && $coming_event->date_time)
             <h4>{{ $coming_event->date_time->format('d M') ?? '' }}</h4>
         @endif
-
         <div class="words">
             <div class="words-slide">
                 <p>{{ $coming_event->title ?? '' }}</p>
@@ -109,16 +108,14 @@
                 <p>{{ $coming_event->title ?? '' }}</p>
             </div>
         </div>
-
         <h2>{{ $coming_event->subtitle ?? '' }}</h2>
     </section>
-
 
     <section class="shop-now" style="border-bottom: 1px solid #fff">
         <div class="row shn-wrapper">
             <div class="shn-left col-lg-8 col-md-6 col-sm-12">
                 <div class="button">
-                    <a href="{{$coming_event->tickets_link??""}}" class="button1">GET TICKETS &nbsp;
+                    <a href="{{ $coming_event->tickets_link ?? '' }}" class="button1">GET TICKETS &nbsp;
                         <svg style="margin-left: 100px; margin-bottom: 5px" xmlns="http://www.w3.org/2000/svg"
                             width="1.5em" height="1.5em" viewBox="0 0 256 256">
                             <path fill="currentColor"
@@ -129,8 +126,10 @@
             </div>
             <div class="shn-right col-lg-4 col-md-6 col-sm-12">
                 <div class="d-flex justify-content-between">
-                    <a href="{{route('tickets')}}" style="color:#ffff;font-family: 'Arian LT Demi', sans-serif">VIP TABLES</span>
-                    <a href="{{route('tickets')}}" style="color:#ffff;font-family: 'Arian LT Demi', sans-serif">BOOK NOW</span>
+                    <a href="{{ route('tickets') }}" style="color:#ffff;font-family: 'Arian LT Demi', sans-serif">VIP
+                        TABLES</span>
+                        <a href="{{ route('tickets') }}" style="color:#ffff;font-family: 'Arian LT Demi', sans-serif">BOOK
+                            NOW</span>
                 </div>
             </div>
         </div>

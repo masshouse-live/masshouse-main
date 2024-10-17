@@ -128,30 +128,7 @@
                 </select>
             </div>
         </div>
-        <style>
-            .form-select:disabled {
-                background-color: #000;
-            }
 
-            .form-control:disabled {
-                background-color: #000;
-            }
-
-            .form-select {
-                color: white;
-                background-color: #000;
-            }
-
-            .form-select option {
-                color: white;
-                background-color: #000;
-            }
-
-            .form-select option:disabled {
-                color: grey;
-                background-color: #333;
-            }
-        </style>
         <br>
         <div class="button text-center">
             <button class="button1"><span style="margin-left: 50px;">BOOK TABLE</span>
