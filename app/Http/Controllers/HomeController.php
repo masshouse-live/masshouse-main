@@ -69,6 +69,11 @@ class HomeController extends Controller
                 'email' => 'required|email',
             ]);
 
+            // if emails are already subscribed
+            if (NewsletterSubscription::where('email', $request->email)->exists()) {
+                return redirect()->back();
+            }
+
             $input = $request->all();
             $input['subscribed'] = 1;
             NewsletterSubscription::create($input);
