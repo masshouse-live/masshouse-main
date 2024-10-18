@@ -50,7 +50,7 @@
                     <div class="uc-cta d-flex justify-content-between">
                         <div>
                             <h6>
-                                <a style="color: white; text-decoration: none;"
+                                <a style="color: white; text-decoration: none; hover:color: white"
                                     href="{{ route('tickets') }}#reservationForm" target="_blank">VIP TABLE</a>
                             </h6>
                         </div>
