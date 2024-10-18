@@ -3,27 +3,23 @@
         Options -MultiViews
     </IfModule>
 
-     <IfModule mod_headers.c>
+    <IfModule mod_headers.c>
         Header set Accept-Ranges bytes
     </IfModule>
 
-
     RewriteEngine On
-    RewriteCond %{HTTP_HOST} !^live.masshouse.live$
-    RewriteRule ^(.*)$ https://live.masshouse.live/$1 [R=301,L]
+
     Options +FollowSymLinks
 
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
     RewriteRule ^(.*)$ public/$1 [L]
 
-
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ public/index.php [L]
 </IfModule>
-
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/css
@@ -44,7 +40,6 @@
     AddOutputFilterByType DEFLATE image/png
     AddOutputFilterByType DEFLATE image/gif
     AddOutputFilterByType DEFLATE image/bmp
-    AddOutputFilterByType DEFLATE image/jpeg,
     AddOutputFilterByType DEFLATE image/svg+xml
     AddOutputFilterByType DEFLATE image/x-icon
     AddOutputFilterByType DEFLATE audio/mpeg
