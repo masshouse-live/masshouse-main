@@ -515,64 +515,69 @@ section.landing-page {
 }
 
 /* THE CARD HOLDS THE FRONT AND BACK FACES */
+.maincontainer {
+    perspective: 1000px; /* Better 3D effect */
+}
+
+.maincontainer {
+    perspective: 1000px; /* Add perspective to the container */
+}
+
 .thecard {
     position: relative;
     width: 300px; /* Set a specific width */
     height: 200px; /* Set a specific height */
-    border-radius: 10px;
     transform-style: preserve-3d;
-    animation: flip 6s infinite ease-in-out;
-    perspective: 1000px; /* Add perspective for better 3D effect */
+    animation: flipZoom 6s infinite ease-in-out; /* Updated animation */
 }
 
-/* Create the animation */
-@keyframes flip {
+/* Create the flip with zoom effect animation */
+@keyframes flipZoom {
     0% {
-        transform: rotateX(0deg);
+        transform: rotateX(0deg) scale(1); /* Initial position and normal size */
     }
-
+    25% {
+        transform: rotateX(90deg) scale(0.9); /* Flip halfway and zoom out */
+    }
     50% {
-        transform: rotateX(180deg);
+        transform: rotateX(180deg) scale(1); /* Complete flip and zoom back in */
     }
-
+    75% {
+        transform: rotateX(270deg) scale(0.9); /* Flip 270 degrees and zoom out again */
+    }
     100% {
-        transform: rotateX(360deg);
+        transform: rotateX(360deg) scale(1); /* Full rotation, normal size */
     }
 }
 
-/* THE FRONT FACE OF THE CARD, WHICH SHOWS BY DEFAULT */
+/* Front face of the card */
 .thefront {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Full height to match card */
-    border-radius: 10px;
+    height: 100%;
     backface-visibility: hidden;
-    background: transparent;
     color: #000;
-    display: flex; /* Center content */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* THE BACK FACE OF THE CARD, WHICH SHOWS ON MOUSEOVER */
+/* Back face of the card */
 .theback {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Full height to match card */
-    border-radius: 10px;
+    height: 100%;
     backface-visibility: hidden;
-    background: transparent;
+    color: #000;
     text-align: center;
-    transform: rotateX(
-        180deg
-    ); /* Rotate the back face to align with the flip */
-    display: flex; /* Center content */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    transform: rotateX(180deg); /* Align back with front */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Styling for text inside the card */
