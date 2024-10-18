@@ -33,15 +33,26 @@ class HomeController extends Controller
     {
         $evets_filter  = $request->events ?? '';
         $events = Event::with("venue");
+
         if ($evets_filter) {
             $events->where('tag', $evets_filter);
         }
-        $events = $events->whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->get();
+
+        $events = $events->whereDate('date_time', '>=', date('Y-m-d'))
+            ->orderBy('date_time', 'asc')
+            ->get();
+
         $sponsors = Sponsor::all();
-        $coming_event = Event::whereDate('date_time', '>=', date('Y-m-d'))->orderBy('date_time', 'asc')->first();
+
+        // Fetch the coming event, including today
+        $coming_event = Event::where('date_time', '>=', now()) // Using 'now()' to include today's events
+            ->orderBy('date_time', 'asc')
+            ->first();
+
         $playlist = Playlist::orderBy('created_at', 'desc')->first();
-        $merchandise_categories = ProductCategory::query();
-        $merchandise_categories = $merchandise_categories->orderBy('id', 'desc')->paginate(10);
+
+        $merchandise_categories = ProductCategory::orderBy('id', 'desc')->paginate(10);
+
         return view('home', compact("events", "coming_event", "sponsors", "playlist", "merchandise_categories"));
     }
 
@@ -51,8 +62,6 @@ class HomeController extends Controller
         $menu = $settings->menu_path;
         return view('menu', compact('menu'));
     }
-
-    // subscribe to newsletter
     public function subscribe_newsletter(Request $request)
     {
         try {

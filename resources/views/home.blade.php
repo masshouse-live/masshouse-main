@@ -23,24 +23,17 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="circle"></div>
-        <!-- <div class="lp-wrapper">
-                <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-              </div> -->
         <div class="maincontainer">
             <div class="thecard">
-
                 <div class="thefront">
                     <h1>HOME <br> OF</h1>
                 </div>
-
                 <div class="theback">
                     <h1>AMAZING <br> EXPERIENCES</h1>
                 </div>
-
             </div>
         </div>
         <script src="{{ asset('js/cursor-trail.js') }}"></script>
-
     </section>
     @php
         use Carbon\Carbon;
