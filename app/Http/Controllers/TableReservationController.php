@@ -8,6 +8,29 @@ use App\Models\Table;
 use App\Models\TableReservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TableReservationNotification;
+
+
+function createICS($customerName, $fromDateTime, $toDateTime, $tableIndex)
+{
+    $icsContent = "BEGIN:VCALENDAR\r\n";
+    $icsContent .= "VERSION:2.0\r\n";
+    $icsContent .= "CALSCALE:GREGORIAN\r\n";
+    $icsContent .= "METHOD:REQUEST\r\n";
+    $icsContent .= "BEGIN:VEVENT\r\n";
+    $icsContent .= "UID:" . uniqid() . "@yourdomain.com\r\n"; // Unique ID for the event
+    $icsContent .= "SUMMARY:Table Reservation for $customerName\r\n";
+    $icsContent .= "DTSTART:" . $fromDateTime->utc()->format('Ymd\THis\Z') . "\r\n"; // Start time in UTC
+    $icsContent .= "DTEND:" . $toDateTime->addMinute()->utc()->format('Ymd\THis\Z') . "\r\n"; // End time in UTC
+    $icsContent .= "DESCRIPTION:Reservation Details:\nCustomer Name: $customerName\nTable Index: $tableIndex\r\n";
+    $icsContent .= "LOCATION:Your Restaurant Address\r\n";
+    $icsContent .= "STATUS:CONFIRMED\r\n";
+    $icsContent .= "END:VEVENT\r\n";
+    $icsContent .= "END:VCALENDAR\r\n";
+
+    return $icsContent;
+}
 
 class TableReservationController extends Controller
 {
@@ -111,6 +134,22 @@ class TableReservationController extends Controller
                     $reservationTrend->amount = 0;
                     $reservationTrend->save();
                 }
+
+                $icsContent = createICS(
+                    $request->input('customer_name'),
+                    $fromDateTime,
+                    $toDateTime,
+                    $tableIndex
+                );
+
+                Mail::to($request->input('customer_email'))->send(new TableReservationNotification(
+                    $request->input('customer_name'),
+                    $fromDateTime->format('Y-m-d'),
+                    $fromDateTime->format('H:i'),
+                    $toDateTime->format('H:i'), // No need to add a minute here; it's done in ICS
+                    $tableIndex,
+                    $icsContent // Pass the ICS content
+                ));
 
                 return response()->json(['success' => 'Table reserved successfully!'], 200);
             }
