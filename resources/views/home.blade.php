@@ -24,8 +24,8 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <!-- <div class="lp-wrapper">
-            <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
-          </div> -->
+                <h1>HOME <br> OF <br> AMAZING <br> EXPERIENCE</h1>
+              </div> -->
         <div class="maincontainer">
             <div class="thecard">
 
@@ -139,7 +139,7 @@
     <!--partners-n-sponsors section-->
     @include('partials.partners', ['color' => 'white', 'partners' => $sponsors])
 
-    <!--merchandise-alert section-->
+    {{-- <!--merchandise-alert section-->
     <section class="merchandise-alert">
         <div class="sub-heading">
             <h3>MERCHANDISE ALERT</h3>
@@ -155,7 +155,7 @@
         <!-- Swiper -->
         @include('partials.merch-categories', ['categories' => $merchandise_categories])
 
-    </section>
+    </section> --}}
 
     <!--music-player section-->
     @include('partials.music-player', ['playlist' => $playlist])

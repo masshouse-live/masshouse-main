@@ -84,8 +84,10 @@
             <div class="nav2">
                 <ul>
                     <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
-                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i> </a>
+                    <li><a href="{{ route('tickets') }}#reservationForm">Table Reservation</a></li>
+
+                    <li><a>Shop</a></li>
+                    {{-- <li><a>Cart <i class="fa-solid fa-cart-shopping"></i> </a> --}}
                     </li>
                     <li><a href="{{ route('contact') }}" class="nav-button">Contact Us</a></li>
                 </ul>
@@ -113,11 +115,13 @@
             </div>
             <div class="nav2">
                 <ul>
-                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
-                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
+                    <li><a href="{{ route('tickets') }}#reservationForm">Table Reservation</a></li>
+
+                    <li><a>Shop</a></li>
+                    {{-- <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
                             <sup>0</sup>
                         </a>
-                    </li>
+                    </li> --}}
                     <li><a href="{{ route('contact') }}" class="nav-button">Contact Us</a></li>
                 </ul>
             </div>
@@ -137,11 +141,12 @@
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
                     <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets') }}#reservationForm">Table Reservation</a></li>
 
-                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
-                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
-                            <sup>0</sup>
-                        </a>
+                    {{-- <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i> --}}
+                    <sup>0</sup>
+                    </a>
                     </li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->
@@ -161,11 +166,12 @@
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('news') }}">Media</a></li>
                     <li><a href="{{ route('tickets') }}">Tickets</a></li>
+                    <li><a href="{{ route('tickets') }}#reservationForm">Table Reservation</a></li>
 
-                    <li><a href="{{ route('shop.shop') }}">Shop</a></li>
-                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i>
-                            <sup>0</sup>
-                        </a>
+                    {{-- <li><a href="{{ route('shop.shop') }}">Shop</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Cart <i class="fa-solid fa-cart-shopping"></i> --}}
+                    <sup>0</sup>
+                    </a>
                     </li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <!-- <li><a href="/"><img src="images/logo-white.png" alt="logo"></a></li> -->

@@ -73,7 +73,6 @@
 
 
 
-
 * {
     padding: 0;
     margin: 0;
@@ -87,6 +86,37 @@
     /* overflow-y: hidden; */
 }
 
+/* section,
+div,
+span,
+article,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow: hidden !important;
+}
+
+.navbar,
+.nav-wrapper,
+.burger-nav,
+.logo,
+.navlist,
+.nav-list ul,
+.nav-list ul li,
+.nav-list ul li a,
+section #tranding,
+.containner,
+.swiper .tranding-slider,
+.swiper-wrapper,
+.swiper-slide .tranding-slide,
+.tranding-slide-img,
+.tranding-slide-content {
+    overflow: visible !important;
+} */
 
 a{
     text-decoration: none;
@@ -154,6 +184,9 @@ nav{
     margin-top: 40px;
     color: #EEF8FA;
 }
+.nav2 ul{
+    color: #999!important;
+}
 .nav1 ul {
     float: right;
 }
@@ -177,12 +210,18 @@ nav{
     cursor: pointer;
     transition: 1s ease;
 }
-.nav1 ul li a:hover,
-.nav2 ul li a:hover{
+/* .nav2 ul li a:hover, */
+.nav1 ul li a:hover{
     transition: 1s ease;
     color: #ccc;
     letter-spacing: 2px;
     padding: 5px 45px;
+}
+.nav2 ul li a {
+    color: #999;
+}
+.nav2 ul li a:hover {
+    color: #999;
 }
 .nav2 ul li a.nav-button {
     padding: 5px 20px;
@@ -957,7 +996,7 @@ section.music-player {
     padding-bottom: 150px;
 }
 .mp-right{
-    width: auto;
+    /* width: auto; */
     position: relative;
 }
 .mp-right .music-box{
@@ -971,6 +1010,7 @@ section.music-player {
 }
 .mp-right .music-box .mpr-wrapper{
     display: flex !important;
+    /* justify-content: space-evenly; */
     position: relative;
 }
 .music-box img{
@@ -992,7 +1032,7 @@ section.music-player {
 }
 .mpr-left,
 .mpr-right{
-    width:auto;
+    /* width:auto; */
     position: relative;
 }
 .mpr-right .music-icons i{
@@ -1252,6 +1292,10 @@ footer .f-outline2 input::placeholder{
     .mp-right .music-box {
         padding: 0;
         padding-right: 30px;
+    }
+    .mpr-left,
+    .mpr-right{
+        width: auto;
     }
     /*footer*/
     footer {
@@ -2142,6 +2186,9 @@ section.music-player2 {
     } */
     .tr-left{
         padding-bottom: 20px;
+    }
+    section.music-player2 {
+        padding: 50px 20px;
     }
 }
 

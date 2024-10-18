@@ -49,10 +49,11 @@
 
                     <div class="uc-cta d-flex justify-content-between">
                         <div>
-                            <h6>VIP TABLES</h6>
+                            <h6>
+                                <a href="{{ route('tickets') }}#reservationForm" target="_blank">VIP TABLE</a>
+                            </h6>
                         </div>
                         <div>
-                            <h6>BOOK NOW</h6>
                         </div>
                     </div>
                 </div>
